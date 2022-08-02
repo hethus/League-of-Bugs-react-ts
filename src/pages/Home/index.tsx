@@ -22,15 +22,12 @@ const Home = () => {
           </Styled.SearchInputContainer>
         </Styled.HomeContentHeader>
         <section>
-          <div>
-            <p>Bug points</p>
-          </div>
-          <div>
+          <Styled.CategoriesNavigationBar>
+            <Styled.CategoriesNavigationButton active>Bug points</Styled.CategoriesNavigationButton>
+          </Styled.CategoriesNavigationBar>
+          <Styled.ProductsHeaderContainer>
             <h2>Choose the Bug point</h2>
-            <select name="" id="">
-              <option value="1">1</option>
-            </select>
-          </div>
+          </Styled.ProductsHeaderContainer>
           <div>
             <div>Card</div>
           </div>

@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+interface CategoriesNavigationButtonProps {
+  active?: boolean;
+}
 
 export const HomeContainer = styled.div`
   width: 100%;
@@ -6,6 +10,16 @@ export const HomeContainer = styled.div`
   display: flex;
   background-color: #252836;
   color: #fff;
+
+  section {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2rem;
+    box-sizing: border-box;
+  }
 `;
 
 export const HomeContentContainer = styled.div`
@@ -51,9 +65,45 @@ export const SearchInputContainer = styled.div`
     height: 38px;
     color: #ffffff;
     font-size: 14px;
-    
+
     :focus {
       outline: none;
     }
   }
+`
+
+export const CategoriesNavigationBar = styled.div`
+  width: 100%;
+  height: 3vh;
+  border-bottom: 1px solid #393c49;
+  display: flex;
+`
+
+export const CategoriesNavigationButton = styled.button<CategoriesNavigationButtonProps>`
+  color: #393c49;
+  border: 0;
+  cursor: pointer;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  margin-right: 0.4rem;
+  background-color: #252836;
+  
+  :hover {
+    color: #ffffff;
+  }
+
+  ${({ active }) => active && css`
+    color: #6cea69;
+    border-bottom: 3px solid #6cea69;
+  `}
+`
+
+export const ProductsHeaderContainer = styled.div`
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  box-sizing: border-box;
 `
