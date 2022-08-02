@@ -1,6 +1,6 @@
 import * as Styled from './styles';
-import Logo from "../../assets/logo_patterns/logo.png";
-import { HomeIcon, SettingsIcon, LogoutIcon } from '../../assets/icons';
+import Logo from '../../logo_patterns/logo.png';
+import { HomeIcon, SettingsIcon, LogoutIcon } from '../../icons/index';
 
 interface MenuProps {
   path: "home" | "settings";

@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import { SearchIcon } from "../../assets/icons";
-import Menu from "../Menu";
+import Menu from "../../assets/components/Menu";
 import * as Styled from "./style";
 
 const Home = () => {
