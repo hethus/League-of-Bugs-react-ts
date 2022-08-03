@@ -1,13 +1,13 @@
 export interface BugPoint {
-  id: string;
+  id?: string;
   price: number;
   imageUrl: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface Champion {
-  id: string;
+  id?: string;
   name: string;
   price: number;
   title: string;
@@ -16,6 +16,6 @@ export interface Champion {
   difficulty: string;
   youTubeUrl: string;
   classeId: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
