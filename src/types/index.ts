@@ -15,7 +15,14 @@ export interface Champion {
   imageUrl: string;
   difficulty: string;
   youTubeUrl: string;
-  classeId: number;
+  classeId: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface Classe {
+  id?: string;
+  name: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

@@ -2,6 +2,9 @@ import { DateTime } from "luxon";
 import { SearchIcon } from "../../assets/icons";
 import Menu from "../../assets/components/Menu";
 import * as Styled from "./style";
+import { mockedBugPoints, mockedClasse, mockedChampions } from "../../assets/mocks";
+import BugPointList from "../../assets/components/BugPointList";
+import ChampionList from "../../assets/components/ChampionList";
 
 const Home = () => {
   const actualDate = DateTime.now();
@@ -28,9 +31,10 @@ const Home = () => {
           <Styled.ProductsHeaderContainer>
             <h2>Choose the Bug point</h2>
           </Styled.ProductsHeaderContainer>
-          <div>
-            <div>Card</div>
-          </div>
+          <BugPointList list={mockedBugPoints}/>
+          <Styled.test>
+            <ChampionList list={mockedChampions}/>
+          </Styled.test>
         </section>
       </Styled.HomeContentContainer>
       <aside>

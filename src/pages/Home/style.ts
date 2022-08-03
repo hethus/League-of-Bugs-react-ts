@@ -107,3 +107,9 @@ export const ProductsHeaderContainer = styled.div`
   padding: 0 2rem;
   box-sizing: border-box;
 `
+
+export const test = styled.div`
+  width: 100%;
+  display: flex;
+  padding-top: 3rem;
+`
