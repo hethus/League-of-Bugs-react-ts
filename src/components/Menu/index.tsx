@@ -1,6 +1,6 @@
 import * as Styled from './styles';
-import Logo from '../../logo_patterns/logo.png';
-import { HomeIcon, SettingsIcon, LogoutIcon } from '../../icons/index';
+import logo from '../../assets/logo_patterns/logo.png';
+import { HomeIcon, SettingsIcon, LogoutIcon } from '../../assets/icons/index';
 
 interface MenuProps {
   path: "home" | "settings";
@@ -9,7 +9,7 @@ interface MenuProps {
 const Menu = ({ path }: MenuProps) => {
   return (
     <Styled.MenuContainer>
-      <img alt="logo" src={Logo}/>
+      <img alt="logo" src={logo}/>
       <nav>
         <Styled.MenuItem active={path === "home"}>
           <Styled.MenuItemButton active={path === "home"}>

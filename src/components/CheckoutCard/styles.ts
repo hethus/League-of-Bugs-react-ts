@@ -38,7 +38,7 @@ export const CheckoutCardImg = styled.div`
   `}
 `
 
-export const BugPointsQuantityInput = styled.button`
+export const BugPointsQuantityInput = styled.input`
   ${({ theme }) => css`
     all: unset;
     width: 3rem;

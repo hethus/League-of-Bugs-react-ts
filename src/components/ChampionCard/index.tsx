@@ -1,4 +1,4 @@
-import { Champion } from "../../types";
+import { Champion } from "../../assets/types";
 import * as Styled from "./styles";
 
 interface ChampionProps {

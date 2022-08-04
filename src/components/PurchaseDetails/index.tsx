@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { mockedBugPoints } from '../../mocks';
+import { mockedBugPoints } from '../../assets/mocks';
 import Button from '../Button';
 import CheckoutCard from '../CheckoutCard';
 import * as Styled from './styles';

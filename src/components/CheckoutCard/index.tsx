@@ -1,5 +1,5 @@
 import * as Styled from './styles';
-import { BugPoint } from '../../types';
+import { BugPoint } from '../../assets/types';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -19,7 +19,12 @@ const CheckoutCard = ({ bugPoint }: CheckoutCardProps) => {
           </h5>
           <p>R${bugPoint.money.toLocaleString()}</p>
         </div>
-        <Styled.BugPointsQuantityInput type="number" min="1" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}/>
+        <Styled.BugPointsQuantityInput
+          type="number"
+          min="1"
+          value={quantity}
+          onChange={(e) => setQuantity(Number(e.target.value))}
+        />
         <span>R${(quantity * bugPoint.money).toLocaleString()}</span>
       </Styled.CheckoutCardHeader>
       <Styled.CheckoutCardImg>
