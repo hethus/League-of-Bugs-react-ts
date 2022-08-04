@@ -1,7 +1,8 @@
 export interface BugPoint {
   id?: string;
-  price: number;
+  value: number;
   imageUrl: string;
+  money: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
