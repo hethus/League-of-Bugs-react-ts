@@ -12,11 +12,12 @@ import PurchaseDetails from "../../assets/components/PurchaseDetails";
 const Home = () => {
 
   {/* colocar isso daqui no purchaseChampion depois: */}
-  const [selectedClasse, setSelectedClasse] = useState<Classe>(mockedClasse[0]);
-
   const All: Classe = {
     name: "All",
   }
+  
+  const [selectedClasse, setSelectedClasse] = useState<Classe>(All);
+
 
   const filteredChampions: Champion[] = mockedChampions.filter((element) => {
     if (selectedClasse.name === All.name) {

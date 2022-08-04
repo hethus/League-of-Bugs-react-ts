@@ -1,3 +1,4 @@
+import Button from '../Button';
 import * as Styled from './styles';
 
 const PurchaseDetails = () => {
@@ -27,7 +28,7 @@ const PurchaseDetails = () => {
         <p>Subtotal</p>
         <p>R$0.00</p>
       </div>
-      <button>Continue to payment</button>
+      <Button text="Continue to payment" onClick={() => {}} size="large"/>
     </div>
   </Styled.PurchaseDetailsContainer>
   );
