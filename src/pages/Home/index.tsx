@@ -5,8 +5,23 @@ import * as Styled from "./style";
 import { mockedBugPoints, mockedClasse, mockedChampions } from "../../assets/mocks";
 import BugPointList from "../../assets/components/BugPointList";
 import ChampionList from "../../assets/components/ChampionList";
+import { useState } from "react";
+import { Champion, Classe } from "../../types";
 
 const Home = () => {
+
+  {/* colocar isso daqui no purchaseChampion depois: */}
+  const [selectedClasse, setSelectedClasse] = useState<Classe>(mockedClasse[0]);
+
+  const filteredChampions: Champion[] = mockedChampions.filter(
+    (element) => element.classeId === selectedClasse.id
+  );
+
+  const handleChangeClasse = (classe: Classe) => {
+    setSelectedClasse(classe);
+  };
+  {/* // */}
+
   const actualDate = DateTime.now();
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
 
@@ -26,14 +41,29 @@ const Home = () => {
         </Styled.HomeContentHeader>
         <section>
           <Styled.CategoriesNavigationBar>
-            <Styled.CategoriesNavigationButton active>Bug points</Styled.CategoriesNavigationButton>
+
+            {/* colocar isso daqui no purchaseBugpoint e arrumar style depois: */}
+            {/*<Styled.CategoriesNavigationButton active>Bug points</Styled.CategoriesNavigationButton>*/}
+            {/* // */}
+
+            {/* colocar isso daqui no purchaseChampion depois: */}
+            {mockedClasse.map((element) => {
+              return (
+                <Styled.CategoriesNavigationButton
+                active={element.name === selectedClasse.name}
+                onClick={() => handleChangeClasse(element)}>
+                  {element.name}
+                </Styled.CategoriesNavigationButton>
+              )
+              })}
+            {/* // */}
           </Styled.CategoriesNavigationBar>
           <Styled.ProductsHeaderContainer>
             <h2>Choose the Bug point</h2>
           </Styled.ProductsHeaderContainer>
           <BugPointList list={mockedBugPoints}/>
           <Styled.test>
-            <ChampionList list={mockedChampions}/>
+            <ChampionList list={filteredChampions}/>
           </Styled.test>
         </section>
       </Styled.HomeContentContainer>
