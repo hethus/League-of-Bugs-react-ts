@@ -1,13 +1,13 @@
 import { DateTime } from "luxon";
 import { SearchIcon } from "../../assets/icons";
-import Menu from "../../assets/components/Menu";
+import Menu from "../../components/Menu";
 import * as Styled from "./style";
 import { mockedBugPoints, mockedClasse, mockedChampions } from "../../assets/mocks";
-import BugPointList from "../../assets/components/BugPointList";
-import ChampionList from "../../assets/components/ChampionList";
+import BugPointList from "../../components/BugPointList";
+import ChampionList from "../../components/ChampionList";
 import { useState } from "react";
 import { Champion, Classe } from "../../assets/types";
-import PurchaseDetails from "../../assets/components/PurchaseDetails";
+import PurchaseDetails from "../../components/PurchaseDetails";
 
 const Home = () => {
 

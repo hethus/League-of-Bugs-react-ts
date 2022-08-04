@@ -1,4 +1,4 @@
-import { BugPoint } from "../../types";
+import { BugPoint } from "../../assets/types";
 import * as Styled from "./styles";
 
 interface BugPointCardProps {
@@ -8,8 +8,8 @@ interface BugPointCardProps {
 const BugPointCard = ({ bugPoint }: BugPointCardProps) => {
   return (
     <Styled.CardContainer>
-      <img src={bugPoint.imageUrl} alt={`${bugPoint.price}`} />
-      <h3>- {bugPoint.price} BP -</h3>
+      <img src={bugPoint.imageUrl} alt={`${bugPoint.value}`} />
+      <h3>- {bugPoint.value} BP -</h3>
     </Styled.CardContainer>
   );
 }

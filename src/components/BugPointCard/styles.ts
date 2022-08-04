@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { Theme } from "../../types/styled-components";
+import { Theme } from "../../assets/types/styled-components";
 
 interface ChampionCardProps {
   theme: Theme;
