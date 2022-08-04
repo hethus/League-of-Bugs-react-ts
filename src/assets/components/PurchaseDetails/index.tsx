@@ -5,31 +5,31 @@ const PurchaseDetails = () => {
   return (
     <Styled.PurchaseDetailsContainer>
     <Styled.PurchaseDetailsHeader>
-      <h2>Shopping cart</h2>
+      <h3>Shopping cart</h3>
     </Styled.PurchaseDetailsHeader>
-    <div>
-      <div>
+    <Styled.CheckoutDetailsContainer>
+      <Styled.CheckoutDetailsHeader>
         <h3>Item</h3>
         <h3>Qty</h3>
         <h3>Price</h3>
-      </div>
+      </Styled.CheckoutDetailsHeader>
       <div>
         <div>Card checkout</div>
         <div>Card checkout</div>
         <div>Card checkout</div>
       </div>
-    </div>
-    <div>
+    </Styled.CheckoutDetailsContainer>
+    <Styled.PurchaseDetailsFooter>
       <div>
         <p>Discount</p>
-        <p>R$0.00</p>
+        <h3>R$0.00</h3>
       </div>
       <div>
         <p>Subtotal</p>
-        <p>R$0.00</p>
+        <h3>R$0.00</h3>
       </div>
       <Button text="Continue to payment" onClick={() => {}} size="large"/>
-    </div>
+    </Styled.PurchaseDetailsFooter>
   </Styled.PurchaseDetailsContainer>
   );
 }
