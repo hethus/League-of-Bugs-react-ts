@@ -16,10 +16,6 @@ const Home = () => {
   const filteredChampions: Champion[] = mockedChampions.filter(
     (element) => element.classeId === selectedClasse.id
   );
-
-  const handleChangeClasse = (classe: Classe) => {
-    setSelectedClasse(classe);
-  };
   {/* // */}
 
   const actualDate = DateTime.now();
@@ -51,7 +47,7 @@ const Home = () => {
               return (
                 <Styled.CategoriesNavigationButton
                 active={element.name === selectedClasse.name}
-                onClick={() => handleChangeClasse(element)}>
+                onClick={() => setSelectedClasse(element)}>
                   {element.name}
                 </Styled.CategoriesNavigationButton>
               )
