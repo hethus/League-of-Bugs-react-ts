@@ -1,4 +1,4 @@
-import { BugPoint } from "../../../types";
+import { BugPoint, Champion } from "../../types";
 import BugPointCard from "../BugPointCard";
 import * as Styled from "./styles";
 
@@ -8,11 +8,11 @@ interface BugPointListProps {
 
 const BugPointList = ({ list }: BugPointListProps) => {
   return (
-    <Styled.ProductsListContainer>
+    <Styled.BugPointListContainer>
       {list.map((element) => (
         <BugPointCard bugPoint={element} key={element.id}/>
       ))}
-    </Styled.ProductsListContainer>
+    </Styled.BugPointListContainer>
   );
 }
 

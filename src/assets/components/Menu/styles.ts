@@ -12,7 +12,7 @@ interface MenuItemButtonProps {
 export const MenuContainer = styled.div`
   width: 6.5rem;
   height: 100vh;
-  border-radius: 16px;
+  border-radius: 0 16px 16px 0;
   background-color: #1F1D2B;
   display: flex;
   flex-direction: column;

@@ -2,8 +2,32 @@ import { DateTime } from "luxon";
 import { SearchIcon } from "../../assets/icons";
 import Menu from "../../assets/components/Menu";
 import * as Styled from "./style";
+import { mockedBugPoints, mockedClasse, mockedChampions } from "../../assets/mocks";
+import BugPointList from "../../assets/components/BugPointList";
+import ChampionList from "../../assets/components/ChampionList";
+import { useState } from "react";
+import { Champion, Classe } from "../../assets/types";
+import PurchaseDetails from "../../assets/components/PurchaseDetails";
 
 const Home = () => {
+
+  {/* colocar isso daqui no purchaseChampion depois: */}
+  const All: Classe = {
+    name: "All",
+  }
+  
+  const [selectedClasse, setSelectedClasse] = useState<Classe>(All);
+
+
+  const filteredChampions: Champion[] = mockedChampions.filter((element) => {
+    if (selectedClasse.name === All.name) {
+      return mockedChampions
+    }
+
+    return element.classeId === selectedClasse.id
+    });
+  {/* // */}
+
   const actualDate = DateTime.now();
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
 
@@ -23,44 +47,38 @@ const Home = () => {
         </Styled.HomeContentHeader>
         <section>
           <Styled.CategoriesNavigationBar>
-            <Styled.CategoriesNavigationButton active>Bug points</Styled.CategoriesNavigationButton>
+
+            {/* colocar isso daqui no purchaseBugpoint e arrumar style depois: */}
+            {/*<Styled.CategoriesNavigationButton active>Bug points</Styled.CategoriesNavigationButton>*/}
+            {/* // */}
+
+            {/* colocar isso daqui no purchaseChampion depois: */}
+            <Styled.CategoriesNavigationButton
+                active={All.name === selectedClasse.name}
+                onClick={() => setSelectedClasse(All)}>
+                  {All.name}
+                </Styled.CategoriesNavigationButton>
+            {mockedClasse.map((element) => {
+              return (
+                <Styled.CategoriesNavigationButton
+                active={element.name === selectedClasse.name}
+                onClick={() => setSelectedClasse(element)}>
+                  {element.name}
+                </Styled.CategoriesNavigationButton>
+              )
+              })}
+            {/* // */}
           </Styled.CategoriesNavigationBar>
           <Styled.ProductsHeaderContainer>
             <h2>Choose the Bug point</h2>
           </Styled.ProductsHeaderContainer>
-          <div>
-            <div>Card</div>
-          </div>
+          <BugPointList list={mockedBugPoints}/>
+          <Styled.test>
+            <ChampionList list={filteredChampions}/>
+          </Styled.test>
         </section>
       </Styled.HomeContentContainer>
-      <aside>
-        <header>
-          <h2>Shopping cart</h2>
-        </header>
-        <div>
-          <div>
-            <h3>Item</h3>
-            <h3>Qty</h3>
-            <h3>Price</h3>
-          </div>
-          <div>
-            <div>Card checkout</div>
-            <div>Card checkout</div>
-            <div>Card checkout</div>
-          </div>
-        </div>
-        <div>
-          <div>
-            <p>Discount</p>
-            <p>R$0.00</p>
-          </div>
-          <div>
-            <p>Subtotal</p>
-            <p>R$0.00</p>
-          </div>
-          <button>Continue to payment</button>
-        </div>
-      </aside>
+      <PurchaseDetails />
     </Styled.HomeContainer>
   );
 }

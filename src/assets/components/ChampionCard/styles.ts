@@ -15,10 +15,17 @@ export const CardContainer = styled.div<ChampionCardProps>`
     flex-direction: column;
     align-items: center;
     font-family: ${theme.constants.bodyFontFamily};
+    position: relative;
+    text-align: center;
+    justify-content: center;
     
+    padding-top: 1.8rem;
+    box-sizing: border-box;
+
     img {
       width: 8rem;
-      margin: 0.25rem 0 0.75rem 0;
+      position: absolute;
+      top: -3.3rem;
     }
   `}
 `

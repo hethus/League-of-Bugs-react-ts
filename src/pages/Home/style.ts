@@ -80,13 +80,14 @@ export const CategoriesNavigationBar = styled.div`
 `
 
 export const CategoriesNavigationButton = styled.button<CategoriesNavigationButtonProps>`
-  color: #393c49;
+  color: #8046f2;
   border: 0;
   cursor: pointer;
   padding-left: 0.3rem;
   padding-right: 0.3rem;
   margin-right: 0.4rem;
   background-color: #252836;
+  font-size: 18px;
   
   :hover {
     color: #ffffff;
@@ -106,4 +107,10 @@ export const ProductsHeaderContainer = styled.div`
   justify-content: center;
   padding: 0 2rem;
   box-sizing: border-box;
+`
+
+export const test = styled.div`
+  width: 100%;
+  display: flex;
+  padding-top: 3rem;
 `
