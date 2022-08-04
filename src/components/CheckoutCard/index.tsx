@@ -2,6 +2,7 @@ import * as Styled from './styles';
 import { BugPoint } from '../../assets/types';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { TrashIcon} from '../../assets/icons';
 
 interface CheckoutCardProps {
   bugPoint: BugPoint;
@@ -14,9 +15,9 @@ const CheckoutCard = ({ bugPoint }: CheckoutCardProps) => {
     <Styled.CheckoutCardContainer>
       <Styled.CheckoutCardHeader>
         <div>
-          <h5>
+          <h3 title={`${bugPoint.value} BP's`}>
           {bugPoint.value} BP's
-          </h5>
+          </h3>
           <p>R${bugPoint.money.toLocaleString()}</p>
         </div>
         <Styled.BugPointsQuantityInput
@@ -27,14 +28,12 @@ const CheckoutCard = ({ bugPoint }: CheckoutCardProps) => {
         />
         <span>R${(quantity * bugPoint.money).toLocaleString()}</span>
       </Styled.CheckoutCardHeader>
-      <Styled.CheckoutCardImg>
-        <img src={bugPoint.imageUrl} alt={`${bugPoint.value}`}/>
-      </Styled.CheckoutCardImg>
-      <div>
-        <button onClick={() => toast.error("section under development")}>
-          oi
-        </button>
-      </div>
+      <Styled.CheckoutCardFooter>
+      <img src={bugPoint.imageUrl} alt={`${bugPoint.value}`}/>
+        <Styled.RemoveBugPointButton onClick={() => toast.error("section under development")}>
+          <TrashIcon />
+        </Styled.RemoveBugPointButton>
+      </Styled.CheckoutCardFooter>
     </Styled.CheckoutCardContainer>
   );
 };
