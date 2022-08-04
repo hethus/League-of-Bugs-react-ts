@@ -1,4 +1,4 @@
-import * as T from '../../types';
+import * as T from '../types';
 import Aatrox from '../images/aatrox.jpg';
 import Rp from '../images/rp.jpg';
 

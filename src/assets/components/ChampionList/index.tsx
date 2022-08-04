@@ -1,4 +1,4 @@
-import { BugPoint, Champion } from "../../../types";
+import { BugPoint, Champion } from "../../types";
 import ChampionCard from "../ChampionCard";
 import * as Styled from "./styles";
 

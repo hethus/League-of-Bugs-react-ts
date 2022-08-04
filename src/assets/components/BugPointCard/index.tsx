@@ -1,4 +1,4 @@
-import { BugPoint } from "../../../types";
+import { BugPoint } from "../../types";
 import * as Styled from "./styles";
 
 interface BugPointCardProps {

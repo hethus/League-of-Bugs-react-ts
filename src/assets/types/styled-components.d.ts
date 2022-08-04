@@ -1,4 +1,4 @@
-import theme from "../assets/styles/theme";
+import theme from "../styles/theme";
 
 export type Theme = typeof theme;
 
