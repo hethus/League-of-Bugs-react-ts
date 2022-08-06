@@ -31,7 +31,7 @@ const PurchaseDetails = () => {
         <p>Subtotal</p>
         <h3>R$0.00</h3>
       </div>
-      <Button text="Continue to payment" onClick={() => {toast.error("section under development")}} size="large"/>
+      <Button text="Continue to payment" onClick={() => {toast.error("section under development")}} size="x-large"/>
     </Styled.PurchaseDetailsFooter>
   </Styled.PurchaseDetailsContainer>
   );

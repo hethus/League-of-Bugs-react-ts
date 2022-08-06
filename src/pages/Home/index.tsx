@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import { SearchIcon } from "../../assets/icons";
 import Menu from "../../components/Menu";
-import * as Styled from "./style";
+import * as Styled from "./styles";
 import { mockedBugPoints, mockedClasse, mockedChampions } from "../../assets/mocks";
 import BugPointList from "../../components/BugPointList";
 import ChampionList from "../../components/ChampionList";

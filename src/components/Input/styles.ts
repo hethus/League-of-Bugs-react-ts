@@ -7,8 +7,8 @@ interface StyledInputProps {
 export const StyledInput = styled.input<StyledInputProps>`
   ${({ theme, inputSize }) => css`
     all: unset;
+    box-sizing: border-box;
     padding: 0 1rem;
-    margin-right: 0.625rem;
     width: 18.625rem;
     height: 3rem;
     background-color: ${theme.colors.baseBg1};

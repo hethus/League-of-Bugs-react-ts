@@ -1,14 +1,12 @@
+import { InputHTMLAttributes } from "react";
 import { StyledInput } from "./styles";
 
-interface InputProps {
-  value: string;
-  onChange: () => void;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  inputSize?: "small" | "large";
 }
 
-const Input = ({value, onChange}: InputProps) => {
-  return (
-    <StyledInput  value={value} onChange={onChange}/>
-  );
-}
+const Input = ({ inputSize, ...props }: InputProps) => {
+  return <StyledInput inputSize={inputSize} {...props} />;
+};
 
 export default Input;
