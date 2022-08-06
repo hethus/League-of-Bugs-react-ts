@@ -1,15 +1,19 @@
 import { DateTime } from "luxon";
 import { SearchIcon } from "../../assets/icons";
 import Menu from "../../components/Menu";
-import * as Styled from "./style";
+import * as Styled from "./styles";
 import { mockedBugPoints, mockedClasse, mockedChampions } from "../../assets/mocks";
 import BugPointList from "../../components/BugPointList";
 import ChampionList from "../../components/ChampionList";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
 import PurchaseDetails from "../../components/PurchaseDetails";
 
-const Home = () => {
+interface HomeProps {
+  setLogged: Dispatch<SetStateAction<boolean>>;
+}
+
+const Home = ({ setLogged }: HomeProps) => {
 
   {/* colocar isso daqui no purchaseChampion depois: */}
   const All: Classe = {
@@ -33,7 +37,7 @@ const Home = () => {
 
   return (
     <Styled.HomeContainer>
-      <Menu path="home"/>
+      <Menu path="home" setLogged={setLogged}/>
       <Styled.HomeContentContainer>
         <Styled.HomeContentHeader>
           <Styled.TitleContainer>
