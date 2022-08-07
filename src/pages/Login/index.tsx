@@ -33,8 +33,20 @@ const Login = ({ setLogged }: LoginProps) => {
           <h1>League of Bugs</h1>
           <img src={logo} alt="logo" />
         </Styled.LoginLogoContainer>
-        <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
+        <Input value={email} onChange={(e) => setEmail(e.target.value)} onKeyUp={
+          (e) => {
+            if(e.key === "Enter") {
+              handleLogin();
+            }
+          }
+        } placeholder="Email"/>
+        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyUp={
+          (e) => {
+            if(e.key === "Enter") {
+              handleLogin();
+            }
+          }
+        } placeholder="Password" />
         <span>
           <Button text="login" size="large" onClick={handleLogin}/>
         </span>
