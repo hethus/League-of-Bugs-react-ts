@@ -83,7 +83,7 @@ export const SettingsNavigationButtonSelected = styled.div<ActiveButtonProps>`
 
 export const EntitiesEditContainer = styled.div`
   ${({ theme }) => css`
-    width: 100%;
+    width: 90%;
     height: calc(100% - 6.25rem);
     margin-top: 4.75rem;
     margin-bottom: 1.5rem;
@@ -137,9 +137,9 @@ export const EntitiesEditList = styled.div`
     height: calc(100% - 16.25em);
     display: flex;
     flex-wrap: wrap;
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 3rem;
     box-sizing: border-box;
-    gap: 1.5rem;
+    gap: 1.8rem;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
@@ -160,7 +160,7 @@ export const EntitiesEditList = styled.div`
 
 export const AddEntityCard = styled.div`
   ${({ theme }) => css`
-    width: 13.75rem;
+    width: 11.75rem;
     height: 16.75rem;
     border-radius: 8px;
     border: 1px dashed ${theme.colors.primaryColor};

@@ -109,6 +109,7 @@ export const SearchInputContainer = styled.div`
 export const CategoriesNavigationBar = styled.div`
   width: 100%;
   height: 3vh;
+  padding-bottom: 0.25rem;
   border-bottom: 1px solid #393c49;
   display: flex;
 `
@@ -129,7 +130,18 @@ export const CategoriesNavigationButton = styled.button<CategoriesNavigationButt
 
   ${({ active }) => active && css`
     color: #6cea69;
-    border-bottom: 3px solid #6cea69;
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6.5px;
+        width: 100%;
+        height: 4px;
+        background-color: #6cea69;
+        border-radius: 5rem;
+      }
   `}
 `
 

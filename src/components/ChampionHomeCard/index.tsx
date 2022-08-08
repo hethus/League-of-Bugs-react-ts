@@ -1,4 +1,5 @@
 import { Champion } from "../../assets/types";
+import ModalChampionCard from "../ModalChampionCard";
 import * as Styled from "./styles";
 
 interface ChampionHomeCardProps {
@@ -12,6 +13,7 @@ const ChampionHomeCard = ({ champion }: ChampionHomeCardProps) => {
       <h3>{champion.name}</h3>
       <p>{champion.description}</p>
       <p>{champion.difficulty}</p>
+      <ModalChampionCard champion={champion} key={champion.id}/>
     </Styled.CardContainer>
   );
 }

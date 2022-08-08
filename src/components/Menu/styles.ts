@@ -18,6 +18,7 @@ export const MenuContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   img {
     width: 5.5rem;
     margin: 0.5rem 0;
@@ -36,6 +37,7 @@ export const MenuItem = styled.div<MenuItemProps>`
   justify-content: center;
   border-radius: 12px 0 0 12px;
   background-color: #1f1d2b;
+  position: relative;
 
   ${({ logout }) => logout && css`
     position: absolute;
@@ -46,6 +48,35 @@ export const MenuItem = styled.div<MenuItemProps>`
 
   ${({ active }) => active && css`
     background-color: #252836;
+
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: transparent;
+      height: 50px;
+      right: 0;
+      width: 1rem;
+      bottom: -50px;
+      border-top-right-radius: 25px;
+      box-shadow: 0 -25px 0 0 #252836;
+      z-index: 1;
+      transform: scaleY(1);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      background-color: transparent;
+      height: 50px;
+      right: 0;
+      width: 1rem;
+      bottom: -50px;
+      border-top-right-radius: 25px;
+      box-shadow: 0 -25px 0 0 #252836;
+      z-index: 1;
+      top: -50px;
+      transform: scaleY(-1);
+    }
   `}
 `;
 

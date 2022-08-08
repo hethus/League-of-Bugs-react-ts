@@ -15,7 +15,7 @@ export const mockedChampions: T.Champion[] = [
     description:
       "Aatrox is a legendary warrior, one of only two that remain of an ancient",
     difficulty: "easy",
-    youTubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youTubeUrl: "https://www.youtube.com/embed/n_od4qeNzO4",
     imageUrl: Aatrox,
     classeId: "ef215c07-a2e4-495c-9e0f-5c10cc971d11",
     createdAt: new Date(),
@@ -29,12 +29,13 @@ export const mockedChampions: T.Champion[] = [
     description:
       "Ahri is a vast, world-renowned spirit hunter, who has spent her life",
     difficulty: "medium",
-    youTubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youTubeUrl: "https://www.youtube.com/embed/n_od4qeNzO4",
     imageUrl: Ahri,
     classeId: "ef215c07-a2e4-495c-9e0f-5c10cc971d1v",
     createdAt: new Date(),
     updatedAt: new Date(),
-  },{
+  },
+  {
     id: "3df26204-5a36-402b-ac7d-437339db15ba",
     name: "Ahri 2",
     price: 5200,
@@ -42,7 +43,7 @@ export const mockedChampions: T.Champion[] = [
     description:
       "Ahri is a vast, world-renowned spirit hunter, who has spent her life",
     difficulty: "medium",
-    youTubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youTubeUrl: "https://www.youtube.com/embed/n_od4qeNzO4",
     imageUrl: Ahri,
     classeId: "ef215c07-a2e4-495c-9e0f-5c10cc971d1v",
     createdAt: new Date(),
@@ -56,7 +57,7 @@ export const mockedChampions: T.Champion[] = [
     description:
       "Aatrox is a legendary warrior, one of only two that remain of an ancient",
     difficulty: "easy",
-    youTubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youTubeUrl: "https://www.youtube.com/embed/n_od4qeNzO4",
     imageUrl: Aatrox,
     classeId: "ef215c07-a2e4-495c-9e0f-5c10cc971d11",
     createdAt: new Date(),
@@ -70,7 +71,7 @@ export const mockedChampions: T.Champion[] = [
     description:
       "Aatrox is a legendary warrior, one of only two that remain of an ancient",
     difficulty: "easy",
-    youTubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youTubeUrl: "https://www.youtube.com/embed/n_od4qeNzO4",
     imageUrl: Aatrox,
     classeId: "ef215c07-a2e4-495c-9e0f-5c10cc971d1v",
     createdAt: new Date(),
@@ -84,7 +85,7 @@ export const mockedChampions: T.Champion[] = [
     description:
       "A master of Ionia's ancient martial arts, Lee Sin is a principled fighter",
     difficulty: "hard",
-    youTubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youTubeUrl: "https://www.youtube.com/embed/n_od4qeNzO4",
     imageUrl: Leesin,
     classeId: "ef215c07-a2e4-495c-9e0f-5c10cc971d1a",
     createdAt: new Date(),
@@ -98,7 +99,7 @@ export const mockedChampions: T.Champion[] = [
     description:
       "A master of Ionia's ancient martial arts, Lee Sin is a principled fighter",
     difficulty: "hard",
-    youTubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youTubeUrl: "https://www.youtube.com/embed/n_od4qeNzO4",
     imageUrl: Leesin,
     classeId: "ef215c07-a2e4-495c-9e0f-5c10cc971d1a",
     createdAt: new Date(),
@@ -209,7 +210,7 @@ export const mockedUser: T.User = {
     },
     {
       id: "3df26203-5a36-402b-ac7d-437339db15ba",
-      purchasedAt: new Date(2022,6,7),
+      purchasedAt: new Date(2022,7,7),
       userId: "ef215c07-0123-495c-9e0f-5c10cc971d1a",
       classe: "Mage",
       championName: "Ahri",

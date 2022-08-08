@@ -3,7 +3,7 @@ import { Theme } from "../../assets/types/styled-components";
 
 interface StyledButtonProps {
   theme: Theme;
-  variant?: "disabled";
+  variant?: "disabled" | "home";
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
@@ -17,6 +17,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
     font-family: ${theme.constants.bodyFontFamily};
     font-size: ${theme.constants.bodyFontSize};
     padding: 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     ${variant === "disabled" && css`
       background-color: ${theme.colors.baseBg2};
@@ -25,6 +28,12 @@ export const StyledButton = styled.button<StyledButtonProps>`
       border-top: 1px solid ${theme.colors.baseBg1};
       border-right: 1px solid ${theme.colors.secondaryColor};
       border-left: 1px solid ${theme.colors.secondaryColor};
+    `}
+
+    ${variant === "home" && css`
+      border-right: 1px solid ${theme.colors.baseLine};
+      border-bottom: 1px solid ${theme.colors.baseLine};
+      border-left: 1px solid ${theme.colors.baseLine};
     `}
   `}
 `

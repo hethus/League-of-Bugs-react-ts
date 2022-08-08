@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const SettingsBugPointCardContainer = styled.div`
   ${({ theme }) => css`
-    width: 13.75rem;
+    width: 11.75rem;
     height: 16.75rem;
     border-radius: 8px;
     border: 1px solid ${theme.colors.baseLine};

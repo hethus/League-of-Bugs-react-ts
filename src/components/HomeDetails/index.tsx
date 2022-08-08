@@ -39,7 +39,7 @@ const HomeDetails = () => {
 
               <section>
               {element.purchasedAt!.getTime() >= dateFormated ? (
-                  <ButtonHome text="refund" onClick={() =>toast.error("Section under development")} />
+                  <ButtonHome text="refund" onClick={() =>toast.error("Section under development")} variant="home"/>
               ) : (
                 <ButtonHome text={'refund'} onClick={() =>toast.error("You cannot ask for refunds on champions purchased more than 3 months ago")} variant="disabled" >
                 </ButtonHome>

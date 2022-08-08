@@ -18,7 +18,7 @@ export const PurchaseDetailsContainer = styled.aside`
 export const PurchaseDetailsHeader = styled.header`
   ${({ theme }) => css`
     width: 100%;
-    height: 4.5rem;
+    height: 5.27rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

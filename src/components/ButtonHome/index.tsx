@@ -3,7 +3,7 @@ import { StyledButton } from './styles';
 
 interface ButtonHomeProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
-  variant?: "disabled";
+  variant?: "disabled" | "home";
 }
 
 const ButtonHome = ({

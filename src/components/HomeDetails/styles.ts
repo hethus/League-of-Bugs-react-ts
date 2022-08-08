@@ -18,7 +18,7 @@ export const PurchaseDetailsContainer = styled.aside`
 export const PurchaseDetailsHeader = styled.header`
   ${({ theme }) => css`
     width: 100%;
-    height: 4.5rem;
+    height: 5.5rem;
     display: flex;
     padding-bottom: 2.5rem;
     flex-direction: column;
@@ -151,6 +151,8 @@ export const homeDetailsCardContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+    position: relative;
+  
 
     img {
       width: 3rem;
@@ -161,6 +163,7 @@ export const homeDetailsCardContainer = styled.div`
     div {
       width: 100%;
       height: 4rem;
+      margin-bottom: 2rem;
       display: flex;
       justify-content: space-between;
       width: 100%;
@@ -171,14 +174,18 @@ export const homeDetailsCardContainer = styled.div`
       border-radius: 0.8rem 0.8rem 0 0.8rem ;
       padding: 0.8rem;
       box-sizing: border-box;
+      border: 1px solid ${theme.colors.baseLine};
     }
 
     section {
+      position: absolute;
       width: 20%;
-      height: 100%;
+      height: 10%;
       border-radius: 0 0 0.8rem 0.8rem;
       padding: 0 0.2rem;
       box-sizing: border-box;
+      top: 78px;
+      right: 0px;
     }
   `}
 `
