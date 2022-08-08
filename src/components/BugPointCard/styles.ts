@@ -19,6 +19,7 @@ export const CardContainer = styled.div<ChampionCardProps>`
     img {
       width: 8rem;
       margin: 0.25rem 0 0.75rem 0;
+      border-radius: 8px;
     }
   `}
 `

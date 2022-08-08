@@ -19,13 +19,18 @@ export const CardContainer = styled.div<ChampionCardProps>`
     text-align: center;
     justify-content: center;
     
-    padding-top: 1.8rem;
+    padding-top: 5rem;
     box-sizing: border-box;
 
     img {
       width: 8rem;
       position: absolute;
       top: -3.3rem;
+      border-radius: 100px;
+    }
+
+    p {
+      padding-bottom: 0.5rem;
     }
   `}
 `

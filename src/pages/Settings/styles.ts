@@ -141,6 +141,20 @@ export const EntitiesEditList = styled.div`
     box-sizing: border-box;
     gap: 1.5rem;
     overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    };
+
+    &::-webkit-scrollbar-track {
+      box-Shadow: 0 0 6px ${theme.colors.baseBg1};
+      margin: 0.3rem 0 0.3rem 0;
+    };
+    ::-webkit-scrollbar-thumb {
+      background: ${theme.colors.primaryColor};
+      border-Radius: 10px;
+      height: 2px;
+    };
   `}
 `
 
@@ -174,5 +188,6 @@ export const ConfirmationContainer = styled.div`
     box-sizing: border-box;
     display: flex;
     gap: 1rem;
+    border-top: 1px solid ${theme.colors.baseLine};
   `}
 `

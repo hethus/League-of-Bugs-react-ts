@@ -1,13 +1,12 @@
 import { DateTime } from "luxon";
-import { SearchIcon } from "../../assets/icons";
+import { PurchaseBugPoint, SearchIcon, PersonSad } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { mockedBugPoints, mockedClasse, mockedChampions } from "../../assets/mocks";
-import BugPointList from "../../components/BugPointList";
+import { mockedClasse, mockedChampions, mockedUser, mockedFavorites } from "../../assets/mocks";
 import ChampionList from "../../components/ChampionList";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
-import PurchaseDetails from "../../components/PurchaseDetails";
+import HomeDetails from "../../components/HomeDetails";
 
 interface HomeProps {
   setLogged: Dispatch<SetStateAction<boolean>>;
@@ -15,9 +14,12 @@ interface HomeProps {
 
 const Home = ({ setLogged }: HomeProps) => {
 
-  {/* colocar isso daqui no purchaseChampion depois: */}
   const All: Classe = {
     name: "All",
+  }
+
+  const Favorite: Classe = {
+    name: "Favorite",
   }
   
   const [selectedClasse, setSelectedClasse] = useState<Classe>(All);
@@ -25,12 +27,27 @@ const Home = ({ setLogged }: HomeProps) => {
 
   const filteredChampions: Champion[] = mockedChampions.filter((element) => {
     if (selectedClasse.name === All.name) {
-      return mockedChampions
+      return mockedUser.purchasedChampions!.some((purchased) => {
+        if (purchased.championName === element.name) {
+          return element
+        }
+      })
     }
 
-    return element.classeId === selectedClasse.id
-    });
-  {/* // */}
+    if (selectedClasse.name === Favorite.name) {
+      return mockedFavorites.some((favorite) => {
+        if (favorite.championName === element.name) {
+          return element
+        }
+      });
+    }
+
+    return mockedUser.purchasedChampions!.some((purchased) => {
+      if (purchased.classe === selectedClasse.name && purchased.championName === element.name) {
+        return purchased
+      }
+    })
+  });
 
   const actualDate = DateTime.now();
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
@@ -44,23 +61,26 @@ const Home = ({ setLogged }: HomeProps) => {
             <h1>League of Bugs</h1>
             <p>{formatedDate}</p>
           </Styled.TitleContainer>
+          <Styled.BugPointUserContainer title="Total BugPoint available">
+            <PurchaseBugPoint />
+            <p >{mockedUser.bugPoint} BP</p>
+          </Styled.BugPointUserContainer>
           <Styled.SearchInputContainer>
             <SearchIcon />
-            <input placeholder="Search by value"/>
+            <input placeholder="Search by name"/>
           </Styled.SearchInputContainer>
         </Styled.HomeContentHeader>
         <section>
           <Styled.CategoriesNavigationBar>
-
-            {/* colocar isso daqui no purchaseBugpoint e arrumar style depois: */}
-            {/*<Styled.CategoriesNavigationButton active>Bug points</Styled.CategoriesNavigationButton>*/}
-            {/* // */}
-
-            {/* colocar isso daqui no purchaseChampion depois: */}
             <Styled.CategoriesNavigationButton
                 active={All.name === selectedClasse.name}
                 onClick={() => setSelectedClasse(All)}>
                   {All.name}
+                </Styled.CategoriesNavigationButton>
+                <Styled.CategoriesNavigationButton
+                active={Favorite.name === selectedClasse.name}
+                onClick={() => setSelectedClasse(Favorite)}>
+                  {Favorite.name}
                 </Styled.CategoriesNavigationButton>
             {mockedClasse.map((element) => {
               return (
@@ -71,18 +91,20 @@ const Home = ({ setLogged }: HomeProps) => {
                 </Styled.CategoriesNavigationButton>
               )
               })}
-            {/* // */}
           </Styled.CategoriesNavigationBar>
           <Styled.ProductsHeaderContainer>
-            <h2>Choose the Bug point</h2>
+            <h2>Champions List</h2>
           </Styled.ProductsHeaderContainer>
-          <BugPointList list={mockedBugPoints}/>
-          <Styled.test>
             <ChampionList list={filteredChampions}/>
-          </Styled.test>
+            {filteredChampions.length === 0 &&
+            <Styled.NoItemContainer>
+              <PersonSad />
+              <p>No champions found</p>
+            </Styled.NoItemContainer>
+            }
         </section>
       </Styled.HomeContentContainer>
-      <PurchaseDetails />
+      <HomeDetails />
     </Styled.HomeContainer>
   );
 }

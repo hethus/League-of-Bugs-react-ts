@@ -18,7 +18,7 @@ const CheckoutCard = ({ bugPoint }: CheckoutCardProps) => {
           <h3 title={`${bugPoint.value} BP's`}>
           {bugPoint.value} BP's
           </h3>
-          <p>R${bugPoint.money.toLocaleString()}</p>
+          <p>R${bugPoint.money.toLocaleString(undefined, {minimumFractionDigits: 2})}</p>
         </div>
         <Styled.BugPointsQuantityInput
           type="number"
@@ -26,7 +26,7 @@ const CheckoutCard = ({ bugPoint }: CheckoutCardProps) => {
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
         />
-        <span>R${(quantity * bugPoint.money).toLocaleString()}</span>
+        <span>R${(quantity * bugPoint.money).toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
       </Styled.CheckoutCardHeader>
       <Styled.CheckoutCardFooter>
       <img src={bugPoint.imageUrl} alt={`${bugPoint.value}`}/>

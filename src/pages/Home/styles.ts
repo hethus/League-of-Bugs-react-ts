@@ -23,7 +23,25 @@ export const HomeContainer = styled.div`
 `;
 
 export const HomeContentContainer = styled.div`
-  width: calc(100% - 32.375rem);
+  ${({ theme }) => css`
+    width: calc(100% - 32.375rem);
+    overflow-y: scroll;
+    padding-bottom: 5rem;
+
+    &::-webkit-scrollbar {
+      width: 3px;
+    };
+
+    &::-webkit-scrollbar-track {
+      box-Shadow: 0 0 6px ${theme.colors.baseBg1};
+      margin-top: 9.3rem;
+    };
+    ::-webkit-scrollbar-thumb {
+      background: ${theme.colors.primaryColor};
+      border-Radius: 10px;
+      height: 2px;
+    };
+  `}
 `
 
 export const HomeContentHeader = styled.header`
@@ -47,6 +65,22 @@ export const TitleContainer = styled.div`
       text-transform: capitalize;
       font-size: 20px;
     }
+`
+
+export const BugPointUserContainer = styled.div`
+  ${({ theme }) => css`
+    width: 6.5rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${theme.colors.primaryColor};
+    gap: 0.5rem;
+    border-top: 4px solid ${theme.colors.primaryColor};
+    border-bottom: 4px solid ${theme.colors.primaryColor};
+    border-radius: 15px;
+    box-sizing: border-box;
+  `}
 `
 
 export const SearchInputContainer = styled.div`
@@ -109,8 +143,28 @@ export const ProductsHeaderContainer = styled.div`
   box-sizing: border-box;
 `
 
-export const test = styled.div`
-  width: 100%;
-  display: flex;
-  padding-top: 3rem;
+export const NoItemContainer = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    height: 100%;
+    color: ${theme.colors.primaryColor};
+    font-size: 30px;
+    font-weight: bold;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 7px double ${theme.colors.primaryColor};
+    border-right: 7px double ${theme.colors.primaryColor};
+    border-left: 1px solid ${theme.colors.primaryColor};
+    border-top: 1px solid ${theme.colors.primaryColor};
+    border-radius: 15px;
+    box-sizing: border-box;
+
+    svg {
+      width: 3rem;
+      height: 3rem;
+    }
+  `}
 `

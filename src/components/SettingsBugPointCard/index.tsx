@@ -11,7 +11,7 @@ const SettingsBugPointCard = ({ bugPoint }: SettingsBugPointCardProps) => {
     <Styled.SettingsBugPointCardContainer>
       <img src={bugPoint.imageUrl} alt={`${bugPoint.value}`} />
       <h3>{bugPoint.value}</h3>
-      <p>R${(bugPoint.money).toLocaleString()}</p>
+      <p>R${(bugPoint.money).toLocaleString(undefined, {minimumFractionDigits: 2})}</p>
       <Styled.SettingsBugPointCardButton>
         <EditIcon /> Edit
       </Styled.SettingsBugPointCardButton>

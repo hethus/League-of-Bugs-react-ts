@@ -347,3 +347,20 @@ export function DashboardIcon() {
     </svg>
   );
 }
+
+export function PersonSad() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      data-name="Layer 1"
+      viewBox="0 0 24 24"
+    >
+      
+      <path
+      fill="currentColor"
+      d="M12 24a12 12 0 1112-12 12.013 12.013 0 01-12 12zm0-22a10 10 0 1010 10A10.011 10.011 0 0012 2zm5.746 15.667a1 1 0 00-.08-1.413A9.454 9.454 0 0012 14a9.454 9.454 0 00-5.666 2.254 1 1 0 001.33 1.494A7.508 7.508 0 0112 16a7.51 7.51 0 014.336 1.748 1 1 0 001.41-.081zM6 10c0 1 .895 1 2 1s2 0 2-1a2 2 0 00-4 0zm8 0c0 1 .895 1 2 1s2 0 2-1a2 2 0 00-4 0z"></path>
+    </svg>
+  );
+}

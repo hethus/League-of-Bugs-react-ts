@@ -1,4 +1,4 @@
-import { BugPoint, Champion } from "../../assets/types";
+import { BugPoint } from "../../assets/types";
 import BugPointCard from "../BugPointCard";
 import * as Styled from "./styles";
 
