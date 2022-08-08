@@ -7,6 +7,7 @@ import ChampionList from "../../components/ChampionList";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
 import HomeDetails from "../../components/HomeDetails";
+import ChampionHomeList from "../../components/ChampionHomeList";
 
 interface HomeProps {
   setLogged: Dispatch<SetStateAction<boolean>>;
@@ -95,7 +96,7 @@ const Home = ({ setLogged }: HomeProps) => {
           <Styled.ProductsHeaderContainer>
             <h2>Champions List</h2>
           </Styled.ProductsHeaderContainer>
-            <ChampionList list={filteredChampions}/>
+            <ChampionHomeList list={filteredChampions}/>
             {filteredChampions.length === 0 &&
             <Styled.NoItemContainer>
               <PersonSad />
