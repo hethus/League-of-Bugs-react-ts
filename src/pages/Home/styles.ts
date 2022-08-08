@@ -151,6 +151,7 @@ export const NoItemContainer = styled.div`
     width: 45%;
     height: 100%;
     color: ${theme.colors.primaryColor};
+    background-color: ${theme.colors.baseBg2};
     font-size: 30px;
     font-weight: bold;
     gap: 1rem;
