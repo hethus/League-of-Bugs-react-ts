@@ -126,7 +126,18 @@ export const EntitiesEditCategoriesButton = styled.button<ActiveButtonProps>`
 
     ${active && css`
       color: ${theme.colors.primaryColor};
-      border-bottom: 3px solid ${theme.colors.primaryColor};
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2.5px;
+        width: 100%;
+        height: 4px;
+        background-color: #6cea69;
+        border-radius: 5rem;
+      }
     `}
   `}
 `
