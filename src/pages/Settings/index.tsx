@@ -3,9 +3,9 @@ import Menu from "../../components/Menu";
 import * as Styled from "./styles";
 import { MarketIcon, InfoIcon, PromotionIcon, DashboardIcon } from "../../assets/icons";
 import Button from "../../components/Button";
-import { mockedBugPoints, mockedChampions } from "../../assets/mocks";
-import SettingsBugPointCard from "../../components/SettingsBugPointCard";
+import { mockedChampions } from "../../assets/mocks";
 import SettingsChampionCard from "../../components/SettingsChampionCard";
+import toast from "react-hot-toast";
 
 interface SettingsProps {
   setLogged: Dispatch<SetStateAction<boolean>>;
@@ -65,8 +65,8 @@ const Settings = ({ setLogged }: SettingsProps) => {
           ))}
         </Styled.EntitiesEditList>
         <Styled.ConfirmationContainer>
-          <Button text="Cancel" variant="cancel"/>
-          <Button text="Confirm" />
+          <Button text="Cancel" variant="cancel" onClick={() => toast.error('section under development')}/>
+          <Button text="Confirm" onClick={() => toast.error('section under development')} />
         </Styled.ConfirmationContainer>      
       </Styled.EntitiesEditContainer>
     </Styled.SettingsContainer>

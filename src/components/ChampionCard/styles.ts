@@ -30,6 +30,8 @@ export const CardContainer = styled.div<ChampionCardProps>`
     }
 
     p {
+      padding: 0 0.4rem;
+      box-sizing: border-box;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;

@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { Champion } from "../../assets/types";
 import Button from "../Button";
+import ModalPurchaseChampionCard from "../ModalPurchaseChampionCard";
 import * as Styled from "./styles";
 
 interface ChampionCardProps {
@@ -17,7 +18,7 @@ const ChampionCard = ({ champion }: ChampionCardProps) => {
         <span></span>
         {champion.difficulty}
       </Styled.ChampionDetailClasse>
-      <Button text={"Buy"} size={"small"} onClick={() => toast.error("section under development")}/>
+      <ModalPurchaseChampionCard champion={champion} key={champion.id}/>
     </Styled.CardContainer>
   );
 }

@@ -9,11 +9,11 @@ import toast from 'react-hot-toast';
 
 Modal.setAppElement('#root');
 
-interface ChampionHomeCardProps {
+interface ModalPurchaseChampionCardProps {
   champion: Champion;
 }
 
-const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
+const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -80,7 +80,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
                 {`Launched in ${(champion.createdAt)?.toLocaleDateString()}`}
                 </p>
                 <Styled.ModalFooterButton>
-                  <Button text={'Favorite'} onClick={() => toast.error("section under development")}/>
+                  <Button text={'Buy'} onClick={() => toast.error("section under development")}/>
                 </Styled.ModalFooterButton>
               </Styled.ModalFooter>
 
@@ -92,4 +92,4 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
   )
 }
 
-export default ModalChampionCard;
+export default ModalPurchaseChampionCard;
