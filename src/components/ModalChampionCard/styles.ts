@@ -11,6 +11,7 @@ export const ModalStyle = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  position: relative;
   `}
 `;
 
@@ -27,7 +28,7 @@ export const ModalStyleButton = styled.button`
     color: ${theme.colors.baseForm};
     position: absolute;
     border-radius: 0 3rem 0 10rem;
-    right: 19.2rem;
+    right: 0;
     z-index: 3;
     cursor: pointer;
   `}
@@ -51,7 +52,6 @@ ${({ theme }) => css`
     justify-content: space-between;
     width: 100%;
     height: 100%;
-
   `}
 `
 
@@ -202,7 +202,7 @@ export const ModalChampionDetailClasse = styled.p`
     margin-bottom: 1.5rem;
 
     ${color === "easy" && css`
-        border: 1px solid ${theme.colors.primaryColorOpacity};
+        border: 1px solid ${theme.colors.primaryColor};
       `}
 
       ${color === "medium" && css`

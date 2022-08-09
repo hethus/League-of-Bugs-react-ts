@@ -72,7 +72,7 @@ export const ChampionDetailClasse = styled.div`
     }
 
     ${color === "easy" && css`
-        border: 1px solid ${theme.colors.primaryColorOpacity};
+        border: 1px solid ${theme.colors.primaryColor};
       `}
 
       ${color === "medium" && css`
