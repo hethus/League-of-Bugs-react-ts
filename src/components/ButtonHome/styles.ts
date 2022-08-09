@@ -11,8 +11,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
     width: 110%;
     height: 1.5rem;
     border-radius: 0 0 0.8rem 0.8rem;
-    background-color: ${theme.colors.primaryColor};
-    color: ${theme.colors.textDark};
+    background-color: ${theme.colors.primaryColorOpacity};
+    color: ${theme.colors.textColor};
     cursor: pointer;
     font-family: ${theme.constants.bodyFontFamily};
     font-size: ${theme.constants.bodyFontSize};

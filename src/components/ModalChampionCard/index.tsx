@@ -4,6 +4,7 @@ import * as Styled from './styles';
 import { Champion } from '../../assets/types';
 import { IconExit } from '../../assets/icons';
 import Button from '../Button';
+import { mockedClasse } from '../../assets/mocks';
 
 Modal.setAppElement('#root');
 
@@ -24,7 +25,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
 
   return (
     <div>
-      <Button text={'abrir'} onClick={handleOpenModal}/>
+      <Button text={'Details'} onClick={handleOpenModal} size="small"/>
       <Modal
         isOpen={modalIsOpen}
         className="_"
@@ -36,14 +37,52 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
         <button onClick={handleCloseModal}>
           <IconExit />
         </button>
-        <Styled.ModalContentStyle>
-          <Styled.ModalIframeStyle src={champion.youTubeUrl}/>
-          <h2>oi tudo bem?</h2>
-        
-        <div>{champion.name}</div>
-        
-        </Styled.ModalContentStyle>
+        <Styled.ModalDisplayContainer>
 
+          <Styled.test>
+          <Styled.ModalContentStyle>
+          <Styled.ModalIframeStyle src={champion.youTubeUrl}/>
+          <Styled.ModalDescriptionContainer>
+            <p>
+              Description:
+            </p>
+            {champion.description}
+          </Styled.ModalDescriptionContainer>
+        </Styled.ModalContentStyle>
+          </Styled.test>
+          <Styled.ModalTableContainer>
+            <Styled.ModalTableRow>
+              <h2>{champion.name}</h2>
+              <h3>{champion.title}</h3>
+            </Styled.ModalTableRow>
+            <Styled.ModalImageTable src={champion.imageUrl} alt={champion.name} />
+            <Styled.ModalDetailTable>
+              <Styled.ModalChampionTableContainer>
+                <Styled.ModalChampionDetailClasse color={champion.difficulty}>
+                  <p>
+                    Difficulty:
+                  </p>
+                  <span></span>
+                  
+                  {champion.difficulty}
+                </Styled.ModalChampionDetailClasse>
+                <Styled.ModalChampionClasseName>
+                  {mockedClasse.map((element) => {
+                    if(element.id === champion.classeId) {
+                      return element.name
+                    }
+                  })}
+                </Styled.ModalChampionClasseName>
+              </Styled.ModalChampionTableContainer>
+              <Styled.ModalFooter>
+                <p>
+                {`Launched in ${(champion.createdAt)?.toLocaleDateString()}`}
+                </p>
+              </Styled.ModalFooter>
+
+            </Styled.ModalDetailTable>
+          </Styled.ModalTableContainer>
+        </Styled.ModalDisplayContainer>
       </Modal>
     </div>
   )

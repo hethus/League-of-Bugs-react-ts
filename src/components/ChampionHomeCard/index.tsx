@@ -12,7 +12,10 @@ const ChampionHomeCard = ({ champion }: ChampionHomeCardProps) => {
       <img src={champion.imageUrl} alt={`${champion.name}`} />
       <h3>{champion.name}</h3>
       <p>{champion.description}</p>
-      <p>{champion.difficulty}</p>
+      <Styled.ChampionDetailClasse color={champion.difficulty}>
+        <span></span>
+        {champion.difficulty}
+      </Styled.ChampionDetailClasse>
       <ModalChampionCard champion={champion} key={champion.id}/>
     </Styled.CardContainer>
   );

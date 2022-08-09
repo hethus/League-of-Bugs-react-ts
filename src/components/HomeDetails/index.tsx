@@ -6,7 +6,6 @@ import * as Styled from './styles';
 const HomeDetails = () => {
   const date = new Date();
   const dateFormated = date.setMonth(date.getMonth() - 3);
-  console.log(dateFormated);
 
   const mockedUserSort = mockedUser.purchasedChampions!.sort((a, b) => {
     return (b.purchasedAt!.getTime()) - (a.purchasedAt!.getTime());
@@ -36,7 +35,6 @@ const HomeDetails = () => {
               <h3>{element.championName}</h3>
               <p>{`${(element.purchasedAt)?.toLocaleDateString()}`}</p>
               </div>
-
               <section>
               {element.purchasedAt!.getTime() >= dateFormated ? (
                   <ButtonHome text="refund" onClick={() =>toast.error("Section under development")} variant="home"/>
@@ -47,9 +45,6 @@ const HomeDetails = () => {
               </section>
             </Styled.homeDetailsCardContainer>
           ))}
-        <div>
-          
-        </div>
       </Styled.HomeDetailsContainer>
     </Styled.CheckoutDetailsContainer>
   </Styled.PurchaseDetailsContainer>

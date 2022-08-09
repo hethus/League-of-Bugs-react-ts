@@ -13,7 +13,10 @@ const ChampionCard = ({ champion }: ChampionCardProps) => {
       <img src={champion.imageUrl} alt={`${champion.name}`} />
       <h3>{champion.name}</h3>
       <p>{champion.description}</p>
-      <p>{champion.difficulty}</p>
+      <Styled.ChampionDetailClasse color={champion.difficulty}>
+        <span></span>
+        {champion.difficulty}
+      </Styled.ChampionDetailClasse>
       <Button text={"Buy"} size={"small"} onClick={() => toast.error("section under development")}/>
     </Styled.CardContainer>
   );

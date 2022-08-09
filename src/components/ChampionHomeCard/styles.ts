@@ -30,7 +30,55 @@ export const CardContainer = styled.div<ChampionCardProps>`
     }
 
     p {
-      padding-bottom: 0.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* number of lines to show */
+      line-clamp: 2; 
+      -webkit-box-orient: vertical;
     }
+  `}
+`
+
+export const ChampionDetailClasse = styled.div`
+  ${({ theme, color }) => css`
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 6rem;
+    padding: 0.4rem 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.4rem;
+    border-radius: 50px;
+
+    span  {
+      width: 1.2rem;
+      background-color: aquamarine;
+      border-radius: 10px;
+
+      ${color === "easy" && css`
+        background-color: ${theme.colors.primaryColor};
+      `}
+
+      ${color === "medium" && css`
+        background-color: yellow;
+      `}
+
+      ${color === "hard" && css`
+        background-color: red;
+      `}
+    }
+
+    ${color === "easy" && css`
+        border: 1px solid ${theme.colors.primaryColorOpacity};
+      `}
+
+      ${color === "medium" && css`
+        border: 1px solid yellow;
+      `}
+
+      ${color === "hard" && css`
+        border: 1px solid red;
+      `}
   `}
 `

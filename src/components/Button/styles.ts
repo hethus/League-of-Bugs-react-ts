@@ -12,9 +12,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
     width: 11rem;
     height: 3rem;
     border-radius: 8px;
-    background-color: ${theme.colors.primaryColor};
+    background-color: ${theme.colors.primaryColorOpacity};
     color: ${theme.colors.textColor};
-    box-shadow: 0px 8px 24px rgba(105, 234, 118, 0.2);
+    box-shadow: 0px 5px 19px rgba(105, 234, 118, 0.2);
     cursor: pointer;
     font-family: ${theme.constants.bodyFontFamily};
     font-weight: 900;
