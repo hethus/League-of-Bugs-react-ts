@@ -40,7 +40,7 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
         </Styled.ModalStyleButton>
         <Styled.ModalDisplayContainer>
 
-          <Styled.test>
+          <Styled.ModalBodyContainer>
           <Styled.ModalContentStyle>
           <Styled.ModalIframeStyle src={champion.youTubeUrl}/>
           <Styled.ModalDescriptionContainer>
@@ -50,7 +50,7 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
             {champion.description}
           </Styled.ModalDescriptionContainer>
         </Styled.ModalContentStyle>
-          </Styled.test>
+          </Styled.ModalBodyContainer>
           <Styled.ModalTableContainer>
             <Styled.ModalTableRow>
               <h2>{champion.name}</h2>

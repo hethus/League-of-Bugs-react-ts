@@ -4,7 +4,7 @@ import * as Styled from './styles';
 import { Champion } from '../../assets/types';
 import { IconExit } from '../../assets/icons';
 import Button from '../Button';
-import { mockedClasse } from '../../assets/mocks';
+import { mockedClasse, mockedFavorites, mockedPurchaseChampions, mockedUser } from '../../assets/mocks';
 import toast from 'react-hot-toast';
 
 Modal.setAppElement('#root');
@@ -40,7 +40,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
         </Styled.ModalStyleButton>
         <Styled.ModalDisplayContainer>
 
-          <Styled.test>
+          <Styled.ModalBodyContainer>
           <Styled.ModalContentStyle>
           <Styled.ModalIframeStyle src={champion.youTubeUrl}/>
           <Styled.ModalDescriptionContainer>
@@ -50,7 +50,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
             {champion.description}
           </Styled.ModalDescriptionContainer>
         </Styled.ModalContentStyle>
-          </Styled.test>
+          </Styled.ModalBodyContainer>
           <Styled.ModalTableContainer>
             <Styled.ModalTableRow>
               <h2>{champion.name}</h2>
@@ -80,7 +80,15 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
                 {`Launched in ${(champion.createdAt)?.toLocaleDateString()}`}
                 </p>
                 <Styled.ModalFooterButton>
-                  <Button text={'Favorite'} onClick={() => toast.error("section under development")}/>
+                  <Button variant={
+                    (mockedFavorites.some((element) => {
+                      return element.championName === champion.name
+                    })) === true ? 'cancel' : undefined
+                  } text={`${
+                    (mockedFavorites.some((element) => {
+                      return element.championName === champion.name
+                    })) === true ? 'Unfavorite' : 'Favorite'
+                  }`} onClick={() => toast.error("section under development")}/>
                 </Styled.ModalFooterButton>
               </Styled.ModalFooter>
 

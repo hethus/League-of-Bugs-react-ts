@@ -55,7 +55,7 @@ ${({ theme }) => css`
   `}
 `
 
-export const test = styled.div`
+export const ModalBodyContainer = styled.div`
   ${({ theme }) => css`
     display: flex;
   `}
@@ -126,6 +126,24 @@ export const ModalTableContainer = styled.div`
     background-color: ${theme.colors.baseBg2};
     border-radius: 8px;
     margin: 0.8rem;
+    width: 100%;
+    min-width: 25%;
+
+    overflow-y: scroll;
+    
+    &::-webkit-scrollbar {
+      width: 3px;
+    };
+
+    &::-webkit-scrollbar-track {
+      box-Shadow: 0 0 6px ${theme.colors.baseBg1};
+      margin: 0.4em 0;
+    };
+    &::-webkit-scrollbar-thumb {
+      background: ${theme.colors.primaryColor};
+      border-Radius: 10px;
+      height: 2px;
+    };
 
   `}
 `
@@ -234,7 +252,7 @@ export const ModalFooter = styled.div`
     flex-direction: column;
     justify-content: center;
     color: ${theme.colors.textColor};
-    margin: 0.3rem 1rem;
+    margin: 0.1rem 1rem;
     font-size: 1.1rem;
   `}
 `
@@ -245,6 +263,6 @@ export const ModalFooterButton = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 0.5rem 0;
+    padding: 0.2rem 0;
   `}
 `

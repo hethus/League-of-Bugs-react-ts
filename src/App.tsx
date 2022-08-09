@@ -10,6 +10,8 @@ const App = () => {
         position="bottom-center"
         reverseOrder={false}
       />
+      <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<link rel="icon" href="/favicon.ico" type="image/x-icon"></link>
       <Router />
     </div>
   )
