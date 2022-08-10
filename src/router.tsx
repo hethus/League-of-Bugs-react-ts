@@ -8,13 +8,14 @@ import PurchaseChampion from "./pages/PurchaseChampion";
 
 const Router = () => {
   const [logged, setLogged] = useState<boolean>(false);
+  const [stepsIsOpen, setStepsIsOpen] = useState<boolean>(false);
 
   return (
     <Routes>
-        <Route path="/" element={<Home setLogged={setLogged}/>} />
-        <Route path="/settings" element={<Settings setLogged={setLogged}/>} />
-        <Route path="/purchase/bugpoint" element={<PurchaseBugPoint setLogged={setLogged}/>} />
-        <Route path="/purchase/champion" element={<PurchaseChampion setLogged={setLogged}/>} />
+        <Route path="/" element={<Home setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
+        <Route path="/settings" element={<Settings setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
+        <Route path="/purchase/bugpoint" element={<PurchaseBugPoint setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
+        <Route path="/purchase/champion" element={<PurchaseChampion setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen} />} />
         <Route path="/login" element={<Login setLogged={setLogged}/>} />
     </Routes>
   );

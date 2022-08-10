@@ -26,7 +26,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
 
   return (
     <div>
-      <Button text={'Details'} onClick={handleOpenModal} size="small"/>
+      <Button text={'Details'} onClick={handleOpenModal} size="small" className='Home-champion-detail' title='Details of the champion'/>
       <Modal
         isOpen={modalIsOpen}
         className="_"
@@ -42,9 +42,9 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
 
           <Styled.ModalBodyContainer>
           <Styled.ModalContentStyle>
-          <Styled.ModalIframeStyle src={champion.youTubeUrl}/>
+          <Styled.ModalIframeStyle src={champion.youTubeUrl} title='Video of the champion'/>
           <Styled.ModalDescriptionContainer>
-            <p>
+            <p title='Description of the champion'>
               Description:
             </p>
             {champion.description}
@@ -53,13 +53,13 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
           </Styled.ModalBodyContainer>
           <Styled.ModalTableContainer>
             <Styled.ModalTableRow>
-              <h2>{champion.name}</h2>
-              <h3>{champion.title}</h3>
+              <h2 title='Name of the champion'>{champion.name}</h2>
+              <h3 title='Title of the champion'>{champion.title}</h3>
             </Styled.ModalTableRow>
-            <Styled.ModalImageTable src={champion.imageUrl} alt={champion.name} />
+            <Styled.ModalImageTable src={champion.imageUrl} alt={champion.name} title='Image of the champion'/>
             <Styled.ModalDetailTable>
               <Styled.ModalChampionTableContainer>
-                <Styled.ModalChampionDetailClasse color={champion.difficulty}>
+                <Styled.ModalChampionDetailClasse color={champion.difficulty} title='Difficulty of the champion'>
                   <p>
                     Difficulty:
                   </p>
@@ -67,7 +67,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
                   
                   {champion.difficulty}
                 </Styled.ModalChampionDetailClasse>
-                <Styled.ModalChampionClasseName>
+                <Styled.ModalChampionClasseName title='Classe of the champion'>
                   {mockedClasse.map((element) => {
                     if(element.id === champion.classeId) {
                       return element.name
@@ -88,7 +88,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
                     (mockedFavorites.some((element) => {
                       return element.championName === champion.name
                     })) === true ? 'Unfavorite' : 'Favorite'
-                  }`} onClick={() => toast.error("section under development")}/>
+                  }`} onClick={() => toast.error("section under development")} title='Favorite/Unfavorite champion'/>
                 </Styled.ModalFooterButton>
               </Styled.ModalFooter>
 

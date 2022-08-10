@@ -13,11 +13,11 @@ const HomeDetails = () => {
 
   return (
     <Styled.PurchaseDetailsContainer>
-      <Styled.PurchaseDetailsHeader>
+      <Styled.PurchaseDetailsHeader className='User-name-details'>
         <h3>{mockedUser.name}</h3>
       </Styled.PurchaseDetailsHeader>
     <Styled.CheckoutDetailsContainer>
-      <Styled.CheckoutDetailsHeader>
+      <Styled.CheckoutDetailsHeader className='Home-details-info'>
         <h3>List of purchased champions</h3>
       </Styled.CheckoutDetailsHeader>
       <Styled.HomeDetailsContainer>
@@ -29,13 +29,13 @@ const HomeDetails = () => {
           </div>
         </Styled.homeDetailsCard>
           {mockedUserSort!.map((element) => (
-            <Styled.homeDetailsCardContainer>
+            <Styled.homeDetailsCardContainer key={element.id}>
               <div>
               <img src={mockedChampions.find((champion) => champion.name === element.championName)!.imageUrl} alt={element.championName} />
               <h3>{element.championName}</h3>
               <p>{`${(element.purchasedAt)?.toLocaleDateString()}`}</p>
               </div>
-              <section>
+              <section className='Home-details-refund'>
               {element.purchasedAt!.getTime() >= dateFormated ? (
                   <ButtonHome text="refund" onClick={() =>toast.error("Section under development")} variant="home"/>
               ) : (

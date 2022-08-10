@@ -6,6 +6,8 @@ import { IconExit } from '../../assets/icons';
 import Button from '../Button';
 import { mockedClasse } from '../../assets/mocks';
 import toast from 'react-hot-toast';
+import { Steps, Hints } from 'intro.js-react';
+import 'intro.js/introjs.css';
 
 Modal.setAppElement('#root');
 
@@ -26,7 +28,7 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
 
   return (
     <div>
-      <Button text={'Details'} onClick={handleOpenModal} size="small"/>
+      <Button text={'Details'} onClick={handleOpenModal} size="small"className='PurchaseChampion-champion-detail' title='Details of the champion'/>
       <Modal
         isOpen={modalIsOpen}
         className="_"
@@ -42,9 +44,9 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
 
           <Styled.ModalBodyContainer>
           <Styled.ModalContentStyle>
-          <Styled.ModalIframeStyle src={champion.youTubeUrl}/>
+          <Styled.ModalIframeStyle src={champion.youTubeUrl} title='Video of the champion'/>
           <Styled.ModalDescriptionContainer>
-            <p>
+            <p title='Description of the champion'>
               Description:
             </p>
             {champion.description}
@@ -53,13 +55,13 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
           </Styled.ModalBodyContainer>
           <Styled.ModalTableContainer>
             <Styled.ModalTableRow>
-              <h2>{champion.name}</h2>
-              <h3>{champion.title}</h3>
+              <h2 title='Name of the champion'>{champion.name}</h2>
+              <h3 title='Title of the champion'>{champion.title}</h3>
             </Styled.ModalTableRow>
-            <Styled.ModalImageTable src={champion.imageUrl} alt={champion.name} />
+            <Styled.ModalImageTable src={champion.imageUrl} alt={champion.name} title='Image of the champion'/>
             <Styled.ModalDetailTable>
               <Styled.ModalChampionTableContainer>
-                <Styled.ModalChampionDetailClasse color={champion.difficulty}>
+                <Styled.ModalChampionDetailClasse color={champion.difficulty} title='Difficulty of the champion'>
                   <p>
                     Difficulty:
                   </p>
@@ -67,7 +69,7 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
                   
                   {champion.difficulty}
                 </Styled.ModalChampionDetailClasse>
-                <Styled.ModalChampionClasseName>
+                <Styled.ModalChampionClasseName title='Classe of the champion'>
                   {mockedClasse.map((element) => {
                     if(element.id === champion.classeId) {
                       return element.name
@@ -80,7 +82,7 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
                 {`Launched in ${(champion.createdAt)?.toLocaleDateString()}`}
                 </p>
                 <Styled.ModalFooterButton>
-                  <Button text={'Buy'} onClick={() => toast.error("section under development")}/>
+                  <Button text={'Buy'} onClick={() => toast.error("section under development")} title='Buy champion'/>
                 </Styled.ModalFooterButton>
               </Styled.ModalFooter>
 

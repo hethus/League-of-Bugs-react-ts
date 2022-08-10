@@ -1,0 +1,87 @@
+.introjs-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.introjs-container p{
+  margin: 0.5rem 0;
+}
+
+.introjs-container .face{
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  font-size: 30px;
+}
+
+
+
+.oi {
+  position: absolute;
+  z-index: 9999998;
+  background:#656D78;
+  margin: -0.4rem 1rem;
+  -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+
+.highlight-menu {
+  position: absolute;
+  z-index: 9999998;
+  background:#656D78;
+  margin: -0.3rem 1rem 0 0;
+  -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+
+.introjs-tooltipReferenceLayer {
+  width: 114px; height: 6503.6px; top: -5px; left: -5px;
+  margin: -0.3rem;
+}
+
+.introjs-tooltipbuttons {
+  border: none;
+  display: flex;
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
+  gap: 5px;
+}
+
+.introjs-tooltipbuttons a{
+  border-radius: 1rem;
+}
+
+.introjs-helperLayer {
+  position: absolute;
+  z-index: 9999998;
+  background:#656D78;
+  -webkit-transition: all 0.3s ease-out;
+     -moz-transition: all 0.3s ease-out;
+      -ms-transition: all 0.3s ease-out;
+       -o-transition: all 0.3s ease-out;
+          transition: all 0.3s ease-out;
+}
+
+.introjs-tooltip {
+  position: absolute;
+  background-color: #3b4056;
+  color:#fff;
+  -webkit-transition: opacity 0.1s ease-out;
+     -moz-transition: opacity 0.1s ease-out;
+      -ms-transition: opacity 0.1s ease-out;
+       -o-transition: opacity 0.1s ease-out;
+          transition: opacity 0.1s ease-out;
+}
+
+.introjs-skipbutton {
+  color: aliceblue;
+}

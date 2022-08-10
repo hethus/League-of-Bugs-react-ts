@@ -7,11 +7,11 @@ import * as Styled from './styles';
 const PurchaseDetails = () => {
   return (
     <Styled.PurchaseDetailsContainer>
-    <Styled.PurchaseDetailsHeader>
+    <Styled.PurchaseDetailsHeader className='PurchaseBP-bugpoint-detail-header'>
       <h3>Shopping cart</h3>
     </Styled.PurchaseDetailsHeader>
-    <Styled.CheckoutDetailsContainer>
-      <Styled.CheckoutDetailsHeader>
+    <Styled.CheckoutDetailsContainer >
+      <Styled.CheckoutDetailsHeader >
         <div>
           <h3>Item</h3>
           <h3>Qty</h3>
@@ -22,16 +22,16 @@ const PurchaseDetails = () => {
         <CheckoutCard bugPoint={mockedBugPoints[0]}/>
       </Styled.CheckoutCardsContainer>
     </Styled.CheckoutDetailsContainer>
-    <Styled.PurchaseDetailsFooter>
+    <Styled.PurchaseDetailsFooter className="PurchaseBP-bugpoint-details-footer">
       <div>
         <p>Discount</p>
         <h3>R$0,00</h3>
       </div>
       <div>
-        <p>Subtotal</p>
+        <p>Total</p>
         <h3>R$0,00</h3>
       </div>
-      <Button text="Continue to payment" onClick={() => {toast.error("section under development")}} size="x-large"/>
+      <Button text="Continue to payment" onClick={() => {toast.error("section under development")}} size="x-large" className="PurchaseBP-bugpoint-buttonpayment"/>
     </Styled.PurchaseDetailsFooter>
   </Styled.PurchaseDetailsContainer>
   );

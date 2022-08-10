@@ -6,18 +6,104 @@ import Button from "../../components/Button";
 import { mockedChampions } from "../../assets/mocks";
 import SettingsChampionCard from "../../components/SettingsChampionCard";
 import toast from "react-hot-toast";
+import { Steps, Hints } from 'intro.js-react';
+import 'intro.js/introjs.css';
 
 interface SettingsProps {
   setLogged: Dispatch<SetStateAction<boolean>>;
+  setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
+  stepsIsOpen: boolean;
 }
 
-const Settings = ({ setLogged }: SettingsProps) => {
+const Settings = ({ setLogged, setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
+  let enabledSteps
+
+  if(stepsIsOpen) {
+    enabledSteps = true
+  }
+
+  const steps = [
+    {
+      element: '.menu',
+      intro: 'In this menu you can select the options:',
+      position: 'right',
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu'
+    },
+    {
+      element: '.home',
+      intro: "<p>'Home' (which is where we are now):</p> <p>Here you can see your purchased champions</p>",
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-padrao'
+    },
+    {
+      element: '.purchaseBugpoint',
+      intro: "<p>'Buy Bug Points':</p> <p>Here you can buy more Bug Points</p>",
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-padrao'
+    },
+    {
+      element: '.purchaseChampion',
+      intro: "<p>'Buy Champions':</p> <p>Here you can buy other champions</p>",
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-padrao'
+    },
+    {
+      element: '.settings',
+      intro: `<p>'Settings':</p> <p>Here you can change the settings</p> <p class="face">🤪</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-padrao',
+      position: 'right',
+    },
+    {
+      element: '.logout',
+      intro: `<p>'logout':</p> <p>Here you can logout the site</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'right'
+    },
+    {
+      element: '.Settings-navigation-buttons',
+      intro: `<p>Here you can select the setting you want to change</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'right'
+    },
+    {
+      element: '.Settings-entity-edit-container',
+      intro: `<p>Here you will see what can be changed</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'left'
+    },
+    {
+      element: '.Settings-entities-Categories-edit',
+      intro: `<p>Here you can see all viewing options</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'left'
+    },
+    {
+      element: '.Settings-confirmation-container',
+      intro: `<p>Here you can confirm or cancel the changes</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'left'
+    },
+  ];
+
   return (
     <Styled.SettingsContainer>
-      <Menu path="settings" setLogged={setLogged}/>
+      <Steps
+  enabled={enabledSteps}
+  steps={steps}
+  initialStep={0}
+  onExit={() => setStepsIsOpen(false)}
+  />
+      <Menu path="settings" setLogged={setLogged} setStepsIsOpen={setStepsIsOpen}/>
       <Styled.SettingsNavigationContainer>
         <h2>Settings</h2>
-        <Styled.SettingsNavigationButtonList>
+        <Styled.SettingsNavigationButtonList className="Settings-navigation-buttons">
           <Styled.SettingsNavigationButtonContainer>
             <Styled.SettingsNavigationButtonSelected>
               <InfoIcon />
@@ -48,9 +134,9 @@ const Settings = ({ setLogged }: SettingsProps) => {
           </Styled.SettingsNavigationButtonContainer>
         </Styled.SettingsNavigationButtonList>
       </Styled.SettingsNavigationContainer>
-      <Styled.EntitiesEditContainer>
+      <Styled.EntitiesEditContainer className="Settings-entity-edit-container">
         <h2>Customize the Bug Points</h2>
-        <Styled.EntitiesEditCategories>
+        <Styled.EntitiesEditCategories className="Settings-entities-Categories-edit">
           <Styled.EntitiesEditCategoriesButton active>All</Styled.EntitiesEditCategoriesButton>
           <Styled.EntitiesEditCategoriesButton >Mage</Styled.EntitiesEditCategoriesButton>
           <Styled.EntitiesEditCategoriesButton >Warrior</Styled.EntitiesEditCategoriesButton>
@@ -64,7 +150,7 @@ const Settings = ({ setLogged }: SettingsProps) => {
             <SettingsChampionCard champion={element} key={element.id}/>
           ))}
         </Styled.EntitiesEditList>
-        <Styled.ConfirmationContainer>
+        <Styled.ConfirmationContainer className="Settings-confirmation-container">
           <Button text="Cancel" variant="cancel" onClick={() => toast.error('section under development')}/>
           <Button text="Confirm" onClick={() => toast.error('section under development')} />
         </Styled.ConfirmationContainer>      

@@ -101,3 +101,19 @@ export const MenuItemButton = styled.button<MenuItemButtonProps>`
     color: #ffffff;
   `}
 `;
+
+export const StepsMenuItem = styled.div`
+
+`
+
+export const StepsMenuItemButton = styled.button`
+  margin-top: 6rem;
+  width: 5rem;
+  height: 2.2rem;
+  font-size: 1rem;
+  background-color: rgba(108, 234, 105, 0.4);
+  color: #ffffff;
+  border: 5px double #6cea69;
+  border-radius: 50px;
+  cursor: pointer;
+`

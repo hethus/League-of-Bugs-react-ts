@@ -10,7 +10,7 @@ const ChampionList = ({ list }: ChampionListProps) => {
   return (
     <Styled.ChampionListContainer>
       {list.map((element) => (
-        <ChampionCard champion={element} key={element.id}/>
+        <ChampionCard champion={element} key={element.id} />
       ))}
     </Styled.ChampionListContainer>
   );

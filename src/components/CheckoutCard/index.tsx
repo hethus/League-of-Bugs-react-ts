@@ -12,8 +12,8 @@ const CheckoutCard = ({ bugPoint }: CheckoutCardProps) => {
   const [quantity, setQuantity] = useState<number>(1);
 
   return (
-    <Styled.CheckoutCardContainer>
-      <Styled.CheckoutCardHeader>
+    <Styled.CheckoutCardContainer >
+      <Styled.CheckoutCardHeader className='PurchaseBP-bugpoint-detail-container'>
         <div>
           <h3 title={`${bugPoint.value} BP's`}>
           {bugPoint.value} BP's
@@ -30,7 +30,7 @@ const CheckoutCard = ({ bugPoint }: CheckoutCardProps) => {
       </Styled.CheckoutCardHeader>
       <Styled.CheckoutCardFooter>
       <img src={bugPoint.imageUrl} alt={`${bugPoint.value}`}/>
-        <Styled.RemoveBugPointButton onClick={() => toast.error("section under development")}>
+        <Styled.RemoveBugPointButton onClick={() => toast.error("section under development")} className='PurchaseBP-bugpoint-detail-removebutton'>
           <TrashIcon />
         </Styled.RemoveBugPointButton>
       </Styled.CheckoutCardFooter>
