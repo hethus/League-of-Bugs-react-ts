@@ -3,7 +3,6 @@ import { PurchaseBugPoint, SearchIcon, PersonSad } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
 import { mockedClasse, mockedChampions, mockedUser, mockedFavorites } from "../../assets/mocks";
-import ChampionList from "../../components/ChampionList";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
 import HomeDetails from "../../components/HomeDetails";
