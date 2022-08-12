@@ -10,12 +10,11 @@ import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
 
 interface SettingsProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
   stepsIsOpen: boolean;
 }
 
-const Settings = ({ setLogged, setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
+const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   let enabledSteps
 
   if(stepsIsOpen) {
@@ -100,7 +99,7 @@ const Settings = ({ setLogged, setStepsIsOpen, stepsIsOpen }: SettingsProps) => 
   initialStep={0}
   onExit={() => setStepsIsOpen(false)}
   />
-      <Menu path="settings" setLogged={setLogged} setStepsIsOpen={setStepsIsOpen}/>
+      <Menu path="settings" setStepsIsOpen={setStepsIsOpen}/>
       <Styled.SettingsNavigationContainer>
         <h2>Settings</h2>
         <Styled.SettingsNavigationButtonList className="Settings-navigation-buttons">

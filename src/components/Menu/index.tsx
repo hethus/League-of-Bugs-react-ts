@@ -4,20 +4,17 @@ import { HomeIcon, SettingsIcon, LogoutIcon, PurchaseBugPoint, PurchaseChampion 
 import { useNavigate } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../contexts/auth';
 
 interface MenuProps {
   path: "home" | "settings" | "purchaseBugPoint" | "purchaseChampion";
-  setLogged: Dispatch<SetStateAction<boolean>>;
   setStepsIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const Menu = ({ path, setLogged, setStepsIsOpen }: MenuProps) => {
+const Menu = ({ path, setStepsIsOpen }: MenuProps) => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    setLogged(false);
-    navigate("/login");
-  }
+  const { logout } = useAuth();
 
   const handleStepsIsOpen= () => {
     setStepsIsOpen(true);
@@ -54,7 +51,10 @@ const Menu = ({ path, setLogged, setStepsIsOpen }: MenuProps) => {
           </Styled.StepsMenuItemButton>
       </Styled.StepsMenuItem>
       <Styled.MenuItem logout className='logout'>
-        <Styled.MenuItemButton onClick={handleLogout}>
+        <Styled.MenuItemButton onClick={() => {
+            logout();
+            toast.success("Logout successful!");
+          }}>
           <LogoutIcon />
         </Styled.MenuItemButton>
       </Styled.MenuItem>

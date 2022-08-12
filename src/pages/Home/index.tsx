@@ -3,7 +3,7 @@ import { PurchaseBugPoint, SearchIcon, PersonSad } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
 import { mockedClasse, mockedChampions, mockedUser, mockedFavorites } from "../../assets/mocks";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
 import HomeDetails from "../../components/HomeDetails";
 import ChampionHomeList from "../../components/ChampionHomeList";
@@ -13,12 +13,11 @@ import '../../Tooltip.css';
 
 
 interface HomeProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
   stepsIsOpen: boolean;
 }
 
-const Home = ({ setLogged, setStepsIsOpen, stepsIsOpen }: HomeProps) => {
+const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
   let enabledSteps
 
   if(stepsIsOpen) {
@@ -183,7 +182,7 @@ const Home = ({ setLogged, setStepsIsOpen, stepsIsOpen }: HomeProps) => {
   initialStep={0}
   onExit={() => setStepsIsOpen(false)}
   />
-      <Menu path="home" setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} />
+      <Menu path="home" setStepsIsOpen={setStepsIsOpen} />
       <Styled.HomeContentContainer>
         <Styled.HomeContentHeader>
           <Styled.TitleContainer>

@@ -11,12 +11,11 @@ import 'intro.js/introjs.css';
 import '../../Tooltip.css';
 
 interface PurchaseBugPointPageProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
   stepsIsOpen: boolean;
 }
 
-const PurchaseBugPointPage = ({ setLogged, setStepsIsOpen, stepsIsOpen  }: PurchaseBugPointPageProps) => {
+const PurchaseBugPointPage = ({ setStepsIsOpen, stepsIsOpen  }: PurchaseBugPointPageProps) => {
   const actualDate = DateTime.now();
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
 
@@ -132,7 +131,7 @@ const PurchaseBugPointPage = ({ setLogged, setStepsIsOpen, stepsIsOpen  }: Purch
   initialStep={0}
   onExit={() => setStepsIsOpen(false)}
   />
-      <Menu path="purchaseBugPoint" setLogged={setLogged} setStepsIsOpen={setStepsIsOpen}/>
+      <Menu path="purchaseBugPoint" setStepsIsOpen={setStepsIsOpen}/>
       <Styled.HomeContentContainer>
         <Styled.HomeContentHeader>
           <Styled.TitleContainer>
