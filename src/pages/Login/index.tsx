@@ -5,6 +5,7 @@ import logo from "../../assets/logo_patterns/logo.png";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 interface LoginProps {
   setLogged: Dispatch<SetStateAction<boolean>>;
@@ -17,14 +18,28 @@ const Login = ({ setLogged }: LoginProps) => {
   const [password, setPassword] = useState<string>("");
 
   const handleLogin = () => {
-    if(email === "admin" && password === "admin") {
-      setLogged(true);
-      navigate("/");
-      toast.success("Login successful");
-      return;
+    if(email !== "" && password !== "") {
+      const data = {
+        email,
+        password
+      }
+
+      return axios.post(
+        "http://localhost:8000/auth/login",
+        data
+      ).then((res) => {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        setLogged(true);
+        navigate("/");
+        toast.success("Login successful");
+
+      }).catch(() => {
+        return toast.error("username or password is invalid!");
+      });
     }
 
-    toast.error("username or password is invalid");
+    toast.error("fill in the fields to login");
   };
   return (
     <Styled.LoginPageContainer>

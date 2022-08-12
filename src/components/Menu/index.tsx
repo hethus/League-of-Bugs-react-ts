@@ -15,8 +15,10 @@ const Menu = ({ path, setLogged, setStepsIsOpen }: MenuProps) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    localStorage.clear();
     setLogged(false);
     navigate("/login");
+    toast.success("Logout successful");
   }
 
   const handleStepsIsOpen= () => {
