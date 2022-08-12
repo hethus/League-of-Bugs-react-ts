@@ -5,27 +5,24 @@ import { useState } from 'react'
 import Settings from "./pages/Settings";
 import PurchaseBugPoint from "./pages/PurchaseBugPoint";
 import PurchaseChampion from "./pages/PurchaseChampion";
+import { useAuth } from "./contexts/auth";
 
-interface RouterProps {
-  logged: boolean;
-  setLogged: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const Router = ({logged, setLogged}: RouterProps) => {
+const Router = () => {
   const [stepsIsOpen, setStepsIsOpen] = useState<boolean>(false);
+  const { logged } = useAuth();
 
   return (
     <Routes>
       {
         logged ? (
         <>
-        <Route path="/" element={<Home setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
-        <Route path="/settings" element={<Settings setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
-        <Route path="/purchase/bugpoint" element={<PurchaseBugPoint setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
-        <Route path="/purchase/champion" element={<PurchaseChampion setLogged={setLogged} setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen} />} />
+        <Route path="/" element={<Home setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
+        <Route path="/settings" element={<Settings setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
+        <Route path="/purchase/bugpoint" element={<PurchaseBugPoint setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
+        <Route path="/purchase/champion" element={<PurchaseChampion setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen} />} />
         </>
         ) : (
-        <Route path="/login" element={<Login setLogged={setLogged}/>} />
+        <Route path="/login" element={<Login />} />
       )}
       <Route path="*" element={<Navigate to={logged ? "/" : "/login"} replace />}/>
     </Routes>

@@ -11,12 +11,11 @@ import 'intro.js/introjs.css';
 import '../../Tooltip.css';
 
 interface PurchaseChampionPageProps {
-  setLogged: Dispatch<SetStateAction<boolean>>;
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
   stepsIsOpen: boolean;
 }
 
-const PurchaseChampionPage = ({ setLogged, setStepsIsOpen, stepsIsOpen }: PurchaseChampionPageProps) => {
+const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionPageProps) => {
 
   let enabledSteps
 
@@ -151,7 +150,7 @@ const PurchaseChampionPage = ({ setLogged, setStepsIsOpen, stepsIsOpen }: Purcha
   initialStep={0}
   onExit={() => setStepsIsOpen(false)}
   />
-      <Menu path="purchaseChampion" setLogged={setLogged} setStepsIsOpen={setStepsIsOpen}/>
+      <Menu path="purchaseChampion" setStepsIsOpen={setStepsIsOpen}/>
       <Styled.HomeContentContainer>
         <Styled.HomeContentHeader>
           <Styled.TitleContainer>

@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { Toaster } from 'react-hot-toast'
 import './App.css'
 import Router from './router'
 
 const App = () => {
-  const [logged, setLogged] = useState<boolean>(false);
 
   return (
     <div>
@@ -12,7 +10,7 @@ const App = () => {
         position="bottom-center"
         reverseOrder={false}
       />
-      <Router logged={logged} setLogged={setLogged}/>
+      <Router />
     </div>
   )
 }
