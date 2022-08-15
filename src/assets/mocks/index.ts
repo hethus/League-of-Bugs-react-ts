@@ -2,9 +2,6 @@ import * as T from '../types';
 import Aatrox from '../images/aatrox.jpg';
 import Ahri from '../images/ahri.jpg';
 import Leesin from '../images/leesin.jpg';
-import Rp from '../images/rp.jpg';
-import Rp2 from '../images/rp2.jpg';
-
 
 export const mockedChampions: T.Champion[] = [
   {
@@ -107,40 +104,6 @@ export const mockedChampions: T.Champion[] = [
   }
 ]
 
-export const mockedBugPoints: T.BugPoint[] = [
-  {
-    id: "adf26203-5a36-402b-ac7d-437339db15bf",
-    value: 850,
-    imageUrl: Rp,
-    money: 20,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "bdf26203-5a36-402b-ac7d-437339db15bf",
-    value: 1740,
-    imageUrl: Rp2,
-    money: 40,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "cdf26203-5a36-402b-ac7d-437339db15bf",
-    value: 4800,
-    imageUrl: Rp2,
-    money: 100.50,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-  {
-    id: "ddf26203-5a36-402b-ac7d-437339db15bf",
-    value: 7200,
-    imageUrl: Rp,
-    money: 180.99,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  },
-]
 
 export const mockedClasse: T.Classe[] = [
   {

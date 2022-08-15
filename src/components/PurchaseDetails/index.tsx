@@ -1,10 +1,12 @@
 import toast from 'react-hot-toast';
-import { mockedBugPoints } from '../../assets/mocks';
+import { useBugpoints } from '../../contexts/bugpoints';
 import Button from '../Button';
 import CheckoutCard from '../CheckoutCard';
 import * as Styled from './styles';
 
 const PurchaseDetails = () => {
+  const { bugpoints } = useBugpoints();
+  
   return (
     <Styled.PurchaseDetailsContainer>
     <Styled.PurchaseDetailsHeader className='PurchaseBP-bugpoint-detail-header'>
@@ -19,7 +21,7 @@ const PurchaseDetails = () => {
         <h3>Price</h3>        
       </Styled.CheckoutDetailsHeader>
       <Styled.CheckoutCardsContainer>
-        <CheckoutCard bugPoint={mockedBugPoints[0]}/>
+        <CheckoutCard bugPoint={bugpoints[0]}/>
       </Styled.CheckoutCardsContainer>
     </Styled.CheckoutDetailsContainer>
     <Styled.PurchaseDetailsFooter className="PurchaseBP-bugpoint-details-footer">
