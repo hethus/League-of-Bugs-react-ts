@@ -2,12 +2,12 @@ import Button from "../../components/Button";
 import * as Styled from "./styles";
 import logo from "../../assets/logo_patterns/logo.png";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useAuth } from "../../contexts/auth";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { StyledInput } from "../../components/Input/styles";
+import { api } from "../../services";
 
 interface LoginData {
   email: string;
@@ -44,8 +44,8 @@ const Login = () => {
 
   const handleLogin = (data: LoginData) => {
     
-      axios.post(
-        "http://localhost:8000/auth/login",
+      api.post(
+        "/auth/login",
         data
       ).then((res) => {
         login({token: res.data.token, user: res.data.user});

@@ -2,13 +2,14 @@ import { DateTime } from "luxon";
 import { PurchaseBugPoint, SearchIcon } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { mockedBugPoints, mockedUser } from "../../assets/mocks";
+import { mockedUser } from "../../assets/mocks";
 import BugPointList from "../../components/BugPointList";
 import { Dispatch, SetStateAction } from "react";
 import PurchaseDetails from "../../components/PurchaseDetails";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
 import '../../Tooltip.css';
+import { useBugpoints } from "../../contexts/bugpoints";
 
 interface PurchaseBugPointPageProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -16,6 +17,8 @@ interface PurchaseBugPointPageProps {
 }
 
 const PurchaseBugPointPage = ({ setStepsIsOpen, stepsIsOpen  }: PurchaseBugPointPageProps) => {
+  const { bugpoints } = useBugpoints();
+
   const actualDate = DateTime.now();
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
 
@@ -154,7 +157,7 @@ const PurchaseBugPointPage = ({ setStepsIsOpen, stepsIsOpen  }: PurchaseBugPoint
           <Styled.ProductsHeaderContainer className="PurchaseBP-bugpoint-list">
             <h2>Choose the Bug point</h2>
           </Styled.ProductsHeaderContainer>
-          <BugPointList list={mockedBugPoints}/>
+          <BugPointList list={bugpoints}/>
         </section>
       </Styled.HomeContentContainer>
       <PurchaseDetails />

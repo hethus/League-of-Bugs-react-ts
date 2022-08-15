@@ -53,7 +53,6 @@ const Menu = ({ path, setStepsIsOpen }: MenuProps) => {
       <Styled.MenuItem logout className='logout'>
         <Styled.MenuItemButton onClick={() => {
             logout();
-            toast.success("Logout successful!");
           }}>
           <LogoutIcon />
         </Styled.MenuItemButton>

@@ -1,8 +1,8 @@
-import axios from "axios";
 import { createContext, useContext, ReactNode, useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../assets/types";
+import { api } from "../../services";
 
 interface AuthContextProps {
   children: ReactNode;
@@ -50,8 +50,8 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       }
     }
 
-    axios.get(
-      `http://localhost:8000/users/${user.id}`,
+    api.get(
+      `/users/${user.id}`,
       headers
     ).then((res) => {
       setLogged(true);
