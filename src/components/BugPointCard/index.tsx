@@ -10,6 +10,7 @@ const BugPointCard = ({ bugPoint }: BugPointCardProps) => {
     <Styled.CardContainer>
       <img src={bugPoint.imageUrl} alt={`${bugPoint.value}`} />
       <h3>- {bugPoint.value} BP -</h3>
+      <p>R${bugPoint.money.toLocaleString(undefined, {minimumFractionDigits: 2})}</p>
     </Styled.CardContainer>
   );
 }

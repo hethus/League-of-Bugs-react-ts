@@ -8,7 +8,7 @@ interface ChampionCardProps {
 export const CardContainer = styled.div<ChampionCardProps>`
   ${({ theme }) => css`
     width: 12rem;
-    height: 14.125rem;
+    height: 15.625rem;
     background-color: ${theme.colors.baseBg2};
     border-radius: 16px;
     display: flex;
@@ -20,6 +20,10 @@ export const CardContainer = styled.div<ChampionCardProps>`
       width: 8rem;
       margin: 0.25rem 0 0.75rem 0;
       border-radius: 8px;
+    }
+
+    p {
+      padding-top: 0.2rem;
     }
   `}
 `
