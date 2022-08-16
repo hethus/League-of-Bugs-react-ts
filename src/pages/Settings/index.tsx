@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
 import { MarketIcon, InfoIcon, PromotionIcon, DashboardIcon } from "../../assets/icons";
@@ -8,6 +8,7 @@ import SettingsChampionCard from "../../components/SettingsChampionCard";
 import toast from "react-hot-toast";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
+import ModalBugPointSettings from "../../components/ModalBugPointSettings";
 
 interface SettingsProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -91,6 +92,12 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
     },
   ];
 
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(!openModal);
+  }
+
   return (
     <Styled.SettingsContainer>
       <Steps
@@ -141,7 +148,7 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
           <Styled.EntitiesEditCategoriesButton >Warrior</Styled.EntitiesEditCategoriesButton>
         </Styled.EntitiesEditCategories>
         <Styled.EntitiesEditList>
-          <Styled.AddEntityCard>
+          <Styled.AddEntityCard onClick={handleOpenModal}>
             <h2>+</h2>
             <p>Add item</p>
           </Styled.AddEntityCard>
@@ -154,6 +161,7 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
           <Button text="Confirm" onClick={() => toast.error('section under development')} />
         </Styled.ConfirmationContainer>      
       </Styled.EntitiesEditContainer>
+      {openModal && <ModalBugPointSettings handleOpenModal={handleOpenModal}/>}
     </Styled.SettingsContainer>
   );
 };

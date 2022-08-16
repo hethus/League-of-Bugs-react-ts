@@ -4,7 +4,7 @@ import * as Styled from './styles';
 import { Champion } from '../../assets/types';
 import { IconExit } from '../../assets/icons';
 import Button from '../Button';
-import { mockedClasse, mockedFavorites, mockedPurchaseChampions, mockedUser } from '../../assets/mocks';
+import { mockedClasse, mockedFavorites } from '../../assets/mocks';
 import toast from 'react-hot-toast';
 
 Modal.setAppElement('#root');

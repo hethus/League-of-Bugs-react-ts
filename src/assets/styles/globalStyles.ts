@@ -25,3 +25,16 @@ export const StyledInput = styled.input<StyledInputProps>`
     `}
   `}
 `
+
+export const ErrorMessage = styled.p`
+  ${({ theme }) => css`
+    display: flex;
+    color: red;
+    text-align: left;
+    justify-content: center;
+    font-size: small;
+    font-weight: bold;
+    white-space: pre-line;
+    margin-top: 0.5rem;
+  `}
+`

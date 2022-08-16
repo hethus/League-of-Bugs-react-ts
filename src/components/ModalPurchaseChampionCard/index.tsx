@@ -6,8 +6,6 @@ import { IconExit } from '../../assets/icons';
 import Button from '../Button';
 import { mockedClasse } from '../../assets/mocks';
 import toast from 'react-hot-toast';
-import { Steps, Hints } from 'intro.js-react';
-import 'intro.js/introjs.css';
 
 Modal.setAppElement('#root');
 
