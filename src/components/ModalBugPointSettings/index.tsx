@@ -5,39 +5,62 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "../../assets/styles/globalStyles";
+import { api } from "../../services";
+import toast from "react-hot-toast";
+import { useBugpoints } from "../../contexts/bugpoints";
 
 interface ModalBugPointSettingsProps {
   handleOpenModal: () => void;
 }
 
 interface ModalBugPointSettingsData {
-  amount: number;
-  url: string;
-  price: number;
+  value: number;
+  imageUrl: string;
+  money: number;
 }
 
 const newBugPointSchema = yup.object().shape({
-  amount: yup
+  value: yup
     .number()
     .typeError("Amount must be a number")
     .integer("Amount must be an integer")
     .positive("Amount must be positive")
     .required("Amount is required"),
 
-  url: yup
+  imageUrl: yup
     .string()
     .url("Enter a valid url")
     .required("Image Url is required"),
 
-  price: yup
+  money: yup
     .number()
-    .typeError("Amount must be a number")
+    .transform((_, value) => {
+      if (value.includes('.')) {
+        return +value;
+      }
+      return +value.replace(/,/, '.');
+    })
+    .typeError("Price must be a number")
     .positive("Price must be positive")
+    .test(
+      "is-decimal",
+      "The amount should be a decimal with maximum two digits after comma",
+      (value) => {
+        if (value != undefined) {
+          const patternTwoDigitsAfterComma = /^\d+(\.\d{0,2})?$/;
+          const valueString = value.toString();
+
+          return patternTwoDigitsAfterComma.test(valueString);
+        }
+        return true;
+      }
+    )
     .required("Price is required"),
 
 });
 
 const ModalBugPointSettings = ({ handleOpenModal }: ModalBugPointSettingsProps) => {
+  const { handleGetBugpoints } = useBugpoints();
 
   const {
     register,
@@ -46,8 +69,20 @@ const ModalBugPointSettings = ({ handleOpenModal }: ModalBugPointSettingsProps) 
   } = useForm<ModalBugPointSettingsData>({ resolver: yupResolver(newBugPointSchema) });
 
   const handleNewBugPoint = (data: ModalBugPointSettingsData) => {
-    console.log(data);
-  }
+    const token = localStorage.getItem("token");
+
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+    }
+
+    api.post("/bugpoints", data, headers).then((res) => {
+      toast.success("Bugpoint created!");
+      handleGetBugpoints();
+      handleOpenModal();
+    });
+  };
 
   return (
     <Styled.ModalOverlay>
@@ -56,20 +91,19 @@ const ModalBugPointSettings = ({ handleOpenModal }: ModalBugPointSettingsProps) 
         <StyledInput
           placeholder="BugPoint amount" 
           type="number"
-          {...register("amount")}
+          {...register("value")}
         />
         <StyledInput
           placeholder="image Url"
           type="url"
-          {...register("url")}
+          {...register("imageUrl")}
         />
         <StyledInput
           placeholder="Price"
-          type="number" 
-          {...register("price")}
+          {...register("money")}
         />
         <ErrorMessage>
-          {errors.amount?.message || errors.url?.message || errors.price?.message || ""}
+          {errors.value?.message || errors.imageUrl?.message || errors.money?.message || ""}
         </ErrorMessage>
         <div>
           <Button

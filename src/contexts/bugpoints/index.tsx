@@ -9,6 +9,7 @@ interface BugpointsContextProps {
 
 interface BugpointsProviderData {
   bugpoints: BugPoint[];
+  handleGetBugpoints: () => void;
 }
 
 const BugpointsContext = createContext<BugpointsProviderData>(
@@ -37,7 +38,7 @@ export const BugpointsProvider = ({ children }: BugpointsContextProps) => {
     if(logged) handleGetBugpoints();
   }, [logged])
   return (
-    <BugpointsContext.Provider value={{ bugpoints }}>{children}</BugpointsContext.Provider>
+    <BugpointsContext.Provider value={{ bugpoints, handleGetBugpoints }}>{children}</BugpointsContext.Provider>
   )
 }
 
