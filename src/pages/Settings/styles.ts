@@ -202,3 +202,31 @@ export const ConfirmationContainer = styled.div`
     border-top: 1px solid ${theme.colors.baseLine};
   `}
 `
+
+export const NoItemContainer = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    height: 50%;
+    color: ${theme.colors.primaryColor};
+    background-color: ${theme.colors.baseBg2};
+    font-size: 30px;
+    font-weight: bold;
+    gap: 1rem;
+    margin-top: 5rem;
+    padding: 1rem 0;
+    border-bottom: 7px double ${theme.colors.primaryColor};
+    border-right: 7px double ${theme.colors.primaryColor};
+    border-left: 1px solid ${theme.colors.primaryColor};
+    border-top: 1px solid ${theme.colors.primaryColor};
+    border-radius: 15px;
+    box-sizing: border-box;
+
+    svg {
+      width: 3rem;
+      height: 3rem;
+    }
+  `}
+`

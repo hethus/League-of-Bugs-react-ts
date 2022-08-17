@@ -1,16 +1,18 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { MarketIcon, InfoIcon, PromotionIcon, DashboardIcon } from "../../assets/icons";
+import { MarketIcon, InfoIcon, PromotionIcon, DashboardIcon, PersonSad } from "../../assets/icons";
 import Button from "../../components/Button";
 import SettingsChampionCard from "../../components/SettingsChampionCard";
 import toast from "react-hot-toast";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
 import ModalChampionSettings from "../../components/ModalChampionSettings";
-import { Champion } from "../../assets/types";
+import { Champion, Classe } from "../../assets/types";
 import ModalChampionDelete from "../../components/ModalChampionDelete";
 import { useChampions } from "../../contexts/champions";
+import { useClasses } from "../../contexts/classes";
+import { mockedUser } from "../../assets/mocks";
 
 interface SettingsProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -21,6 +23,21 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   let enabledSteps
 
   const { champions } = useChampions();
+  const { classes } = useClasses();
+
+  const All: Classe = {
+    name: "All",
+  }
+
+  const [selectedClasse, setSelectedClasse] = useState<Classe>(All);
+
+  const filteredChampions: Champion[] = champions.filter((element) => {
+    if (selectedClasse.name === All.name) {
+      console.log(classes)
+      return champions
+    }
+      return element.classeId === selectedClasse.id
+  });
 
   if(stepsIsOpen) {
     enabledSteps = true
@@ -153,18 +170,39 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
       <Styled.EntitiesEditContainer className="Settings-entity-edit-container">
         <h2>Customize the Bug Points</h2>
         <Styled.EntitiesEditCategories className="Settings-entities-Categories-edit">
-          <Styled.EntitiesEditCategoriesButton active>All</Styled.EntitiesEditCategoriesButton>
-          <Styled.EntitiesEditCategoriesButton >Mage</Styled.EntitiesEditCategoriesButton>
-          <Styled.EntitiesEditCategoriesButton >Warrior</Styled.EntitiesEditCategoriesButton>
+
+          <Styled.EntitiesEditCategoriesButton
+            active={All.name === selectedClasse.name}
+            onClick={() => setSelectedClasse(All)}>
+              {All.name}
+            </Styled.EntitiesEditCategoriesButton>
+
+          {classes.map((element) => {
+            return (
+              <Styled.EntitiesEditCategoriesButton
+                key={element.id}
+                active={element.name === selectedClasse.name}
+                onClick={() => setSelectedClasse(element)}>
+                {element.name}
+              </Styled.EntitiesEditCategoriesButton>
+            )
+          })}
+
         </Styled.EntitiesEditCategories>
         <Styled.EntitiesEditList>
           <Styled.AddEntityCard onClick={handleOpenModal}>
             <h2>+</h2>
             <p>Add item</p>
           </Styled.AddEntityCard>
-          {champions.map((element) => (
+          {filteredChampions.map((element) => (
             <SettingsChampionCard handleOpenModal={handleOpenModal} handleOpenDeleteModal={handleOpenDeleteModal} setChampion={setChampion} champion={element} key={element.id}/>
           ))}
+          {filteredChampions.length === 0 &&
+            <Styled.NoItemContainer>
+              <PersonSad />
+              <p>No champions found</p>
+            </Styled.NoItemContainer>
+            }
         </Styled.EntitiesEditList>
         <Styled.ConfirmationContainer className="Settings-confirmation-container">
           <Button text="Cancel" variant="cancel" onClick={() => toast.error('section under development')}/>
