@@ -2,7 +2,7 @@ import { DateTime } from "luxon";
 import { PurchaseBugPoint, SearchIcon, PersonSad } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { mockedClasse, mockedChampions, mockedUser, mockedFavorites } from "../../assets/mocks";
+import { mockedChampions, mockedUser, mockedFavorites } from "../../assets/mocks";
 import { Dispatch, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
 import HomeDetails from "../../components/HomeDetails";
@@ -10,6 +10,7 @@ import ChampionHomeList from "../../components/ChampionHomeList";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
 import '../../Tooltip.css';
+import { useClasses } from "../../contexts/classes";
 
 
 interface HomeProps {
@@ -19,6 +20,8 @@ interface HomeProps {
 
 const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
   let enabledSteps
+
+  const { classes } = useClasses();
 
   if(stepsIsOpen) {
     enabledSteps = true
@@ -210,7 +213,7 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
                 onClick={() => setSelectedClasse(Favorite)}>
                   {Favorite.name}
                 </Styled.CategoriesNavigationButton>
-            {mockedClasse.map((element) => {
+            {classes.map((element) => {
               return (
                 <Styled.CategoriesNavigationButton
                 active={element.name === selectedClasse.name}

@@ -2,14 +2,15 @@ import { DateTime } from "luxon";
 import { PersonSad, PurchaseBugPoint, SearchIcon } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import {  mockedClasse, mockedChampions, mockedUser, mockedFavorites } from "../../assets/mocks";
+import { mockedUser} from "../../assets/mocks";
 import ChampionList from "../../components/ChampionList";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
 import '../../Tooltip.css';
 import { useChampions } from "../../contexts/champions";
+import { useClasses } from "../../contexts/classes";
 
 interface PurchaseChampionPageProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -20,6 +21,7 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
   let enabledSteps
 
   const { champions } = useChampions();
+  const { classes } = useClasses();
 
 
   if(stepsIsOpen) {
@@ -176,7 +178,7 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
                 onClick={() => setSelectedClasse(All)}>
                   {All.name}
                 </Styled.CategoriesNavigationButton>
-            {mockedClasse.map((element) => {
+            {classes.map((element) => {
               return (
                 <Styled.CategoriesNavigationButton
                 key={element.id}

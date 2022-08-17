@@ -9,11 +9,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { Dispatch, SetStateAction, useState } from "react";
-import { mockedClasse } from "../../assets/mocks";
 import { api } from "../../services";
 import toast from "react-hot-toast";
 import { useChampions } from "../../contexts/champions";
 import { Champion } from "../../assets/types";
+import { useClasses } from "../../contexts/classes";
 
 interface ModalChampionSettingsProps {
   handleOpenModal: () => void;
@@ -81,6 +81,7 @@ const ModalChampionSettings = ({
   setChampion,
 }: ModalChampionSettingsProps) => {
   const { handleGetChampions } = useChampions();
+  const { classes } = useClasses();
 
   const [classeId, setClasseId] = useState<string>(
     champion ? champion.classeId : ""
@@ -183,7 +184,7 @@ const ModalChampionSettings = ({
           onChange={(e) => setClasseId(e.target.value)}
         >
           <option> Select a classe </option>
-          {mockedClasse.map((element) => (
+          {classes.map((element) => (
             <option key={element.id} value={element.id}>
               {element.name}
             </option>

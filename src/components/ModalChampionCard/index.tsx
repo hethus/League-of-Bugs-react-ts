@@ -4,8 +4,9 @@ import * as Styled from './styles';
 import { Champion } from '../../assets/types';
 import { IconExit } from '../../assets/icons';
 import Button from '../Button';
-import { mockedClasse, mockedFavorites } from '../../assets/mocks';
+import { mockedFavorites } from '../../assets/mocks';
 import toast from 'react-hot-toast';
+import { useClasses } from '../../contexts/classes';
 
 Modal.setAppElement('#root');
 
@@ -15,6 +16,8 @@ interface ChampionHomeCardProps {
 
 const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const { classes } = useClasses();
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
@@ -68,7 +71,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
                   {champion.difficulty}
                 </Styled.ModalChampionDetailClasse>
                 <Styled.ModalChampionClasseName title='Classe of the champion'>
-                  {mockedClasse.map((element) => {
+                  {classes.map((element) => {
                     if(element.id === champion.classeId) {
                       return element.name
                     }
