@@ -1,16 +1,17 @@
 import styled, { css } from "styled-components";
 
-export const ModalContainer = styled.form`
+export const DeleteModalContainer = styled.div`
   ${({ theme }) => css`
-    background-color: ${theme.colors.baseBg2};
-    padding: 1.5rem;
-    width: 22rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    color: ${theme.colors.textColor};
+    width: 25vw;
+    height: 15vh;
     border-radius: 8px;
+    background-color: ${theme.colors.baseBg2};
+    padding: 1.5rem;
+    text-align: center;
+    color: ${theme.colors.textColor};
+    gap: 2rem;
 
     div {
       display: flex;

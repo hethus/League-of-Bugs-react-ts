@@ -38,3 +38,14 @@ export const ErrorMessage = styled.p`
     margin-top: 0.5rem;
   `}
 `
+
+export const ModalOverlay = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

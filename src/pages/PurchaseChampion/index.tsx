@@ -9,6 +9,7 @@ import { Champion, Classe } from "../../assets/types";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
 import '../../Tooltip.css';
+import { useChampions } from "../../contexts/champions";
 
 interface PurchaseChampionPageProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -16,8 +17,10 @@ interface PurchaseChampionPageProps {
 }
 
 const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionPageProps) => {
-
   let enabledSteps
+
+  const { champions } = useChampions();
+
 
   if(stepsIsOpen) {
     enabledSteps = true
@@ -127,9 +130,9 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
   
   const [selectedClasse, setSelectedClasse] = useState<Classe>(All);
 
-  const filteredChampions: Champion[] = mockedChampions.filter((element) => {
+  const filteredChampions: Champion[] = champions.filter((element) => {
     if (selectedClasse.name === All.name) {
-      return mockedChampions
+      return champions
     }
 
     return element.classeId === selectedClasse.id
@@ -176,6 +179,7 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
             {mockedClasse.map((element) => {
               return (
                 <Styled.CategoriesNavigationButton
+                key={element.id}
                 active={element.name === selectedClasse.name}
                 onClick={() => setSelectedClasse(element)}>
                   {element.name}

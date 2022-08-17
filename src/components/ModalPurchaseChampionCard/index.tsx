@@ -77,7 +77,7 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
               </Styled.ModalChampionTableContainer>
               <Styled.ModalFooter>
                 <p>
-                {`Launched in ${(champion.createdAt)?.toLocaleDateString()}`}
+                {`Launched in ${new Date(`${champion.createdAt}`).toLocaleDateString()}`}
                 </p>
                 <Styled.ModalFooterButton>
                   <Button text={'Buy'} onClick={() => toast.error("section under development")} title='Buy champion'/>

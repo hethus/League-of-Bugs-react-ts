@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "../assets/styles/theme";
 import { AuthProvider } from "./auth";
 import { BugpointsProvider } from "./bugpoints";
+import { ChampionsProvider } from "./champions";
 
 interface ProviderProps {
   children: ReactNode;
@@ -15,7 +16,9 @@ const Providers = ({ children }: ProviderProps) => {
       <ThemeProvider theme={theme}>
         <AuthProvider>
           <BugpointsProvider>
-            {children}
+            <ChampionsProvider>
+              {children}
+            </ChampionsProvider>
           </BugpointsProvider>
         </AuthProvider>
       </ThemeProvider>

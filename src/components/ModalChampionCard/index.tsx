@@ -77,7 +77,7 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
               </Styled.ModalChampionTableContainer>
               <Styled.ModalFooter>
                 <p>
-                {`Launched in ${(champion.createdAt)?.toLocaleDateString()}`}
+                {`Launched in ${new Date(`${champion.createdAt}`).toLocaleDateString()}`}
                 </p>
                 <Styled.ModalFooterButton>
                   <Button variant={

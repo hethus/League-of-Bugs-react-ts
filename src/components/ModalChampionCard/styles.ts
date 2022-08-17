@@ -191,7 +191,7 @@ export const ModalChampionTableContainer = styled.div`
   `}
 `
 
-export const ModalChampionDetailClasse = styled.p`
+export const ModalChampionDetailClasse = styled.div`
   ${({ theme, color }) => css`
     display: flex;
     gap: 0.5rem;

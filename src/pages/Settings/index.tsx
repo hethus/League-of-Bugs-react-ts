@@ -3,12 +3,14 @@ import Menu from "../../components/Menu";
 import * as Styled from "./styles";
 import { MarketIcon, InfoIcon, PromotionIcon, DashboardIcon } from "../../assets/icons";
 import Button from "../../components/Button";
-import { mockedChampions } from "../../assets/mocks";
 import SettingsChampionCard from "../../components/SettingsChampionCard";
 import toast from "react-hot-toast";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
-import ModalBugPointSettings from "../../components/ModalBugPointSettings";
+import ModalChampionSettings from "../../components/ModalChampionSettings";
+import { Champion } from "../../assets/types";
+import ModalChampionDelete from "../../components/ModalChampionDelete";
+import { useChampions } from "../../contexts/champions";
 
 interface SettingsProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -17,6 +19,8 @@ interface SettingsProps {
 
 const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   let enabledSteps
+
+  const { champions } = useChampions();
 
   if(stepsIsOpen) {
     enabledSteps = true
@@ -93,9 +97,15 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   ];
 
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
+  const [champion, setChampion] = useState<Champion | undefined>(undefined);
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
+  }
+
+  const handleOpenDeleteModal = () => {
+    setOpenDeleteModal(!openDeleteModal);
   }
 
   return (
@@ -152,8 +162,8 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
             <h2>+</h2>
             <p>Add item</p>
           </Styled.AddEntityCard>
-          {mockedChampions.map((element) => (
-            <SettingsChampionCard champion={element} key={element.id}/>
+          {champions.map((element) => (
+            <SettingsChampionCard handleOpenModal={handleOpenModal} handleOpenDeleteModal={handleOpenDeleteModal} setChampion={setChampion} champion={element} key={element.id}/>
           ))}
         </Styled.EntitiesEditList>
         <Styled.ConfirmationContainer className="Settings-confirmation-container">
@@ -161,7 +171,15 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
           <Button text="Confirm" onClick={() => toast.error('section under development')} />
         </Styled.ConfirmationContainer>      
       </Styled.EntitiesEditContainer>
-      {openModal && <ModalBugPointSettings handleOpenModal={handleOpenModal}/>}
+      {openModal && <ModalChampionSettings handleOpenModal={handleOpenModal} champion={champion} setChampion={setChampion}/>}
+
+      {openDeleteModal && (
+        <ModalChampionDelete
+          setChampion={setChampion}
+          championId={champion?.id}
+          handleOpenDeleteModal={handleOpenDeleteModal}
+        />
+      )}
     </Styled.SettingsContainer>
   );
 };

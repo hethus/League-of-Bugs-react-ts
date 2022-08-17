@@ -1,22 +1,43 @@
 import { Champion } from '../../assets/types';
 import * as Styled from './styles';
-import { EditIcon } from '../../assets/icons';
+import { EditIcon, TrashIcon } from '../../assets/icons';
 import toast from 'react-hot-toast';
+import { Dispatch, SetStateAction } from 'react';
 
 interface SettingsChampionCardProps {
-  champion: Champion
+  champion: Champion;
+  handleOpenModal: () => void;
+  handleOpenDeleteModal: () => void;
+  setChampion: Dispatch<SetStateAction<Champion | undefined>>;
 };
 
-const SettingsChampionCard = ({ champion }: SettingsChampionCardProps) => {
+const SettingsChampionCard = ({
+  champion,
+  handleOpenModal,
+  handleOpenDeleteModal,
+  setChampion,
+}: SettingsChampionCardProps) => {
   return (
-    <Styled.SettingsBugPointCardContainer>
+    <Styled.SettingsChampionCardContainer>
       <img src={champion.imageUrl} alt={`${champion.name}`} />
       <h3>{champion.name}</h3>
       <p>{champion.price} BP</p>
-      <Styled.SettingsBugPointCardButton onClick={() => toast.error('section under development')}>
+
+      <div>
+      <Styled.SettingsChampionDeleteCardButton onClick={() => {
+        setChampion(champion);
+        handleOpenDeleteModal();
+      }}>
+        <TrashIcon /> Remove
+      </Styled.SettingsChampionDeleteCardButton>
+      <Styled.SettingsChampionEditCardButton onClick={() => {
+        setChampion(champion);
+        handleOpenModal();
+      }}>
         <EditIcon /> Edit
-      </Styled.SettingsBugPointCardButton>
-    </Styled.SettingsBugPointCardContainer>
+      </Styled.SettingsChampionEditCardButton>
+      </div>
+    </Styled.SettingsChampionCardContainer>
   );
 } ;
 

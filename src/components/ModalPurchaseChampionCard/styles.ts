@@ -36,13 +36,13 @@ export const ModalStyleButton = styled.button`
 
 export const OverlayStyle = styled.div`
 ${({ theme }) => css`
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
   `}
 `;
 
@@ -190,7 +190,7 @@ export const ModalChampionTableContainer = styled.div`
   `}
 `
 
-export const ModalChampionDetailClasse = styled.p`
+export const ModalChampionDetailClasse = styled.div`
   ${({ theme, color }) => css`
     display: flex;
     gap: 0.5rem;
