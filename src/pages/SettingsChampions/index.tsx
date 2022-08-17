@@ -13,13 +13,14 @@ import ModalChampionDelete from "../../components/ModalChampionDelete";
 import { useChampions } from "../../contexts/champions";
 import { useClasses } from "../../contexts/classes";
 import { mockedUser } from "../../assets/mocks";
+import SettingsMenu from "../../components/SettingsMenu";
 
 interface SettingsProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
   stepsIsOpen: boolean;
 }
 
-const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
+const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   let enabledSteps
 
   const { champions } = useChampions();
@@ -104,13 +105,6 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
       highlightClass: 'highlight-menu',
       position: 'left'
     },
-    {
-      element: '.Settings-confirmation-container',
-      intro: `<p>Here you can confirm or cancel the changes</p>`,
-      tooltipClass: 'introjs-container',
-      highlightClass: 'highlight-menu',
-      position: 'left'
-    },
   ];
 
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -134,42 +128,10 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   onExit={() => setStepsIsOpen(false)}
   />
       <Menu path="settings" setStepsIsOpen={setStepsIsOpen}/>
-      <Styled.SettingsNavigationContainer>
-        <h2>Settings</h2>
-        <Styled.SettingsNavigationButtonList className="Settings-navigation-buttons">
-          <Styled.SettingsNavigationButtonContainer>
-            <Styled.SettingsNavigationButtonSelected>
-              <InfoIcon />
-              <h2>Customize your users</h2>
-              <p>Manage system access</p>
-            </Styled.SettingsNavigationButtonSelected>
-          </Styled.SettingsNavigationButtonContainer>
-          <Styled.SettingsNavigationButtonContainer>
-            <Styled.SettingsNavigationButtonSelected>
-              <MarketIcon />
-              <h2>Customize the Bug Points</h2>
-              <p>Edit and add new values</p>
-            </Styled.SettingsNavigationButtonSelected>
-          </Styled.SettingsNavigationButtonContainer>
-          <Styled.SettingsNavigationButtonContainer active >
-            <Styled.SettingsNavigationButtonSelected  active>
-              <PromotionIcon />
-              <h2>Customize the champions</h2>
-              <p>edit and add new champions</p>
-            </Styled.SettingsNavigationButtonSelected>
-          </Styled.SettingsNavigationButtonContainer>
-          <Styled.SettingsNavigationButtonContainer>
-            <Styled.SettingsNavigationButtonSelected>
-              <DashboardIcon />
-              <h2>Modify the Champions Classes</h2>
-              <p>edit and add new classes</p>
-            </Styled.SettingsNavigationButtonSelected>
-          </Styled.SettingsNavigationButtonContainer>
-        </Styled.SettingsNavigationButtonList>
-      </Styled.SettingsNavigationContainer>
+      <SettingsMenu path="champions"/>
       <Styled.EntitiesEditContainer className="Settings-entity-edit-container">
         <h2>Customize the Bug Points</h2>
-        <Styled.EntitiesEditCategories className="Settings-entities-Categories-edit">
+        <Styled.EntitiesEditCategories >
 
           <Styled.EntitiesEditCategoriesButton
             active={All.name === selectedClasse.name}
@@ -204,7 +166,7 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
             </Styled.NoItemContainer>
             }
         </Styled.EntitiesEditList>
-        <Styled.ConfirmationContainer className="Settings-confirmation-container">
+        <Styled.ConfirmationContainer>
           <Button text="Cancel" variant="cancel" onClick={() => toast.error('section under development')}/>
           <Button text="Confirm" onClick={() => toast.error('section under development')} />
         </Styled.ConfirmationContainer>      
@@ -222,4 +184,4 @@ const Settings = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   );
 };
 
-export default Settings;
+export default SettingsChampions;

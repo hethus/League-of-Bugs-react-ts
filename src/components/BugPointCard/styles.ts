@@ -15,6 +15,9 @@ export const CardContainer = styled.div<ChampionCardProps>`
     flex-direction: column;
     align-items: center;
     font-family: ${theme.constants.bodyFontFamily};
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+    cursor: pointer;
     
     img {
       width: 8rem;
@@ -24,6 +27,16 @@ export const CardContainer = styled.div<ChampionCardProps>`
 
     p {
       padding-top: 0.2rem;
+    }
+
+
+    &:hover {
+      transform: scale(1.05);
+      border: 2px solid ${theme.colors.primaryColor};
+
+      h3 {
+        color: ${theme.colors.secondaryColor};
+      }
     }
   `}
 `

@@ -7,6 +7,7 @@ interface ChampionHomeCardProps {
 }
 
 const ChampionHomeCard = ({ champion }: ChampionHomeCardProps) => {
+
   return (
     <Styled.CardContainer className="Home-champion-card">
       <img src={champion.imageUrl} alt={`${champion.name}`} title='Image of the champion'/>

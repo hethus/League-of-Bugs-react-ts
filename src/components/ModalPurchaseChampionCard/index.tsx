@@ -75,6 +75,9 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
                       return element.name
                     }
                   })}
+                  <p>
+                    {champion.price} BP's
+                  </p>
                 </Styled.ModalChampionClasseName>
               </Styled.ModalChampionTableContainer>
               <Styled.ModalFooter>

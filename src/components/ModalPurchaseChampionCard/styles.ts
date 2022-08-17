@@ -197,8 +197,8 @@ export const ModalChampionDetailClasse = styled.div`
     justify-content: center;
     padding: 0.5rem 1rem;
     border-radius: 50px;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
 
     ${color === "easy" && css`
         border: 1px solid ${theme.colors.primaryColor};
@@ -234,14 +234,20 @@ export const ModalChampionDetailClasse = styled.div`
 
 export const ModalChampionClasseName = styled.div`
   ${({ theme }) => css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+    align-items: center;
     width: 100%;
-    height: 2.3rem;
+    height: 3.3rem;
     display: flex;
     justify-content: center;
     border-bottom: 1px solid ${theme.colors.baseLine};
     font-size: 1.2rem;
     font-weight: bold;
     letter-spacing: 0.05rem;
+    padding-bottom: 0.25rem;
   `}
 `
 

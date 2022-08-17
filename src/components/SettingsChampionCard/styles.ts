@@ -13,6 +13,7 @@ export const SettingsChampionCardContainer = styled.div`
     color: ${theme.colors.textColor};
     box-sizing: border-box;
     text-align: center;
+    transition: all 0.3s ease-in-out;
 
     div {
       display: flex;
@@ -26,6 +27,12 @@ export const SettingsChampionCardContainer = styled.div`
 
     p {
       color: ${theme.colors.textLight};
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      border: 2px solid ${theme.colors.primaryColor};
+      color: ${theme.colors.secondaryColor};
     }
   `}
 `
