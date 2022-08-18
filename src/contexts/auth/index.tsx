@@ -37,7 +37,6 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
     localStorage.clear();
     setLogged(false);
     navigate("/login");
-    toast.success("Logout successful!");
   };
 
   const checkTokenExpiration = () => {
