@@ -8,6 +8,7 @@ import { Classe } from "../../assets/types";
 import { useClasses } from "../../contexts/classes";
 import SettingsMenu from "../../components/SettingsMenu";
 import ModalClasseSettings from "../../components/ModalClasseSettings";
+import ModalClasseDelete from "../../components/ModalClasseDelete";
 
 interface SettingsProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -129,7 +130,10 @@ const SettingsClasses = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
               <h2>{element.name}</h2>
 
               <div>
-                <Styled.SettingsClasseDeleteCardButton>
+                <Styled.SettingsClasseDeleteCardButton onClick={() => {
+                  setClasse(element);
+                  handleOpenDeleteModal();
+                }}>
                   <TrashIcon />  Delete
                 </Styled.SettingsClasseDeleteCardButton>
                 <Styled.SettingsClasseEditCardButton onClick={() => handleOpenUpdateModal(element)}>
@@ -141,7 +145,17 @@ const SettingsClasses = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
         })}
         </Styled.EntitiesEditList>
       </Styled.EntitiesEditContainer>
-      {openModal && <ModalClasseSettings classe={classe} setClasse={setClasse} handleOpenModal={handleOpenModal}/>}
+      {openModal && <ModalClasseSettings
+        classe={classe}
+        setClasse={setClasse}
+        handleOpenModal={handleOpenModal}
+      />}
+
+      {openDeleteModal && <ModalClasseDelete
+        classeId={classe?.id}
+        setClasse={setClasse}
+        handleOpenDeleteModal={handleOpenDeleteModal}
+      />}
     </Styled.SettingsContainer>
   );
 };
