@@ -34,7 +34,6 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
 
   const filteredChampions: Champion[] = champions.filter((element) => {
     if (selectedClasse.name === All.name) {
-      console.log(classes)
       return champions
     }
       return element.classeId === selectedClasse.id

@@ -125,8 +125,6 @@ const ModalChampionSettings = ({
       })
       .catch((e) => {
         toast.error("Add all information")
-        console.log(data.classeId);
-        console.log(e);
       });
   };
 

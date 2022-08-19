@@ -89,12 +89,19 @@ const SettingsClasses = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
 
+  const [classe, setClasse] = useState<Classe | undefined>(undefined);
+
   const handleOpenModal = () => {
     setOpenModal(!openModal);
   }
 
   const handleOpenDeleteModal = () => {
     setOpenDeleteModal(!openDeleteModal);
+  }
+
+  const handleOpenUpdateModal = (classe: Classe) => {
+    setClasse(classe);
+    setOpenModal(!openModal);
   }
 
   return (
@@ -125,7 +132,7 @@ const SettingsClasses = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
                 <Styled.SettingsClasseDeleteCardButton>
                   <TrashIcon />  Delete
                 </Styled.SettingsClasseDeleteCardButton>
-                <Styled.SettingsClasseEditCardButton>
+                <Styled.SettingsClasseEditCardButton onClick={() => handleOpenUpdateModal(element)}>
                   <EditIcon />  Edit
                 </Styled.SettingsClasseEditCardButton>
               </div>
@@ -134,7 +141,7 @@ const SettingsClasses = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
         })}
         </Styled.EntitiesEditList>
       </Styled.EntitiesEditContainer>
-      {openModal && <ModalClasseSettings handleOpenModal={handleOpenModal}/>}
+      {openModal && <ModalClasseSettings classe={classe} setClasse={setClasse} handleOpenModal={handleOpenModal}/>}
     </Styled.SettingsContainer>
   );
 };

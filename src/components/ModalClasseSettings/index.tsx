@@ -7,30 +7,34 @@ import * as yup from "yup";
 import { api } from "../../services";
 import toast from "react-hot-toast";
 import { useClasses } from "../../contexts/classes";
+import { Classe } from "../../assets/types";
+import { Dispatch, SetStateAction } from "react";
 
 interface ModalClasseSettingsProps {
   handleOpenModal: () => void;
+  classe?: Classe;
+  setClasse: Dispatch<SetStateAction<Classe | undefined>>;
 }
 
-interface NewClasseData {
+interface ClasseData {
   name: string;
 }
 
-const newClasseSchema = yup.object().shape({
+const ClasseSchema = yup.object().shape({
   name: yup
     .string()
     .required("Name is required"),
 });
 
-const ModalClasseSettings = ({ handleOpenModal }: ModalClasseSettingsProps)  => {
+const ModalClasseSettings = ({ handleOpenModal, classe, setClasse }: ModalClasseSettingsProps)  => {
   const { handleGetClasses } = useClasses();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NewClasseData>({
-    resolver: yupResolver(newClasseSchema),
+  } = useForm<ClasseData>({
+    resolver: yupResolver(ClasseSchema),
   });
 
   const token = localStorage.getItem("token");
@@ -41,8 +45,7 @@ const ModalClasseSettings = ({ handleOpenModal }: ModalClasseSettingsProps)  => 
       },
     };
 
-  const handleNewClasse = (data: NewClasseData) => {
-    console.log(data);
+  const handleNewClasse = (data: ClasseData) => {
 
     api
       .post("/classes", data, headers)
@@ -58,14 +61,38 @@ const ModalClasseSettings = ({ handleOpenModal }: ModalClasseSettingsProps)  => 
       });
   }
 
+  const handleUpdateClasse = (data: ClasseData) => {
+    api.patch(`/classes/${classe?.id}`, data, headers)
+      .then(() => {
+        toast.success("Classe updated successfully");
+        handleGetClasses();
+        handleOpenModal();
+      })
+      .catch((err) => {
+        toast.error(`Error updating classe because: \n\n ${
+          err.response.data.message
+        }`);
+      });
+  }
+
   return (
     <ModalOverlay>
-      <ModalContainer onSubmit={handleSubmit(handleNewClasse)}>
-        <h2>Create new classe</h2>
-        <StyledInput placeholder="Name of the Classe" {...register("name")} />
+      <ModalContainer onSubmit={handleSubmit(
+        classe ? handleUpdateClasse : handleNewClasse
+        )}
+      >
+        <h2>{ classe? "Edit the Classe" : "Create new Classe" }</h2>
+        <StyledInput
+          placeholder="Name of the Classe"
+          {...register("name")}
+          defaultValue={classe? classe.name : ""}
+        />
         <ErrorMessage className="error">{errors.name?.message}</ErrorMessage>
         <div>
-          <Button text="Cancel" variant="cancel" onClick={handleOpenModal} size="small" />
+          <Button text="Cancel" variant="cancel" onClick={() => {
+            setClasse(undefined);
+            handleOpenModal();
+          }} size="small" />
           <Button text="Submit" type="submit" size="small" />
         </div>
       </ModalContainer>
