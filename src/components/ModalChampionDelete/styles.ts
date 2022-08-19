@@ -12,6 +12,7 @@ export const DeleteModalContainer = styled.div`
     text-align: center;
     color: ${theme.colors.textColor};
     gap: 2rem;
+    border: 1px solid ${theme.colors.primaryColor};
 
     div {
       display: flex;

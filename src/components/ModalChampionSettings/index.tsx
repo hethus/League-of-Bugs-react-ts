@@ -62,7 +62,11 @@ const updateChampionSchema = yup.object().shape({
 
   description: yup.string(),
 
-  price: yup.number(),
+  price: yup
+  .number()
+  .typeError("Amount must be a number")
+  .integer("Amount must be an integer")
+  .positive("Amount must be positive"),
 
   imageUrl: yup
     .string()
@@ -206,7 +210,7 @@ const ModalChampionSettings = ({
             </option>
         </Styled.Select>
         {
-          <ErrorMessage>
+          <ErrorMessage className="error">
             {errors.name?.message ||
               errors.description?.message ||
               errors.price?.message ||

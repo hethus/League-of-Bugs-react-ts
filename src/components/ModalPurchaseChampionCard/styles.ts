@@ -7,11 +7,12 @@ export const ModalStyle = styled.div`
   background-color: ${theme.colors.baseBg1};
   width: 60%;
   height: 70%;
-  border-radius: 8px;
+  border-radius: 8px 10.7px 8px 8px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   position: relative;
+  border: 1px solid ${theme.colors.primaryColor};
   `}
 `;
 
