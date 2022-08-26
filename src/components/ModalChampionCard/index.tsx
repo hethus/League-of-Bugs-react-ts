@@ -1,12 +1,13 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import * as Styled from './styles';
-import { Champion } from '../../assets/types';
+import { Champion, User } from '../../assets/types';
 import { IconExit } from '../../assets/icons';
 import Button from '../Button';
-import { mockedFavorites } from '../../assets/mocks';
 import toast from 'react-hot-toast';
 import { useClasses } from '../../contexts/classes';
+import { api } from '../../services';
+import { useFavorites } from '../../contexts/favorites';
 
 Modal.setAppElement('#root');
 
@@ -15,6 +16,44 @@ interface ChampionHomeCardProps {
 }
 
 const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
+  const { favorites, handleGetFavorites } = useFavorites();
+
+  const token = localStorage.getItem('token');
+
+  const headers = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
+
+  const user: User = JSON.parse(localStorage.getItem('user') || '');
+
+  const handleSetFavorite = () => {
+
+    const data = {
+      userId: user.id,
+      championName: champion.name,
+    };
+
+    api.post('/favorites', data, headers).then((res) => {
+      toast.success('Champion added to favorites');
+      handleGetFavorites();
+    }).catch((err) => {
+      toast.error('Error adding champion to favorites');
+    });
+  };
+
+  const handleRemoveFavorite = () => {
+    const favorite = favorites.find((favorite) => favorite.championName === champion.name);
+
+    api.delete(`/favorites/${favorite?.id}`, headers).then((res) => {
+      toast.success('Champion removed from favorites');
+      handleGetFavorites();
+    }).catch((err) => {
+      toast.error('Error removing champion from favorites');
+    });
+  }
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const { classes } = useClasses();
@@ -84,14 +123,22 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
                 </p>
                 <Styled.ModalFooterButton>
                   <Button variant={
-                    (mockedFavorites.some((element) => {
+                    (favorites.some((element) => {
                       return element.championName === champion.name
                     })) === true ? 'cancel' : undefined
                   } text={`${
-                    (mockedFavorites.some((element) => {
+                    (favorites.some((element) => {
                       return element.championName === champion.name
                     })) === true ? 'Unfavorite' : 'Favorite'
-                  }`} onClick={() => toast.error("section under development")} title='Favorite/Unfavorite champion'/>
+                  }`} onClick={() => {
+                    if((favorites.some((element) => {
+                      return element.championName === champion.name
+                    })) === true) {
+                      handleRemoveFavorite();
+                    } else {
+                      handleSetFavorite();
+                    }
+                  }} title='Favorite/Unfavorite champion'/>
                 </Styled.ModalFooterButton>
               </Styled.ModalFooter>
 

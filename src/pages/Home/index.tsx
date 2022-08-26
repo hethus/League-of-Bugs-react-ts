@@ -2,7 +2,7 @@ import { DateTime } from "luxon";
 import { PurchaseBugPoint, SearchIcon, PersonSad } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { mockedChampions, mockedUser, mockedFavorites } from "../../assets/mocks";
+import { mockedUser } from "../../assets/mocks";
 import { Dispatch, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
 import HomeDetails from "../../components/HomeDetails";
@@ -11,6 +11,8 @@ import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
 import '../../Tooltip.css';
 import { useClasses } from "../../contexts/classes";
+import { useFavorites } from "../../contexts/favorites";
+import { useChampions } from "../../contexts/champions";
 
 
 interface HomeProps {
@@ -21,7 +23,11 @@ interface HomeProps {
 const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
   let enabledSteps
 
+  const { favorites } = useFavorites();
+
   const { classes } = useClasses();
+
+  const { champions } = useChampions();
 
   if(stepsIsOpen) {
     enabledSteps = true
@@ -150,7 +156,7 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
   const [selectedClasse, setSelectedClasse] = useState<Classe>(All);
 
 
-  const filteredChampions: Champion[] = mockedChampions.filter((element) => {
+  const filteredChampions: Champion[] = champions.filter((element) => {
     if (selectedClasse.name === All.name) {
       return mockedUser.purchasedChampions!.some((purchased) => {
         if (purchased.championName === element.name) {
@@ -160,7 +166,7 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
     }
 
     if (selectedClasse.name === Favorite.name) {
-      return mockedFavorites.some((favorite) => {
+      return favorites.some((favorite) => {
         if (favorite.championName === element.name) {
           return element
         }

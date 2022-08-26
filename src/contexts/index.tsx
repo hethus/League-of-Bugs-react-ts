@@ -6,6 +6,7 @@ import { AuthProvider } from "./auth";
 import { BugpointsProvider } from "./bugpoints";
 import { ChampionsProvider } from "./champions";
 import { ClassesProvider } from "./classes";
+import { FavoritesProvider } from "./favorites";
 
 interface ProviderProps {
   children: ReactNode;
@@ -17,11 +18,13 @@ const Providers = ({ children }: ProviderProps) => {
       <ThemeProvider theme={theme}>
         <AuthProvider>
           <BugpointsProvider>
-            <ClassesProvider>
-              <ChampionsProvider>
-                {children}
-              </ChampionsProvider>
-            </ClassesProvider>
+            <FavoritesProvider> 
+              <ClassesProvider>
+                <ChampionsProvider>
+                  {children}
+                </ChampionsProvider>
+              </ClassesProvider>
+            </FavoritesProvider>
           </BugpointsProvider>
         </AuthProvider>
       </ThemeProvider>
