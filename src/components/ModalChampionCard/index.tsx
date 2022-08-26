@@ -35,10 +35,10 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
       championName: champion.name,
     };
 
-    api.post('/favorites', data, headers).then((res) => {
+    api.post('/favorites', data, headers).then(() => {
       toast.success('Champion added to favorites');
       handleGetFavorites();
-    }).catch((err) => {
+    }).catch(() => {
       toast.error('Error adding champion to favorites');
     });
   };
@@ -46,10 +46,10 @@ const ModalChampionCard = ({ champion }: ChampionHomeCardProps) => {
   const handleRemoveFavorite = () => {
     const favorite = favorites.find((favorite) => favorite.championName === champion.name);
 
-    api.delete(`/favorites/${favorite?.id}`, headers).then((res) => {
+    api.delete(`/favorites/${favorite?.id}`, headers).then(() => {
       toast.success('Champion removed from favorites');
       handleGetFavorites();
-    }).catch((err) => {
+    }).catch(() => {
       toast.error('Error removing champion from favorites');
     });
   }
