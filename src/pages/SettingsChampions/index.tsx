@@ -129,7 +129,7 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
       <Menu path="settings" setStepsIsOpen={setStepsIsOpen}/>
       <SettingsMenu path="champions"/>
       <Styled.EntitiesEditContainer className="Settings-entity-edit-container">
-        <h2>Customize the Bug Points</h2>
+        <h2>Customize the Champions</h2>
         <Styled.EntitiesEditCategories >
 
           <Styled.EntitiesEditCategoriesButton

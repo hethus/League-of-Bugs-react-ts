@@ -21,7 +21,9 @@ const Providers = ({ children }: ProviderProps) => {
             <FavoritesProvider> 
               <ClassesProvider>
                 <ChampionsProvider>
-                  {children}
+                  <BugpointsProvider>
+                    {children}
+                  </BugpointsProvider>
                 </ChampionsProvider>
               </ClassesProvider>
             </FavoritesProvider>

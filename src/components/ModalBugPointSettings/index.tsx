@@ -9,9 +9,11 @@ import { api } from "../../services";
 import toast from "react-hot-toast";
 import { useBugpoints } from "../../contexts/bugpoints";
 import { BugPoint } from "../../assets/types";
+import { Dispatch, SetStateAction } from "react";
 
 interface ModalBugPointSettingsProps {
   handleOpenModal: () => void;
+  setBugpoint: Dispatch<SetStateAction<BugPoint | undefined>>
   bugpoint?: BugPoint;
 }
 
@@ -97,7 +99,7 @@ const updateBugPointSchema = yup.object().shape({
     ),
 });
 
-const ModalBugPointSettings = ({ handleOpenModal, bugpoint }: ModalBugPointSettingsProps) => {
+const ModalBugPointSettings = ({ handleOpenModal, bugpoint, setBugpoint }: ModalBugPointSettingsProps) => {
   const { handleGetBugpoints } = useBugpoints();
 
   const {
@@ -119,6 +121,7 @@ const ModalBugPointSettings = ({ handleOpenModal, bugpoint }: ModalBugPointSetti
     api.post("/bugpoints", data, headers).then((res) => {
       toast.success("Bugpoint created!");
       handleGetBugpoints();
+      setBugpoint(undefined);
       handleOpenModal();
     });
   };
@@ -128,6 +131,7 @@ const ModalBugPointSettings = ({ handleOpenModal, bugpoint }: ModalBugPointSetti
     api.patch(`/bugpoints/${bugpoint?.id}`, data, headers).then((res) => {
       toast.success("Bugpoint updated!");
       handleGetBugpoints();
+      setBugpoint(undefined);
       handleOpenModal();
     });
   }
@@ -141,19 +145,19 @@ const ModalBugPointSettings = ({ handleOpenModal, bugpoint }: ModalBugPointSetti
       }>
         <h2>{bugpoint? "Edit Bug Point" : "Add Bug Point"}</h2>
         <StyledInput
-          value={bugpoint? bugpoint.value : ""}
+          defaultValue={bugpoint? bugpoint.value : ""}
           placeholder="BugPoint amount" 
           type="number"
           {...register("value")}
         />
         <StyledInput
-          value={bugpoint? bugpoint.imageUrl : ""}
+          defaultValue={bugpoint? bugpoint.imageUrl : ""}
           placeholder="image Url"
           type="url"
           {...register("imageUrl")}
         />
         <StyledInput
-          value={bugpoint? bugpoint.money : ""}
+          defaultValue={bugpoint? bugpoint.money : ""}
           placeholder="Price"
           {...register("money")}
         />
