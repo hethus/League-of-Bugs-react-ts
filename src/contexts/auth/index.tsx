@@ -12,6 +12,8 @@ interface AuthProviderData {
   logged: boolean;
   login: (params: LoginParams) => void;
   logout: () => void;
+  requisition: boolean;
+  setRequisition: (value: boolean) => void;
 }
 
 interface LoginParams {
@@ -25,6 +27,7 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   const navigate = useNavigate();
   
   const [logged, setLogged] = useState<boolean>(false);
+  const [requisition, setRequisition] = useState<boolean>(false);
   
   const login = ({ token, user }: LoginParams) => {
     localStorage.setItem("token", token);
@@ -54,8 +57,10 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
       headers
     ).then((res) => {
       setLogged(true);
+      setRequisition(false);
       navigate("/");
     }).catch((err) => {
+      setRequisition(false);
       logout();
       toast.success("Need to login again");
     });
@@ -64,13 +69,16 @@ export const AuthProvider = ({ children }: AuthContextProps) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    if (token) checkTokenExpiration();
+    if (token) {
+      setRequisition(true);
+      checkTokenExpiration()
+    };
 
     
   }, [])
 
   return (
-    <AuthContext.Provider value={{ logged, login, logout }}>
+    <AuthContext.Provider value={{ logged, login, logout, requisition, setRequisition }}>
       {children}
     </AuthContext.Provider>
   )

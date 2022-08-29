@@ -9,6 +9,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { StyledInput } from "../../assets/styles/globalStyles";
 import { api } from "../../services";
 import { ErrorMessage } from "../../assets/styles/globalStyles";
+import { InfinitySpin } from "react-loader-spinner";
+import { useState } from "react";
+import ModalNewUser from "../../components/ModalNewUser";
+
 
 interface LoginData {
   email: string;
@@ -35,7 +39,13 @@ const loginSchema = yup.object().shape({
 });
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, requisition, setRequisition } = useAuth();
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(!openModal);
+  }
 
   const {
     register,
@@ -44,19 +54,22 @@ const Login = () => {
   } = useForm<LoginData>({ resolver: yupResolver(loginSchema) });
 
   const handleLogin = (data: LoginData) => {
+    setRequisition(true);
     
       api.post(
         "/auth/login",
         data
       ).then((res) => {
+        setRequisition(false);
         login({token: res.data.token, user: res.data.user});
-
       }).catch(() => {
+        setRequisition(false);
         return toast.error("username or password is invalid!");
       });
     }
   return (
     <Styled.LoginPageContainer>
+      <Styled.LoginContainer>
       <Styled.LoginFormContainer onSubmit={handleSubmit(handleLogin)}>
         <Styled.LoginLogoContainer>
           <h1>League of Bugs</h1>
@@ -91,9 +104,23 @@ const Login = () => {
         </ErrorMessage>
 
         <span>
-          <Button text="login" size="large" type="submit"/>
+          {requisition? (
+              <p>
+                <InfinitySpin width='140' color="#000000" />
+              </p>
+            ):(
+              <Button text="Login" size="large" type="submit"/>
+            )
+          }
+          
         </span>
       </Styled.LoginFormContainer>
+        <Styled.ButtonRegisterContainer>
+        <button onClick={handleOpenModal}> Register </button>
+      </Styled.ButtonRegisterContainer>
+      </Styled.LoginContainer>
+
+      {openModal && <ModalNewUser handleOpenModal={handleOpenModal}/>}
     </Styled.LoginPageContainer>
   );
 };

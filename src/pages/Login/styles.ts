@@ -15,6 +15,12 @@ export const LoginPageContainer = styled.div`
   `}
 `
 
+export const LoginContainer = styled.div`
+  ${({ theme }) => css`
+    position: relative;
+  `}
+`
+
 export const LoginFormContainer = styled.form`
   ${({ theme }) => css`
     width: 23rem;
@@ -31,6 +37,24 @@ export const LoginFormContainer = styled.form`
 
     span {
       padding-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 3rem;
+        width: 100%;
+        margin: 0;
+        padding: 0.4rem 2.25rem 0 0;
+        box-sizing: border-box;
+        border-radius: 8px;
+        background-color: rgba(108,234,105,0.4);
+        color: #ffffff;
+        box-shadow: 0px 5px 19px rgb(105 234 118 / 20%);
+      }
     }
   `}
 `
@@ -61,5 +85,38 @@ export const LoginLogoContainer = styled.div`
       width: 9rem;
       height: 9rem;
     }
+  `}
+`
+
+export const ButtonRegisterContainer = styled.div`
+  ${({ theme }) => css`
+    position: absolute;
+    bottom: 0.8rem;
+    right: 23rem;
+    width: 13rem;
+    background-color: ${theme.colors.baseBg1};
+    display: flex;
+    height: 8rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px 0 0 50px;
+    border: 1px solid ${theme.colors.secondaryColor};
+    box-sizing: border-box;
+    border-right: 1px solid #3b3752;
+
+    button {
+      
+      width: 8rem;
+    height: 3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: ${theme.constants.bodyFontFamily};
+    font-weight: 900;
+    font-size: ${theme.constants.bodyFontSize};
+    background-color: ${theme.colors.baseBg2};
+      color: ${theme.colors.primaryColor};
+      border: 1px solid ${theme.colors.secondaryColor};
+    }
+
   `}
 `
