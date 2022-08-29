@@ -7,6 +7,7 @@ import { BugpointsProvider } from "./bugpoints";
 import { ChampionsProvider } from "./champions";
 import { ClassesProvider } from "./classes";
 import { FavoritesProvider } from "./favorites";
+import { PurchasedChampionsProvider } from "./purchasedChampions";
 
 interface ProviderProps {
   children: ReactNode;
@@ -21,9 +22,11 @@ const Providers = ({ children }: ProviderProps) => {
             <FavoritesProvider> 
               <ClassesProvider>
                 <ChampionsProvider>
-                  <BugpointsProvider>
-                    {children}
-                  </BugpointsProvider>
+                  <PurchasedChampionsProvider>
+                    <BugpointsProvider>
+                      {children}
+                    </BugpointsProvider>
+                  </PurchasedChampionsProvider>
                 </ChampionsProvider>
               </ClassesProvider>
             </FavoritesProvider>

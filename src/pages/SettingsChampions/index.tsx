@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, useState } from "react";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { MarketIcon, InfoIcon, PromotionIcon, DashboardIcon, PersonSad } from "../../assets/icons";
+import {  PersonSad } from "../../assets/icons";
 import Button from "../../components/Button";
 import SettingsChampionCard from "../../components/SettingsChampionCard";
 import toast from "react-hot-toast";
@@ -12,7 +12,6 @@ import { Champion, Classe } from "../../assets/types";
 import ModalChampionDelete from "../../components/ModalChampionDelete";
 import { useChampions } from "../../contexts/champions";
 import { useClasses } from "../../contexts/classes";
-import { mockedUser } from "../../assets/mocks";
 import SettingsMenu from "../../components/SettingsMenu";
 
 interface SettingsProps {

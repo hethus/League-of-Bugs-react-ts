@@ -45,7 +45,7 @@ export interface User {
 
 export interface PurchaseChampion {
   id?: string;
-  classe?: string; // tirar classe depois
+  classe?: string;
   purchasedAt?: Date;
   userId?: string;
   championName: string;

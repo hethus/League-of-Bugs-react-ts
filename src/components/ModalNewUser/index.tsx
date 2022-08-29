@@ -103,11 +103,9 @@ const ModalNewUser = ({ handleOpenModal}: ModalNewUserProps) => {
     api.post("/users", data).then((res) => {
       toast.success("User created!");
       setRequisition(false);
-
       handleOpenModal();
     }).catch((err) => {
-      toast.error("Error creating user" + err);
-      console.log(err);
+      toast.error("Error creating user");
       setRequisition(false);
     });
   };

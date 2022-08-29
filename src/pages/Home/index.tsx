@@ -13,7 +13,7 @@ import '../../Tooltip.css';
 import { useClasses } from "../../contexts/classes";
 import { useFavorites } from "../../contexts/favorites";
 import { useChampions } from "../../contexts/champions";
-
+import { usePurchasedChampions } from "../../contexts/purchasedChampions";
 
 interface HomeProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -28,6 +28,8 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
   const { classes } = useClasses();
 
   const { champions } = useChampions();
+
+  const { purchasedChampions } = usePurchasedChampions();
 
   if(stepsIsOpen) {
     enabledSteps = true
@@ -158,7 +160,7 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
 
   const filteredChampions: Champion[] = champions.filter((element) => {
     if (selectedClasse.name === All.name) {
-      return mockedUser.purchasedChampions!.some((purchased) => {
+      return purchasedChampions!.some((purchased) => {
         if (purchased.championName === element.name) {
           return element
         }
@@ -173,7 +175,7 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
       });
     }
 
-    return mockedUser.purchasedChampions!.some((purchased) => {
+    return purchasedChampions!.some((purchased) => {
       if (purchased.classe === selectedClasse.name && purchased.championName === element.name) {
         return purchased
       }
@@ -241,7 +243,8 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
             }
         </section>
       </Styled.HomeContentContainer>
-      <HomeDetails />
+      <HomeDetails/>
+
     </Styled.HomeContainer>
   );
 }
