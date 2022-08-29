@@ -1,7 +1,9 @@
+import { DateTime } from 'luxon';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { mockedChampions, mockedUser } from '../../assets/mocks';
 import { PurchaseChampion } from '../../assets/types';
+import { usePurchasedChampions } from '../../contexts/purchasedChampions';
 import ButtonHome from '../ButtonHome';
 import ModalRefoundChampion from '../ModalRefoundChampion';
 import * as Styled from './styles';
@@ -12,14 +14,16 @@ const HomeDetails = () => {
 
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
 
+  const { purchasedChampions } = usePurchasedChampions();
+
   const handleOpenDeleteModal = () => {
     setOpenDeleteModal(!openDeleteModal);
   }
 
   const [refound, setRefound] = useState<PurchaseChampion>();
 
-  const mockedUserSort = mockedUser.purchasedChampions!.sort((a, b) => {
-    return (b.purchasedAt!.getTime()) - (a.purchasedAt!.getTime());
+  const UserSort = purchasedChampions.sort((a, b) => {
+    return DateTime.fromISO(`${b.purchasedAt}`).toMillis() - DateTime.fromISO(`${a.purchasedAt}`).toMillis();
   });
 
   return (
@@ -39,15 +43,15 @@ const HomeDetails = () => {
             <span>purchase date</span>
           </div>
         </Styled.homeDetailsCard>
-          {mockedUserSort!.map((element) => (
+          {UserSort!.map((element) => (
             <Styled.homeDetailsCardContainer key={element.id}>
               <div>
               <img src={mockedChampions.find((champion) => champion.name === element.championName)!.imageUrl} alt={element.championName} />
               <h3>{element.championName}</h3>
-              <p>{`${(element.purchasedAt)?.toLocaleDateString()}`}</p>
+              <p>{`${DateTime.fromISO(`${element.purchasedAt}`).toLocaleString()}`}</p>
               </div>
               <section className='Home-details-refund'>
-              {element.purchasedAt!.getTime() >= dateFormated ? (
+              {DateTime.fromISO(`${element.purchasedAt}`).toMillis() >= dateFormated ? (
                   <ButtonHome text="refund" onClick={() => {
                     handleOpenDeleteModal()
                     setRefound(element)
