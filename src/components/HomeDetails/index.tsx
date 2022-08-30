@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { mockedChampions, mockedUser } from '../../assets/mocks';
+import { mockedUser } from '../../assets/mocks';
 import { PurchaseChampion } from '../../assets/types';
+import { useChampions } from '../../contexts/champions';
 import { usePurchasedChampions } from '../../contexts/purchasedChampions';
 import ButtonHome from '../ButtonHome';
 import ModalRefoundChampion from '../ModalRefoundChampion';
@@ -15,6 +16,8 @@ const HomeDetails = () => {
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
 
   const { purchasedChampions } = usePurchasedChampions();
+
+  const { champions } = useChampions();
 
   const handleOpenDeleteModal = () => {
     setOpenDeleteModal(!openDeleteModal);
@@ -46,7 +49,7 @@ const HomeDetails = () => {
           {UserSort!.map((element) => (
             <Styled.homeDetailsCardContainer key={element.id}>
               <div>
-              <img src={mockedChampions.find((champion) => champion.name === element.championName)!.imageUrl} alt={element.championName} />
+              <img src={champions.find((champion) => champion.name === element.championName)?.imageUrl} alt={element.championName} />
               <h3>{element.championName}</h3>
               <p>{`${DateTime.fromISO(`${element.purchasedAt}`).toLocaleString()}`}</p>
               </div>

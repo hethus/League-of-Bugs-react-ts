@@ -11,6 +11,7 @@ import 'intro.js/introjs.css';
 import '../../Tooltip.css';
 import { useChampions } from "../../contexts/champions";
 import { useClasses } from "../../contexts/classes";
+import { usePurchasedChampions } from "../../contexts/purchasedChampions";
 
 interface PurchaseChampionPageProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +23,7 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
 
   const { champions } = useChampions();
   const { classes } = useClasses();
+  const { purchasedChampions } = usePurchasedChampions();
 
 
   if(stepsIsOpen) {
@@ -141,7 +143,7 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
   });
 
   const filteredChampionsUserNotPurchased: Champion[] = filteredChampions.filter((element) => {
-    return mockedUser.purchasedChampions!.findIndex((champion) => champion.championName === element.name) === -1
+    return purchasedChampions.findIndex((champion) => champion.championName === element.name) === -1
   });
 
   const actualDate = DateTime.now();
