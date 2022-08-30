@@ -149,6 +149,12 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
   const actualDate = DateTime.now();
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
 
+  const [search, setSearch] = useState<string>('');
+
+  const filteredChampionsByName = filteredChampionsUserNotPurchased.filter((champion) => {
+    return champion.name.toLowerCase().includes(search.toLowerCase());
+  });
+
   return (
     <Styled.HomeContainer>
             <Steps
@@ -170,7 +176,7 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
           </Styled.BugPointUserContainer>
           <Styled.SearchInputContainer className="PurchaseChampion-input-search">
             <SearchIcon />
-            <input placeholder="Search by name"/>
+            <input placeholder="Search by name" onChange={(e) => setSearch(e.target.value)} />
           </Styled.SearchInputContainer>
         </Styled.HomeContentHeader>
         <section>
@@ -194,8 +200,8 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
           <Styled.ProductsHeaderContainer className="PurchaseChampion-header-container">
             <h2>Choose the Champion</h2>
           </Styled.ProductsHeaderContainer>
-            <ChampionList list={filteredChampionsUserNotPurchased}/>
-            {filteredChampionsUserNotPurchased.length === 0 &&
+            <ChampionList list={filteredChampionsByName}/>
+            {filteredChampionsByName.length === 0 &&
             <Styled.NoItemContainer>
               <PersonSad />
               <p>No champions found</p>

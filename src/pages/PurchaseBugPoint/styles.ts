@@ -152,3 +152,30 @@ export const ProductsHeaderContainer = styled.div`
   padding: 0 2rem;
   box-sizing: border-box;
 `
+
+export const NoItemContainer = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    height: 100%;
+    color: ${theme.colors.primaryColor};
+    font-size: 30px;
+    font-weight: bold;
+    background-color: ${theme.colors.baseBg2};
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 7px double ${theme.colors.primaryColor};
+    border-right: 7px double ${theme.colors.primaryColor};
+    border-left: 1px solid ${theme.colors.primaryColor};
+    border-top: 1px solid ${theme.colors.primaryColor};
+    border-radius: 15px;
+    box-sizing: border-box;
+
+    svg {
+      width: 3rem;
+      height: 3rem;
+    }
+  `}
+`

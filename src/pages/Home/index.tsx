@@ -185,6 +185,12 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
   const actualDate = DateTime.now();
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
 
+  const [search, setSearch] = useState<string>('');
+
+  const filteredChampionsByName = filteredChampions.filter((champion) => {
+    return champion.name.toLowerCase().includes(search.toLowerCase());
+  });
+
   return (
     <Styled.HomeContainer>
       <Steps
@@ -206,7 +212,7 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
           </Styled.BugPointUserContainer>
           <Styled.SearchInputContainer className="Home-input-search">
             <SearchIcon />
-            <input placeholder="Search by name"/>
+            <input placeholder="Search by name" onChange={(e) => setSearch(e.target.value)} />
           </Styled.SearchInputContainer>
         </Styled.HomeContentHeader>
         <section>
@@ -234,8 +240,8 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
           <Styled.ProductsHeaderContainer className="Home-champion-list">
             <h2>Champions List</h2>
           </Styled.ProductsHeaderContainer>
-            <ChampionHomeList list={filteredChampions} />
-            {filteredChampions.length === 0 &&
+            <ChampionHomeList list={filteredChampionsByName} />
+            {filteredChampionsByName.length === 0 &&
             <Styled.NoItemContainer>
               <PersonSad />
               <p>No champions found</p>

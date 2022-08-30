@@ -1,10 +1,10 @@
 import { DateTime } from "luxon";
-import { PurchaseBugPoint, SearchIcon } from "../../assets/icons";
+import { PersonSad, PurchaseBugPoint, SearchIcon } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
 import { mockedUser } from "../../assets/mocks";
 import BugPointList from "../../components/BugPointList";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import PurchaseDetails from "../../components/PurchaseDetails";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
@@ -126,6 +126,12 @@ const PurchaseBugPointPage = ({ setStepsIsOpen, stepsIsOpen  }: PurchaseBugPoint
     },
   ];
 
+  const [search, setSearch] = useState<string>('');
+
+  const filteredBugpoints = bugpoints.filter((bugpoint) => {
+    return bugpoint.value.toString().includes(search.toLowerCase());
+  });
+
   return (
     <Styled.HomeContainer>
             <Steps
@@ -147,7 +153,7 @@ const PurchaseBugPointPage = ({ setStepsIsOpen, stepsIsOpen  }: PurchaseBugPoint
           </Styled.BugPointUserContainer>
           <Styled.SearchInputContainer className="PurchaseBP-input-search">
             <SearchIcon />
-            <input placeholder="Search by quantity"/>
+            <input placeholder="Search by quantity" onChange={(e) => setSearch(e.target.value)}/>
           </Styled.SearchInputContainer>
         </Styled.HomeContentHeader>
         <section>
@@ -157,7 +163,13 @@ const PurchaseBugPointPage = ({ setStepsIsOpen, stepsIsOpen  }: PurchaseBugPoint
           <Styled.ProductsHeaderContainer className="PurchaseBP-bugpoint-list">
             <h2>Choose the Bug point</h2>
           </Styled.ProductsHeaderContainer>
-          <BugPointList list={bugpoints}/>
+          <BugPointList list={filteredBugpoints}/>
+          {filteredBugpoints.length === 0 &&
+            <Styled.NoItemContainer>
+              <PersonSad />
+              <p>No Bug Points found</p>
+            </Styled.NoItemContainer>
+            }
         </section>
       </Styled.HomeContentContainer>
       <PurchaseDetails />
