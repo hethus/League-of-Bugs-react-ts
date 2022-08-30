@@ -98,7 +98,21 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
     },
     {
       element: '.Settings-entities-Categories-edit',
-      intro: `<p>Here you can see all viewing options</p>`,
+      intro: `<p>Here you can see all champions of a certain class</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'left'
+    },
+    {
+      element: '.Settings-entities-new-Champion-edit',
+      intro: `<p>Here you can add a new champion</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'left'
+    },
+    {
+      element: '.Settings-entities-Champion-edit',
+      intro: `<p>Here you can see the champion, you can also edit and delete it</p>`,
       tooltipClass: 'introjs-container',
       highlightClass: 'highlight-menu',
       position: 'left'
@@ -129,7 +143,7 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
       <SettingsMenu path="champions"/>
       <Styled.EntitiesEditContainer className="Settings-entity-edit-container">
         <h2>Customize the Champions</h2>
-        <Styled.EntitiesEditCategories >
+        <Styled.EntitiesEditCategories className="Settings-entities-Categories-edit">
 
           <Styled.EntitiesEditCategoriesButton
             active={All.name === selectedClasse.name}
@@ -150,7 +164,7 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
 
         </Styled.EntitiesEditCategories>
         <Styled.EntitiesEditList>
-          <Styled.AddEntityCard onClick={handleOpenModal}>
+          <Styled.AddEntityCard onClick={handleOpenModal} className="Settings-entities-new-Champion-edit">
             <h2>+</h2>
             <p>Add item</p>
           </Styled.AddEntityCard>

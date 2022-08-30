@@ -79,8 +79,15 @@ const SettingsClasses = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
       position: 'left'
     },
     {
-      element: '.Settings-entities-Categories-edit',
-      intro: `<p>Here you can see all viewing options</p>`,
+      element: '.Settings-entities-new-classe',
+      intro: `<p>Here you can create a new classe</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'left'
+    },
+    {
+      element: '.Settings-entities-classe',
+      intro: `<p>Here you can edit and delete a classe</p>`,
       tooltipClass: 'introjs-container',
       highlightClass: 'highlight-menu',
       position: 'left'
@@ -119,14 +126,14 @@ const SettingsClasses = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
         <h2>Customize the Classes</h2>  
 
         <Styled.EntitiesEditList>
-        <Styled.AddEntityCard onClick={handleOpenModal}>
+        <Styled.AddEntityCard onClick={handleOpenModal} className="Settings-entities-new-classe">
           <h2>+</h2>
           <p>Add item</p>
         </Styled.AddEntityCard>
 
         {classes.map((element: Classe) => {
           return (
-            <Styled.EntityCard key={element.id}>
+            <Styled.EntityCard key={element.id} className="Settings-entities-classe">
               <h2>{element.name}</h2>
 
               <div>

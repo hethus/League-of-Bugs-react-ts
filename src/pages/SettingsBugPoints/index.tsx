@@ -79,8 +79,15 @@ const SettingsBugPoints = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
       position: 'left'
     },
     {
-      element: '.Settings-entities-Categories-edit',
-      intro: `<p>Here you can see all viewing options</p>`,
+      element: '.Settings-entities-new-bugpoint-edit',
+      intro: `<p>Here you can add a new Bugpoint</p>`,
+      tooltipClass: 'introjs-container',
+      highlightClass: 'highlight-menu',
+      position: 'left'
+    },
+    {
+      element: '.Settings-entities-bugpoint-edit',
+      intro: `<p>Here you can see the Bugpoint, you can also edit and delete it</p>`,
       tooltipClass: 'introjs-container',
       highlightClass: 'highlight-menu',
       position: 'left'
@@ -119,14 +126,14 @@ const SettingsBugPoints = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
         <h2>Customize the Bugpoints</h2>  
 
         <Styled.EntitiesEditList>
-        <Styled.AddEntityCard onClick={handleOpenModal}>
+        <Styled.AddEntityCard onClick={handleOpenModal} className="Settings-entities-new-bugpoint-edit">
           <h2>+</h2>
           <p>Add item</p>
         </Styled.AddEntityCard>
 
         {bugpoints.map((element: BugPoint) => {
           return (
-            <Styled.EntityCard key={element.id}>
+            <Styled.EntityCard key={element.id} className="Settings-entities-bugpoint-edit">
               <h2>- {element.value} BP -</h2>
 
               <img src={element.imageUrl} alt={`${element.value}`} />

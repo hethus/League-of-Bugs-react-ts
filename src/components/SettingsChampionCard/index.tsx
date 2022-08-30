@@ -18,7 +18,7 @@ const SettingsChampionCard = ({
   setChampion,
 }: SettingsChampionCardProps) => {
   return (
-    <Styled.SettingsChampionCardContainer>
+    <Styled.SettingsChampionCardContainer className='Settings-entities-Champion-edit'>
       <img src={champion.imageUrl} alt={`${champion.name}`} />
       <h3>{champion.name}</h3>
       <p>{champion.price} BP</p>
