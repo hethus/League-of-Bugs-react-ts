@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import {  PurchaseChampion } from "../../assets/types";
+import { useFavorites } from "../../contexts/favorites";
 import { usePurchasedChampions } from "../../contexts/purchasedChampions";
 import { api } from "../../services";
 import Button from "../Button";
@@ -16,6 +17,7 @@ const ModalRefoundChampion = ({
 }: ModalRefoundChampionProps) => {
 
   const { handleGetPurchasedChampions } = usePurchasedChampions();
+  const { favorites } = useFavorites();
 
   const handleRefundChampion = () => {
     const token = localStorage.getItem("token");
@@ -25,6 +27,11 @@ const ModalRefoundChampion = ({
         Authorization: `Bearer ${token}`
       }
     };
+
+    if(favorites.find((favorite) => favorite.championName === champion?.championName)) {
+      toast.error('You cannot refund a champion that is in your favorites');
+      return;
+    }
 
     api.delete(`/purchase/champions/${champion?.id}`, headers).then(() => {
       toast.success("Champion refunded with success!");

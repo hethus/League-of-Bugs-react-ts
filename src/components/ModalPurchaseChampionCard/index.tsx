@@ -1,11 +1,13 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import * as Styled from './styles';
-import { Champion } from '../../assets/types';
+import { Champion, User } from '../../assets/types';
 import { IconExit } from '../../assets/icons';
 import Button from '../Button';
 import toast from 'react-hot-toast';
 import { useClasses } from '../../contexts/classes';
+import { api } from '../../services';
+import { usePurchasedChampions } from '../../contexts/purchasedChampions';
 
 Modal.setAppElement('#root');
 
@@ -15,6 +17,7 @@ interface ModalPurchaseChampionCardProps {
 
 const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps) => {
   const { classes } = useClasses();
+  const { purchasedChampions, handleGetPurchasedChampions } = usePurchasedChampions();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -24,6 +27,36 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
+  }
+
+  const [changePurchase, setChangePurchase] = useState<number>(0);
+
+  const handlePurchase = () => {
+    const token = localStorage.getItem("token") || "";
+    const user: User = JSON.parse(localStorage.getItem('user') || '');
+
+    const headers = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    }
+
+    if (changePurchase === 1) {
+      api.post('/purchase/champions', {
+        userId: user.id,
+        championName: champion.name
+      }, headers).then((res) => {
+        toast.success('Champion purchased successfully!');
+        setChangePurchase(0);
+        handleGetPurchasedChampions();
+        handleCloseModal();
+      }).catch((err) => {
+        toast.error(err.response.data.message);
+        setChangePurchase(0);
+      })
+    }
+
+    setChangePurchase(changePurchase + 1);
   }
 
   return (
@@ -37,7 +70,10 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
         contentElement={(props, children) => <Styled.ModalStyle {...props}>{children}</Styled.ModalStyle>}
         overlayElement={(props, contentElement) => <Styled.OverlayStyle {...props}>{contentElement}</Styled.OverlayStyle>}
       >
-        <Styled.ModalStyleButton onClick={handleCloseModal}>
+        <Styled.ModalStyleButton onClick={() => {
+          setChangePurchase(0);
+          handleCloseModal();
+        }}>
           <IconExit />
         </Styled.ModalStyleButton>
         <Styled.ModalDisplayContainer>
@@ -85,7 +121,11 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
                 {`Launched in ${new Date(`${champion.createdAt}`).toLocaleDateString()}`}
                 </p>
                 <Styled.ModalFooterButton>
-                  <Button text={'Buy'} onClick={() => toast.error("section under development")} title='Buy champion'/>
+                  {changePurchase === 0 ? (
+                    <Button text={'Buy'} onClick={() => handlePurchase()} title='Buy champion'/>
+                  ) : (
+                    <Button text={'Confirm?'} variant='cancel' onClick={() => handlePurchase()} title='Confirm purchase'/>
+                  )}
                 </Styled.ModalFooterButton>
               </Styled.ModalFooter>
 
