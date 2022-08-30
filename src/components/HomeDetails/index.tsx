@@ -1,10 +1,10 @@
 import { DateTime } from 'luxon';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { mockedUser } from '../../assets/mocks';
 import { PurchaseChampion } from '../../assets/types';
 import { useChampions } from '../../contexts/champions';
 import { usePurchasedChampions } from '../../contexts/purchasedChampions';
+import { useUsers } from '../../contexts/users';
 import ButtonHome from '../ButtonHome';
 import ModalRefoundChampion from '../ModalRefoundChampion';
 import * as Styled from './styles';
@@ -19,6 +19,8 @@ const HomeDetails = () => {
 
   const { champions } = useChampions();
 
+  const { user } = useUsers();
+
   const handleOpenDeleteModal = () => {
     setOpenDeleteModal(!openDeleteModal);
   }
@@ -31,9 +33,16 @@ const HomeDetails = () => {
 
   return (
     <Styled.PurchaseDetailsContainer>
+      {user?.isAdmin ? (
+      <Styled.PurchaseDetailsHeaderAdmin className='User-name-details'>
+        <h3>{user?.name}</h3>
+        <h4>Admin</h4>
+      </Styled.PurchaseDetailsHeaderAdmin>
+        ) : (
       <Styled.PurchaseDetailsHeader className='User-name-details'>
-        <h3>{mockedUser.name}</h3>
+        <h3>{user?.name}</h3>
       </Styled.PurchaseDetailsHeader>
+      )}
     <Styled.CheckoutDetailsContainer>
       <Styled.CheckoutDetailsHeader className='Home-details-info'>
         <h3>List of purchased champions</h3>

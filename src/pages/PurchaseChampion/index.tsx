@@ -2,7 +2,6 @@ import { DateTime } from "luxon";
 import { PersonSad, PurchaseBugPoint, SearchIcon } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { mockedUser} from "../../assets/mocks";
 import ChampionList from "../../components/ChampionList";
 import { Dispatch, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
@@ -12,6 +11,7 @@ import '../../Tooltip.css';
 import { useChampions } from "../../contexts/champions";
 import { useClasses } from "../../contexts/classes";
 import { usePurchasedChampions } from "../../contexts/purchasedChampions";
+import { useUsers } from "../../contexts/users";
 
 interface PurchaseChampionPageProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +24,7 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
   const { champions } = useChampions();
   const { classes } = useClasses();
   const { purchasedChampions } = usePurchasedChampions();
+  const { user } = useUsers();
 
 
   if(stepsIsOpen) {
@@ -170,10 +171,18 @@ const PurchaseChampionPage = ({ setStepsIsOpen, stepsIsOpen }: PurchaseChampionP
             <h1>League of Bugs</h1>
             <p>{formatedDate}</p>
           </Styled.TitleContainer>
-          <Styled.BugPointUserContainer title="Total BugPoint available" className="Home-user-bugpoint">
+          {user?.isAdmin ? (
+          <Styled.BugPointAdminContainer title="Total BugPoint available" className="PurchaseBP-user-bugpoint">
             <PurchaseBugPoint />
-            <p >{mockedUser.bugPoint} BP</p>
+            <p className="dev-bugpoint-purchase">Admin</p>
+            <p>{user?.bugPoint} BP</p>
+          </Styled.BugPointAdminContainer>
+            ) : (
+          <Styled.BugPointUserContainer title="Total BugPoint available" className="PurchaseBP-user-bugpoint">
+            <PurchaseBugPoint />
+            <p>{user?.bugPoint} BP</p>
           </Styled.BugPointUserContainer>
+          )}
           <Styled.SearchInputContainer className="PurchaseChampion-input-search">
             <SearchIcon />
             <input placeholder="Search by name" onChange={(e) => setSearch(e.target.value)} />

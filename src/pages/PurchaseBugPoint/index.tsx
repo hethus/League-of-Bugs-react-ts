@@ -2,7 +2,6 @@ import { DateTime } from "luxon";
 import { PersonSad, PurchaseBugPoint, SearchIcon } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { mockedUser } from "../../assets/mocks";
 import BugPointList from "../../components/BugPointList";
 import { Dispatch, SetStateAction, useState } from "react";
 import PurchaseDetails from "../../components/PurchaseDetails";
@@ -10,6 +9,7 @@ import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
 import '../../Tooltip.css';
 import { useBugpoints } from "../../contexts/bugpoints";
+import { useUsers } from "../../contexts/users";
 
 interface PurchaseBugPointPageProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -18,6 +18,7 @@ interface PurchaseBugPointPageProps {
 
 const PurchaseBugPointPage = ({ setStepsIsOpen, stepsIsOpen  }: PurchaseBugPointPageProps) => {
   const { bugpoints } = useBugpoints();
+  const { user } = useUsers();
 
   const actualDate = DateTime.now();
   const formatedDate = `${actualDate.weekdayShort}, ${actualDate.day} ${actualDate.monthLong} ${actualDate.year}`;
@@ -147,10 +148,18 @@ const PurchaseBugPointPage = ({ setStepsIsOpen, stepsIsOpen  }: PurchaseBugPoint
             <h1>League of Bugs</h1>
             <p>{formatedDate}</p>
           </Styled.TitleContainer>
+          {user?.isAdmin ? (
+          <Styled.BugPointAdminContainer title="Total BugPoint available" className="PurchaseBP-user-bugpoint">
+            <PurchaseBugPoint />
+            <p className="dev-bugpoint-purchase">Admin</p>
+            <p>{user?.bugPoint} BP</p>
+          </Styled.BugPointAdminContainer>
+            ) : (
           <Styled.BugPointUserContainer title="Total BugPoint available" className="PurchaseBP-user-bugpoint">
             <PurchaseBugPoint />
-            <p>{mockedUser.bugPoint} BP</p>
+            <p>{user?.bugPoint} BP</p>
           </Styled.BugPointUserContainer>
+          )}
           <Styled.SearchInputContainer className="PurchaseBP-input-search">
             <SearchIcon />
             <input placeholder="Search by quantity" onChange={(e) => setSearch(e.target.value)}/>

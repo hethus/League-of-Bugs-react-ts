@@ -30,6 +30,25 @@ export const PurchaseDetailsHeader = styled.header`
   `}
 `
 
+export const PurchaseDetailsHeaderAdmin = styled.header`
+  ${({ theme }) => css`
+    width: 100%;
+    height: 5.5rem;
+    display: flex;
+    padding-bottom: 2.5rem;
+    font-family: ${theme.constants.bodyFontFamily};
+    line-height: ${theme.constants.lineHeight};
+    font-size: ${theme.constants.headingFontSize};
+    letter-spacing: 140%;
+    display: flex;
+    justify-content: space-between;
+
+    h4 {
+      color: ${theme.colors.secondaryColor};
+    }
+  `}
+`
+
 export const CheckoutDetailsContainer = styled.div`
   ${({ theme }) => css`
     width: 100%;

@@ -83,6 +83,30 @@ export const BugPointUserContainer = styled.div`
   `}
 `
 
+export const BugPointAdminContainer = styled.div`
+  ${({ theme }) => css`
+    width: 6.5rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${theme.colors.secondaryColor};
+    gap: 0.5rem;
+    border-top: 4px solid ${theme.colors.secondaryColor};
+    border-bottom: 4px solid ${theme.colors.secondaryColor};
+    border-radius: 15px;
+    box-sizing: border-box;
+    position: relative;
+
+    .dev-bugpoint-purchase {
+      font-size: x-large;
+      font-weight: 700;
+      position: absolute;
+      top: -2.2rem;
+    }
+  `}
+`
+
 export const SearchInputContainer = styled.div`
   width: 173px;
   height: 48px;

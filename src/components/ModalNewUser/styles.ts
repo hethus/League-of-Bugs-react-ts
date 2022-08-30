@@ -11,6 +11,8 @@ export const ModalContainer = styled.form`
     gap: 1.5rem;
     color: ${theme.colors.textColor};
     border-radius: 8px;
+    box-sizing: border-box;
+    border: 1px solid ${theme.colors.primaryColor};
 
     div {
       display: flex;

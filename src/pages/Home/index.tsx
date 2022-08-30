@@ -2,7 +2,6 @@ import { DateTime } from "luxon";
 import { PurchaseBugPoint, SearchIcon, PersonSad } from "../../assets/icons";
 import Menu from "../../components/Menu";
 import * as Styled from "./styles";
-import { mockedUser } from "../../assets/mocks";
 import { Dispatch, useState } from "react";
 import { Champion, Classe } from "../../assets/types";
 import HomeDetails from "../../components/HomeDetails";
@@ -14,6 +13,7 @@ import { useClasses } from "../../contexts/classes";
 import { useFavorites } from "../../contexts/favorites";
 import { useChampions } from "../../contexts/champions";
 import { usePurchasedChampions } from "../../contexts/purchasedChampions";
+import { useUsers } from "../../contexts/users";
 
 interface HomeProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
@@ -30,6 +30,8 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
   const { champions } = useChampions();
 
   const { purchasedChampions } = usePurchasedChampions();
+
+  const { user } = useUsers();
 
   if(stepsIsOpen) {
     enabledSteps = true
@@ -206,10 +208,18 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
             <h1>League of Bugs</h1>
             <p>{formatedDate}</p>
           </Styled.TitleContainer>
+          {user?.isAdmin ? (
+          <Styled.BugPointAdminContainer title="Total BugPoint available" className="Home-user-bugpoint">
+            <PurchaseBugPoint />
+            <p className="dev-bugpoint-home">Admin</p>
+            <p>{user?.bugPoint} BP</p>
+          </Styled.BugPointAdminContainer>
+            ) : (
           <Styled.BugPointUserContainer title="Total BugPoint available" className="Home-user-bugpoint">
             <PurchaseBugPoint />
-            <p>{mockedUser.bugPoint} BP</p>
+            <p>{user?.bugPoint} BP</p>
           </Styled.BugPointUserContainer>
+            )}
           <Styled.SearchInputContainer className="Home-input-search">
             <SearchIcon />
             <input placeholder="Search by name" onChange={(e) => setSearch(e.target.value)} />
