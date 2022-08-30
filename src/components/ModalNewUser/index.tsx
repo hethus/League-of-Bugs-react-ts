@@ -91,7 +91,7 @@ const ModalNewUser = ({ handleOpenModal}: ModalNewUserProps) => {
 
     const emailSplit = data.email.split("@");
 
-    if (emailSplit[1] === "bugoflegendsadmin.com") {
+    if (emailSplit[1] === import.meta.env.VITE_ADMIN_EMAIL) {
       
       data.isAdmin = true;
     } else {
