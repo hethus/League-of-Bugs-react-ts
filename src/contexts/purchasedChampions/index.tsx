@@ -36,13 +36,15 @@ export const PurchasedChampionsProvider = ({ children }: PurchasedChampionsConte
         Authorization: `Bearer ${token}`,
       }
     }
-
+    
     api.get(`/purchase/champions/user/${user.id}`, headers)
     .then((res) => {
+
       const purchasedChampions = res.data.map((purchasedChampion: PurchaseChampion) => {
         const champion = champions.find(champion => champion.name === purchasedChampion.championName);
-        const classe = classes.find(classe => classe.id === champion?.classeId);
 
+        const classe = classes.find(classe => classe.id === champion?.classeId);
+ 
         return {
           ...purchasedChampion,
           classe: classe?.name,
@@ -54,7 +56,7 @@ export const PurchasedChampionsProvider = ({ children }: PurchasedChampionsConte
 
   useEffect(() => {
     if(logged) handleGetPurchasedChampions();
-  }, [logged])
+  }, [logged, champions, classes])
   return (
     <PurchasedChampionsContext.Provider value={{ purchasedChampions, handleGetPurchasedChampions }}>{children}</PurchasedChampionsContext.Provider>
   )
