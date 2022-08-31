@@ -3,40 +3,25 @@ import Menu from "../../components/Menu";
 import * as Styled from "./styles";
 import {  PersonSad } from "../../assets/icons";
 import Button from "../../components/Button";
-import SettingsChampionCard from "../../components/SettingsChampionCard";
 import toast from "react-hot-toast";
 import { Steps, Hints } from 'intro.js-react';
 import 'intro.js/introjs.css';
-import ModalChampionSettings from "../../components/ModalChampionSettings";
-import { Champion, Classe } from "../../assets/types";
-import ModalChampionDelete from "../../components/ModalChampionDelete";
-import { useChampions } from "../../contexts/champions";
-import { useClasses } from "../../contexts/classes";
+import { Classe, PurchaseBp, PurchaseChampion, User } from "../../assets/types";
 import SettingsMenu from "../../components/SettingsMenu";
+import { useUsers } from "../../contexts/users";
+import SettingsUserCard from "../../components/SettingsUserCard";
+import ModalUserSettings from "../../components/ModalUsesrSettings";
+import ModalUserDelete from "../../components/ModalUserDelete";
 
 interface SettingsProps {
   setStepsIsOpen: Dispatch<React.SetStateAction<boolean>>;
   stepsIsOpen: boolean;
 }
 
-const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
+const SettingsUsers = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   let enabledSteps
 
-  const { champions } = useChampions();
-  const { classes } = useClasses();
-
-  const All: Classe = {
-    name: "All",
-  }
-
-  const [selectedClasse, setSelectedClasse] = useState<Classe>(All);
-
-  const filteredChampions: Champion[] = champions.filter((element) => {
-    if (selectedClasse.name === All.name) {
-      return champions
-    }
-      return element.classeId === selectedClasse.id
-  });
+  const { user, users } = useUsers();
 
   if(stepsIsOpen) {
     enabledSteps = true
@@ -97,22 +82,8 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
       position: 'left'
     },
     {
-      element: '.Settings-entities-Categories-edit',
-      intro: `<p>Here you can see all champions of a certain class</p>`,
-      tooltipClass: 'introjs-container',
-      highlightClass: 'highlight-menu',
-      position: 'left'
-    },
-    {
       element: '.Settings-entities-new-Champion-edit',
-      intro: `<p>Here you can add a new champion</p>`,
-      tooltipClass: 'introjs-container',
-      highlightClass: 'highlight-menu',
-      position: 'left'
-    },
-    {
-      element: '.Settings-entities-Champion-edit',
-      intro: `<p>Here you can see the champion, you can also edit and delete it</p>`,
+      intro: `<p>Here you can edit your account</p>`,
       tooltipClass: 'introjs-container',
       highlightClass: 'highlight-menu',
       position: 'left'
@@ -121,7 +92,7 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
 
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
-  const [champion, setChampion] = useState<Champion | undefined>(undefined);
+  const [userEdit, setUserEdit] = useState<User | undefined>(undefined);
 
   const handleOpenModal = () => {
     setOpenModal(!openModal);
@@ -129,6 +100,14 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
 
   const handleOpenDeleteModal = () => {
     setOpenDeleteModal(!openDeleteModal);
+  }
+
+  const handleLengthPurchases = (array: PurchaseChampion[] | PurchaseBp[] | undefined) => {
+    if (array?.length === 0) {
+      return 0;
+    } else {
+      return array?.length! - 1;
+    }
   }
 
   return (
@@ -140,51 +119,50 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   onExit={() => setStepsIsOpen(false)}
   />
       <Menu path="settings" setStepsIsOpen={setStepsIsOpen}/>
-      <SettingsMenu path="champions"/>
+      <SettingsMenu path="users"/>
       <Styled.EntitiesEditContainer className="Settings-entity-edit-container">
-        <h2>Customize the Champions</h2>
-        <Styled.EntitiesEditCategories className="Settings-entities-Categories-edit">
-
-          <Styled.EntitiesEditCategoriesButton
-            active={All.name === selectedClasse.name}
-            onClick={() => setSelectedClasse(All)}>
-              {All.name}
-            </Styled.EntitiesEditCategoriesButton>
-
-          {classes.map((element) => {
-            return (
-              <Styled.EntitiesEditCategoriesButton
-                key={element.id}
-                active={element.name === selectedClasse.name}
-                onClick={() => setSelectedClasse(element)}>
-                {element.name}
-              </Styled.EntitiesEditCategoriesButton>
-            )
-          })}
-
-        </Styled.EntitiesEditCategories>
+        {user?.isAdmin ? (
+          <>
+          <h2>Customize the Users</h2>
         <Styled.EntitiesEditList>
-          <Styled.AddEntityCard onClick={handleOpenModal} className="Settings-entities-new-Champion-edit">
-            <h2>+</h2>
-            <p>Add item</p>
-          </Styled.AddEntityCard>
-          {filteredChampions.map((element) => (
-            <SettingsChampionCard handleOpenModal={handleOpenModal} handleOpenDeleteModal={handleOpenDeleteModal} setChampion={setChampion} champion={element} key={element.id}/>
+          <Styled.EntityCard onClick={() => {
+            setUserEdit(user);
+            handleOpenModal();
+          }} className="Settings-entities-new-Champion-edit">
+            <h3>{user?.name}</h3>
+            <span>Email: {user?.email}</span>
+            <p>{handleLengthPurchases(user?.purchasedChampions)} Champions Purchased</p>
+            <p>{handleLengthPurchases(user?.purchasedBPs)} BugPoints Purchased</p>
+          </Styled.EntityCard>
+          {users?.map((element) => (
+            <SettingsUserCard handleOpenDeleteModal={handleOpenDeleteModal} setUser={setUserEdit} user={element} key={element.id}/>
           ))}
-          {filteredChampions.length === 0 &&
-            <Styled.NoItemContainer>
-              <PersonSad />
-              <p>No champions found</p>
-            </Styled.NoItemContainer>
-            }
-        </Styled.EntitiesEditList>     
+          </Styled.EntitiesEditList>
+          </>
+            ) : (
+          <>
+          <h2>Customize your account</h2>
+          <Styled.EntitiesEditList>
+          <Styled.EntityCard onClick={() => {
+            setUserEdit(user);
+            handleOpenModal();
+          }} className="Settings-entities-new-Champion-edit">
+            <h3>{user?.name}</h3> 
+            <span>Email: {user?.email}</span>
+            <p>{handleLengthPurchases(user?.purchasedChampions)} Champions Purchased</p>
+            <p>{handleLengthPurchases(user?.purchasedBPs)} BugPoints Purchased</p>
+          </Styled.EntityCard>
+          </Styled.EntitiesEditList>
+          </>
+        )}
+    
       </Styled.EntitiesEditContainer>
-      {openModal && <ModalChampionSettings handleOpenModal={handleOpenModal} champion={champion} setChampion={setChampion}/>}
+      {openModal && <ModalUserSettings handleOpenModal={handleOpenModal} user={userEdit} setUser={setUserEdit}/>}
 
       {openDeleteModal && (
-        <ModalChampionDelete
-          setChampion={setChampion}
-          championId={champion?.id}
+        <ModalUserDelete
+          setUser={setUserEdit}
+          userId={user?.id}
           handleOpenDeleteModal={handleOpenDeleteModal}
         />
       )}
@@ -192,4 +170,4 @@ const SettingsChampions = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   );
 };
 
-export default SettingsChampions;
+export default SettingsUsers;

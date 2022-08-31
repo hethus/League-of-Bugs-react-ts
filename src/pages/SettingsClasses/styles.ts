@@ -36,7 +36,7 @@ export const EntitiesEditContainer = styled.div`
 export const EntitiesEditList = styled.div`
   ${({ theme }) => css`
     width: 100%;
-    height: calc(100% - 16.25em);
+    height: calc(100% - 7.25em);
     display: flex;
     flex-wrap: wrap;
     padding: 1.5rem 1.5rem 1.5rem 3rem;

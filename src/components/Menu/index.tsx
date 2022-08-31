@@ -40,7 +40,7 @@ const Menu = ({ path, setStepsIsOpen }: MenuProps) => {
           </Styled.MenuItemButton>
         </Styled.MenuItem>
         <Styled.MenuItem active={path === "settings"} className='settings'>
-          <Styled.MenuItemButton onClick={() => navigate("/settings/champions")} active={path === "settings"}>
+          <Styled.MenuItemButton onClick={() => navigate("/settings/users")} active={path === "settings"}>
             <SettingsIcon />
           </Styled.MenuItemButton>
         </Styled.MenuItem>

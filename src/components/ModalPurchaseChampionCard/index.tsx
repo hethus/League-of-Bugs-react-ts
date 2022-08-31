@@ -17,7 +17,7 @@ interface ModalPurchaseChampionCardProps {
 
 const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps) => {
   const { classes } = useClasses();
-  const { purchasedChampions, handleGetPurchasedChampions } = usePurchasedChampions();
+  const { handleGetPurchasedChampions } = usePurchasedChampions();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -54,9 +54,9 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
         toast.error(err.response.data.message);
         setChangePurchase(0);
       })
-    }
-
+    } else {
     setChangePurchase(changePurchase + 1);
+    }
   }
 
   return (
@@ -122,7 +122,7 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
                 </p>
                 <Styled.ModalFooterButton>
                   {changePurchase === 0 ? (
-                    <Button text={'Buy'} onClick={() => handlePurchase()} title='Buy champion'/>
+                    <Button text='Buy' onClick={() => handlePurchase()} title='Buy champion'/>
                   ) : (
                     <Button text={'Confirm?'} variant='cancel' onClick={() => handlePurchase()} title='Confirm purchase'/>
                   )}

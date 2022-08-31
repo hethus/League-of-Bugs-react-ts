@@ -8,6 +8,7 @@ import PurchaseChampion from "./pages/PurchaseChampion";
 import { useAuth } from "./contexts/auth";
 import SettingsClasses from "./pages/SettingsClasses";
 import SettingsBugPoints from "./pages/SettingsBugPoints";
+import SettingsUsers from "./pages/SettingsUsers";
 
 const Router = () => {
   const [stepsIsOpen, setStepsIsOpen] = useState<boolean>(false);
@@ -23,7 +24,7 @@ const Router = () => {
         <Route path="/settings/champions" element={<SettingsChampions setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
         <Route path="/settings/classes" element={<SettingsClasses setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
         <Route path="/settings/bugpoints" element={<SettingsBugPoints setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
-        <Route path="/settings/users" element={<SettingsChampions setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
+        <Route path="/settings/users" element={<SettingsUsers setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
 
         <Route path="/purchase/bugpoint" element={<PurchaseBugPoint setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen}/>} />
         <Route path="/purchase/champion" element={<PurchaseChampion setStepsIsOpen={setStepsIsOpen} stepsIsOpen={stepsIsOpen} />} />

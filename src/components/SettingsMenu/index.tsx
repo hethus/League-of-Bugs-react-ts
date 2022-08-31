@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { DashboardIcon, InfoIcon, MarketIcon, PromotionIcon } from "../../assets/icons";
+import { useUsers } from "../../contexts/users";
 import * as Styled from "./styles";
 
 interface SettingsMenuProps {
@@ -8,11 +9,14 @@ interface SettingsMenuProps {
 
 const SettingsMenu = ({ path }: SettingsMenuProps) => {
   const navigate = useNavigate()
+  const { user } = useUsers();
 
   return (
     <Styled.SettingsNavigationContainer>
     <h2>Settings</h2>
     <Styled.SettingsNavigationButtonList className="Settings-navigation-buttons">
+      {user?.isAdmin ? (
+        <>
       <Styled.SettingsNavigationButtonContainer
         active={path === "users"}
         onClick={() => navigate("/settings/users")}
@@ -61,6 +65,23 @@ const SettingsMenu = ({ path }: SettingsMenuProps) => {
           <p>edit and add new classes</p>
         </Styled.SettingsNavigationButtonSelected>
       </Styled.SettingsNavigationButtonContainer>
+      </>
+      ) : (
+        <>
+      <Styled.SettingsNavigationButtonContainer
+        active={path === "users"}
+        onClick={() => navigate("/settings/users")}
+      >
+        <Styled.SettingsNavigationButtonSelected
+          active={path === "users"}
+        >
+          <InfoIcon />
+          <h2>Customize your account</h2>
+          <p>Manage account info</p>
+        </Styled.SettingsNavigationButtonSelected>
+      </Styled.SettingsNavigationButtonContainer>
+      </>
+      )}
     </Styled.SettingsNavigationButtonList>
   </Styled.SettingsNavigationContainer>
   );
