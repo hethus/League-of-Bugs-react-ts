@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { useClasses } from '../../contexts/classes';
 import { api } from '../../services';
 import { usePurchasedChampions } from '../../contexts/purchasedChampions';
+import { useUsers } from '../../contexts/users';
 
 Modal.setAppElement('#root');
 
@@ -17,6 +18,8 @@ interface ModalPurchaseChampionCardProps {
 
 const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps) => {
   const { classes } = useClasses();
+  const { handleGetUsers } = useUsers();
+
   const { handleGetPurchasedChampions } = usePurchasedChampions();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -49,6 +52,7 @@ const ModalPurchaseChampionCard = ({ champion }: ModalPurchaseChampionCardProps)
         toast.success('Champion purchased successfully!');
         setChangePurchase(0);
         handleGetPurchasedChampions();
+        handleGetUsers();
         handleCloseModal();
       }).catch((err) => {
         toast.error(err.response.data.message);

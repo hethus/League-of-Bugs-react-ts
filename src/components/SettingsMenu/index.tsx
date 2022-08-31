@@ -9,7 +9,7 @@ interface SettingsMenuProps {
 
 const SettingsMenu = ({ path }: SettingsMenuProps) => {
   const navigate = useNavigate()
-  const { user } = useUsers();
+  const { user, handleGetUsers } = useUsers();
 
   return (
     <Styled.SettingsNavigationContainer>
@@ -19,7 +19,10 @@ const SettingsMenu = ({ path }: SettingsMenuProps) => {
         <>
       <Styled.SettingsNavigationButtonContainer
         active={path === "users"}
-        onClick={() => navigate("/settings/users")}
+        onClick={() => {
+          handleGetUsers()
+          navigate("/settings/users")
+        }}
       >
         <Styled.SettingsNavigationButtonSelected
           active={path === "users"}

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../contexts/auth';
+import { useUsers } from '../../contexts/users';
 
 interface MenuProps {
   path: "home" | "settings" | "purchaseBugPoint" | "purchaseChampion";
@@ -15,6 +16,7 @@ const Menu = ({ path, setStepsIsOpen }: MenuProps) => {
   const navigate = useNavigate();
 
   const { logout } = useAuth();
+  const { handleGetUsers } = useUsers();
 
   const handleStepsIsOpen= () => {
     setStepsIsOpen(true);
@@ -40,7 +42,10 @@ const Menu = ({ path, setStepsIsOpen }: MenuProps) => {
           </Styled.MenuItemButton>
         </Styled.MenuItem>
         <Styled.MenuItem active={path === "settings"} className='settings'>
-          <Styled.MenuItemButton onClick={() => navigate("/settings/users")} active={path === "settings"}>
+          <Styled.MenuItemButton onClick={() => {
+            handleGetUsers();
+            navigate("/settings/users")
+            }} active={path === "settings"}>
             <SettingsIcon />
           </Styled.MenuItemButton>
         </Styled.MenuItem>

@@ -164,7 +164,7 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
     if (selectedClasse.name === All.name) {
       return purchasedChampions!.some((purchased) => {
         if (purchased.championName === element.name) {
-          return element
+          return element;
         }
       })
     }
@@ -191,6 +191,16 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
 
   const filteredChampionsByName = filteredChampions.filter((champion) => {
     return champion.name.toLowerCase().includes(search.toLowerCase());
+  });
+
+  const filteredChampionsByAlphabetical = filteredChampionsByName.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
   });
 
   return (
@@ -250,8 +260,8 @@ const Home = ({ setStepsIsOpen, stepsIsOpen }: HomeProps) => {
           <Styled.ProductsHeaderContainer className="Home-champion-list">
             <h2>Champions List</h2>
           </Styled.ProductsHeaderContainer>
-            <ChampionHomeList list={filteredChampionsByName} />
-            {filteredChampionsByName.length === 0 &&
+            <ChampionHomeList list={filteredChampionsByAlphabetical} />
+            {filteredChampionsByAlphabetical.length === 0 &&
             <Styled.NoItemContainer>
               <PersonSad />
               <p>No champions found</p>

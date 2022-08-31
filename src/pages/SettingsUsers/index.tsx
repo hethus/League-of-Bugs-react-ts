@@ -103,10 +103,11 @@ const SettingsUsers = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
   }
 
   const handleLengthPurchases = (array: PurchaseChampion[] | PurchaseBp[] | undefined) => {
+    console.log(array)
     if (array?.length === 0) {
       return 0;
     } else {
-      return array?.length! - 1;
+      return array?.length;
     }
   }
 
@@ -132,7 +133,7 @@ const SettingsUsers = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
             <h3>{user?.name}</h3>
             <span>Email: {user?.email}</span>
             <p>{handleLengthPurchases(user?.purchasedChampions)} Champions Purchased</p>
-            <p>{handleLengthPurchases(user?.purchasedBPs)} BugPoints Purchased</p>
+            <p>{handleLengthPurchases(user?.purchasedBPs)} BugPoints Card Purchased</p>
           </Styled.EntityCard>
           {users?.map((element) => (
             <SettingsUserCard handleOpenDeleteModal={handleOpenDeleteModal} setUser={setUserEdit} user={element} key={element.id}/>
@@ -150,7 +151,7 @@ const SettingsUsers = ({ setStepsIsOpen, stepsIsOpen }: SettingsProps) => {
             <h3>{user?.name}</h3> 
             <span>Email: {user?.email}</span>
             <p>{handleLengthPurchases(user?.purchasedChampions)} Champions Purchased</p>
-            <p>{handleLengthPurchases(user?.purchasedBPs)} BugPoints Purchased</p>
+            <p>{handleLengthPurchases(user?.purchasedBPs)} BugPoints Card Purchased</p>
           </Styled.EntityCard>
           </Styled.EntitiesEditList>
           </>
